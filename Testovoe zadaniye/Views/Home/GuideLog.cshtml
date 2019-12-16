@@ -1,0 +1,29 @@
+﻿@model Testovoe_zadaniye.Models.GuideLogin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authorization</title>
+</head>
+<body>
+    <div>
+        <h3>Sign in</h3>
+        <form method="post" action="~/Home/GuideLog">
+            <table>
+                <tr>
+                    <td>Имя:</td>
+                    <td><input type="text" name="Name" /> </td>
+                </tr>
+                <tr>
+                    <td>Адрес:</td>
+                    <td><input type="password" name="Password" /></td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

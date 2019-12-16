@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Testovoe_zadaniye.DataBase.Tour>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tours</title>
+</head>
+<body>
+    <h3>Tours</h3>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Date</td>
+            <td>Tour ID</td>
+
+
+            <td></td>
+        </tr>
+        @foreach (var tour in Model)
+        {
+    <tr>
+        <td>@tour.Name</td>
+        <td>@tour.Data</td>
+        <td>@tour.TourId</td>
+    </tr>
+        }
+    </table>
+</body>
+</html>

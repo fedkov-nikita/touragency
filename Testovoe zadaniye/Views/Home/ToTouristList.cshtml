@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Testovoe_zadaniye.DataBase.Tourist>
+@{
+    //ViewData["Title"] = "Список смартфонов";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tourists List</title>
+</head>
+<body>
+    <h3>Tourists</h3>
+    <table>
+        <tr>
+            <td>Home town</td>
+            <td>Fullname</td>
+            <td>Age</td>
+            <td>Guide</td>
+            <td>Tours</td>
+            <td></td>
+        </tr>
+        @foreach (var tourist in Model)
+        {
+            <tr>
+                <td>@tourist.Hometown</td>
+                <td>@tourist.Fullname</td>
+                <td>@tourist.Age</td>
+                <td>@tourist.GuideId</td>
+                <td><a href="~/Home/ToTours/@tourist.Touristid">Экскурсии</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

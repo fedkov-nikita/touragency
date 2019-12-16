@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Testovoe_zadaniye.DataBase.Guide>
+@{
+    //ViewData["Title"] = "Список смартфонов";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tourists List</title>
+</head>
+<body>
+    <h3>Guides</h3>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Id</td>
+            <td></td>
+        </tr>
+        @foreach (var guide in Model)
+        {
+    <tr>
+        <td>@guide.Name</td>
+        <td><a href="~/Home/ToTouristList/@guide.GuideId">Tourists</a></td>
+    </tr>
+        }
+    </table>
+</body>
+</html>

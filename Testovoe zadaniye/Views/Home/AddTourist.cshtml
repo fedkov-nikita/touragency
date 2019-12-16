@@ -1,0 +1,61 @@
+﻿
+@model Testovoe_zadaniye.DataBase.Addform
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adding tourist</title>
+</head>
+<body>
+    <div>
+        <h3>Add new Torist</h3>
+        <p>Enter fields:</p>
+        <form method="post">
+            <table>
+
+                <tr>
+                    <td>Hometown:</td>
+                    <td><input type="text" name="Hometown" /> </td>
+                </tr>
+                <tr>
+                    <td>Full Name:</td>
+                    <td><input type="text" name="Fullname" /></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" name="Age" /></td>
+                </tr>
+                <tr>
+
+                    <td>Guide:</td>
+                    <td>
+                        <select asp-for="GuideId" asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
+                    </td>
+                </tr>
+                <tr>
+                    @using (Html.BeginForm("AddTourist", "Addform", FormMethod.Post))
+                    {
+                        @Html.CheckBoxFor(c => c.selected)
+
+                        for (int i = 0; i < Model.Tours.Count(); i++)
+                        {
+                            @Html.CheckBoxFor(c => c.Tours[i].selected)
+                            @Model.Tours[i].Name
+                            @Html.HiddenFor(c => c.Tours[i].Name)
+                            @Html.HiddenFor(c => c.Tours[i].Data)
+                            @Html.HiddenFor(c => c.Tours[i].TourId)
+                        }
+
+                    }
+                </tr>
+
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
