@@ -59,6 +59,10 @@ namespace Testovoe_zadaniye.Controllers
         {
             return View();
         }
+        public ActionResult GuideSelection()
+        {
+            return View();
+        }
         public ActionResult ToGuides()
         {
             return View(db.Guides.ToList());

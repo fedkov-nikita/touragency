@@ -36,22 +36,27 @@
                         <select asp-for="GuideId" asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
                     </td>
                 </tr>
-                <tr>
-                    @using (Html.BeginForm("AddTourist", "Addform", FormMethod.Post))
-                    {
-                        @Html.CheckBoxFor(c => c.selected)
-
-                        for (int i = 0; i < Model.Tours.Count(); i++)
+                
+                 
+                        @using (Html.BeginForm("AddTourist", "Addform", FormMethod.Post))
                         {
-                            @Html.CheckBoxFor(c => c.Tours[i].selected)
-                            @Model.Tours[i].Name
-                            @Html.HiddenFor(c => c.Tours[i].Name)
-                            @Html.HiddenFor(c => c.Tours[i].Data)
-                            @Html.HiddenFor(c => c.Tours[i].TourId)
-                        }
 
-                    }
-                </tr>
+                            for (int i = 0; i < Model.Tours.Count(); i++)
+                            {
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(c => c.Tours[i].selected)
+                    @Model.Tours[i].Name
+                    @Html.HiddenFor(c => c.Tours[i].Name)
+                    @Html.HiddenFor(c => c.Tours[i].Data)
+                    @Html.HiddenFor(c => c.Tours[i].TourId)
+                </td>
+            </tr>
+                            }
+
+                        }
+                    
+              
 
                 <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
             </table>

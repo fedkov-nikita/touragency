@@ -30,7 +30,6 @@ namespace Testovoe_zadaniye.DataBase
         // Пароль Гида
         public DateTime Data { get; set; }
         public List<Tour> Tours { get; set; }
-        public bool selected { get; set; }
 
 
     }
@@ -72,6 +71,7 @@ namespace Testovoe_zadaniye.DataBase
         // Пароль Гида
         public DateTime Data { get; set; }
         public ICollection<TouristTour> TouristTours { get; set; }
+        [NotMapped]
         public bool selected { get; set; }
     }
     public class TouristTour
