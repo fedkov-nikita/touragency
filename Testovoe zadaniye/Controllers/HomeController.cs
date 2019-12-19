@@ -37,11 +37,19 @@ namespace Testovoe_zadaniye.Controllers
         [HttpPost]
         public ActionResult AddTourist(Addform model)
         {
+            List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
+            model.SelectedTourIds=tours;
             return RedirectToAction("AddTouristform", model);
         }
 
         public ActionResult AddTouristform(Addform model)
         {
+            model.Tours = db.Tours.ToList();
+                foreach(var t in model.Tours)
+            {
+                if (model.SelectedTourIds.Contains(t.TourId))
+                    t.selected = true;         
+            }
             List<Guide> li = new List<Guide>();
             li = db.Guides.ToList();
             ViewBag.listofitems = li;

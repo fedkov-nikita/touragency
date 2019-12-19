@@ -22,6 +22,7 @@ namespace Testovoe_zadaniye.DataBase
         public string Name { get; set; }
         // Пароль Гида
         public List<Tour> Tours { get; set; }
+        public List<int> SelectedTourIds { get; set; }
     }
     public class Tourist
     {
