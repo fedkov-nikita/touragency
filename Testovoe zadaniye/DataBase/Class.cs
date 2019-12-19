@@ -8,30 +8,20 @@ namespace Testovoe_zadaniye.DataBase
 {
     public class Addform
     {
-        //id туриста
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Tourist Touristid { get; set; }
         // Родной город туриста
-        public Tourist Hometown { get; set; }
+        public string Hometown { get; set; }
         // Полное имя туриста
-        public Tourist Fullname { get; set; }
+        public string Fullname { get; set; }
         // Возраст туриста
-        public Tourist Age { get; set; }
+        public int Age { get; set; }
         // Логин Гида
-        public Guide GuideId { get; set; }
-        // Логин Гида
-        public Guide Login { get; set; }
-        // Пароль Гида
-        public Guide Password { get; set; }
+        public int GuideId { get; set; }
         // Имя Гида
-        public Tour TourId { get; set; }
+        public int TourId { get; set; }
         // Название экскурсии
-        public Tour Name { get; set; }
+        public string Name { get; set; }
         // Пароль Гида
-        public DateTime Data { get; set; }
         public List<Tour> Tours { get; set; }
-
-
     }
     public class Tourist
     {

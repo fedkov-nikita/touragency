@@ -37,6 +37,14 @@ namespace Testovoe_zadaniye.Controllers
         [HttpPost]
         public ActionResult AddTourist(Addform model)
         {
+            return RedirectToAction("AddTouristform", model);
+        }
+
+        public ActionResult AddTouristform(Addform model)
+        {
+            List<Guide> li = new List<Guide>();
+            li = db.Guides.ToList();
+            ViewBag.listofitems = li;
             return View(model);
         }
 

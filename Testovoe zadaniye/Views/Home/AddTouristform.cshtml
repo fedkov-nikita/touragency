@@ -14,35 +14,39 @@
     <div>
         <h3>Add new Torist</h3>
         <p>Enter fields:</p>
-        @using (Html.BeginForm("AddTourist", "Home", FormMethod.Post))
+        @using (Html.BeginForm("AddTouristform", "Home", FormMethod.Post))
         {
+
             <table>
 
                 <tr>
                     <td>Hometown:</td>
-                    <td> @Html.TextBoxFor(c => c.Hometown)</td>
+                    <td> @Html.TextBoxFor(x=>x.Hometown,new {@class ="form-control", @readonly="true"}) </td>
                 </tr>
                 <tr>
                     <td>Full Name:</td>
-                    <td> @Html.TextBoxFor(c => c.Fullname)</td>
+                    <td>@Html.TextBoxFor(x => x.Fullname,new {@class ="form-control", @readonly="true"}) </td>
                 </tr>
                 <tr>
                     <td>Age:</td>
-                    <td>@Html.TextBoxFor(c => c.Age)</td>
+                    <td>@Html.TextBoxFor(x => x.Age,new {@class ="form-control", @readonly="true"})</td>
                 </tr>
                 <tr>
 
                     <td>Guide:</td>
                     <td>
-                        <select asp-for="GuideId" asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
+                        <select disabled="true" asp-for="GuideId"  asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
                     </td>
                 </tr>
+
+
+
 
                 @for (int i = 0; i < Model.Tours.Count(); i++)
                 {
                 <tr>
                     <td>
-                        @Html.CheckBoxFor(c => c.Tours[i].selected)
+                        @Html.CheckBoxFor(c => c.Tours[i].selected,new { @disabled = "disabled"})
                         @Model.Tours[i].Name
                         @Html.HiddenFor(c => c.Tours[i].Name)
                         @Html.HiddenFor(c => c.Tours[i].Data)
@@ -50,6 +54,10 @@
                     </td>
                 </tr>
                 }
+
+
+
+
 
                 <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
             </table>
