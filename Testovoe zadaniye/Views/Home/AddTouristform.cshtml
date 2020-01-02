@@ -14,9 +14,9 @@
     <div>
         <h3>Add new Torist</h3>
         <p>Enter fields:</p>
-        @using (Html.BeginForm("AddTouristform", "Home", FormMethod.Post))
+        @using (Html.BeginForm("SaveNewTourist", "Home", FormMethod.Post))
         {
-
+            @Html.HiddenFor(x=>x.SelectedTourIds)
             <table>
 
                 <tr>
@@ -35,7 +35,7 @@
 
                     <td>Guide:</td>
                     <td>
-                        <select disabled="true" asp-for="GuideId"  asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
+                        @Html.DropDownListFor(c => c.GuideId, Model.selectListg);
                     </td>
                 </tr>
 
@@ -46,11 +46,12 @@
                 {
                 <tr>
                     <td>
-                        @Html.CheckBoxFor(c => c.Tours[i].selected,new { @disabled = "disabled"})
+                        @Html.CheckBoxFor(c => c.Tours[i].selected, new { @disabled = "disabled" })
                         @Model.Tours[i].Name
                         @Html.HiddenFor(c => c.Tours[i].Name)
                         @Html.HiddenFor(c => c.Tours[i].Data)
                         @Html.HiddenFor(c => c.Tours[i].TourId)
+                        @Html.HiddenFor(c => c.Tours[i].selected)
                     </td>
                 </tr>
                 }

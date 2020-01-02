@@ -34,7 +34,7 @@
 
                     <td>Guide:</td>
                     <td>
-                        <select asp-for="GuideId" asp-items="@(new SelectList(ViewBag.listofitems, "GuideId", "Name"))"></select>
+                        @Html.DropDownListFor(c => c.GuideId, Model.selectListg);
                     </td>
                 </tr>
 

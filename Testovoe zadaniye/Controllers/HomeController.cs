@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -26,11 +27,12 @@ namespace Testovoe_zadaniye.Controllers
 
         public ActionResult AddTourist()
         {
-            List<Guide> li = new List<Guide>();
-            li = db.Guides.ToList();
-            ViewBag.listofitems = li;
+
             Addform model = new Addform();
-            model.Tours = db.Tours.ToList();
+            model.Guides = db.Guides.ToList();
+                        model.Tours = db.Tours.ToList();
+            model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
+            model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
             return View(model);
         }
 
@@ -50,10 +52,40 @@ namespace Testovoe_zadaniye.Controllers
                 if (model.SelectedTourIds.Contains(t.TourId))
                     t.selected = true;         
             }
-            List<Guide> li = new List<Guide>();
-            li = db.Guides.ToList();
-            ViewBag.listofitems = li;
+            model.Guides = db.Guides.ToList();
+            model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
+            var selectedGuideItem = model.selectListg.First(x => x.Value == model.GuideId.ToString());
+            selectedGuideItem.Selected = true;
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SaveNewTourist(Addform model)
+        {
+            foreach (var t in model.Tours)
+            {
+                if (model.SelectedTourIds.Contains(t.TourId))
+                    t.selected = true;
+            }
+            Tourist tourist = new Tourist();
+            tourist.Fullname = model.Fullname;
+            tourist.Hometown = model.Hometown;
+            tourist.GuideId = model.GuideId;        
+            tourist.Age = model.Age;
+            List<TouristTour> touristTours = new List<TouristTour>();
+            db.Tourists.Add(tourist);
+            // сохраняем в бд все изменения
+            db.SaveChanges();
+            foreach (var t in model.Tours.Where(x => x.selected == true))
+            {
+                TouristTour touristTour = new TouristTour();
+                touristTour.TouristId = tourist.Touristid;
+                touristTour.TourId = t.TourId;
+                touristTours.Add(touristTour);
+            }
+            db.TouristTour.AddRange(touristTours);
+            db.SaveChanges();
+            return RedirectToAction("ToTouristList", new { id = tourist.GuideId });
         }
 
         [HttpPost]

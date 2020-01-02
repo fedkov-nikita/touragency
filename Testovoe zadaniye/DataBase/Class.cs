@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace Testovoe_zadaniye.DataBase
         public int TourId { get; set; }
         // Название экскурсии
         public string Name { get; set; }
-        // Пароль Гида
         public List<Tour> Tours { get; set; }
         public List<int> SelectedTourIds { get; set; }
+        public List<Guide> Guides { get; set; }
+        public SelectList selectListg { get; set; }
+        public MultiSelectList selectListt { get; set; }
     }
     public class Tourist
     {
@@ -50,6 +53,8 @@ namespace Testovoe_zadaniye.DataBase
         public string Password { get; set; }
         // Имя Гида
         public string Name { get; set; }
+        [NotMapped]
+        public bool selected { get; set; }
         public ICollection<Tourist> Tourists { get; set; }
     }
     public class Tour
