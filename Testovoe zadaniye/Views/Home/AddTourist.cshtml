@@ -14,7 +14,8 @@
     <div>
         <h3>Add new Torist</h3>
         <p>Enter fields:</p>
-        @using (Html.BeginForm("AddTourist", "Home", FormMethod.Post))
+
+        @using (Html.BeginForm("AddTourist", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <table>
 
@@ -37,18 +38,26 @@
                         @Html.DropDownListFor(c => c.GuideId, Model.selectListg);
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>Аватар</label>
+                            <input name="Avatar" type="file" class="form-control" />
+                        </p>
+                    </td>
+                </tr>
 
                 @for (int i = 0; i < Model.Tours.Count(); i++)
                 {
-                <tr>
-                    <td>
-                        @Html.CheckBoxFor(c => c.Tours[i].selected)
-                        @Model.Tours[i].Name
-                        @Html.HiddenFor(c => c.Tours[i].Name)
-                        @Html.HiddenFor(c => c.Tours[i].Data)
-                        @Html.HiddenFor(c => c.Tours[i].TourId)
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(c => c.Tours[i].selected)
+                            @Model.Tours[i].Name
+                            @Html.HiddenFor(c => c.Tours[i].Name)
+                            @Html.HiddenFor(c => c.Tours[i].Data)
+                            @Html.HiddenFor(c => c.Tours[i].TourId)
+                        </td>
+                    </tr>
                 }
 
                 <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>

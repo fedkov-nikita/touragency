@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Testovoe_zadaniye.DataBase
 {
     public class Addform
     {
+        public byte[] UploadedPhoto { get; set; }
         // Родной город туриста
         public string Hometown { get; set; }
         // Полное имя туриста
@@ -19,6 +22,7 @@ namespace Testovoe_zadaniye.DataBase
         public int GuideId { get; set; }
         // Имя Гида
         public int TourId { get; set; }
+        public IFormFile Avatar { get; set; }
         // Название экскурсии
         public string Name { get; set; }
         public List<Tour> Tours { get; set; }
@@ -38,6 +42,7 @@ namespace Testovoe_zadaniye.DataBase
         public string Fullname { get; set; }
         // Возраст туриста
         public int Age { get; set; }
+        public byte[] Avatar { get; set; }
         public int GuideId { get; set; }
         public Guide Guide { get; set; }
         public ICollection<TouristTour> TouristTours { get; set; }

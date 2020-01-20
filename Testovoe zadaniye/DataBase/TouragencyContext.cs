@@ -5,10 +5,9 @@ namespace Testovoe_zadaniye.DataBase
 {
     public class TouragencyContext : DbContext
     {
-
-        public TouragencyContext(DbContextOptions options) : base(options)
+        public TouragencyContext(DbContextOptions<TouragencyContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

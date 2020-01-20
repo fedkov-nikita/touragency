@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Testovoe_zadaniye.DataBase;
 
 namespace Testovoe_zadaniye.Migrations
 {
     [DbContext(typeof(TouragencyContext))]
-    partial class TouragencyContextModelSnapshot : ModelSnapshot
+    [Migration("20200120121528_AddAvatarTourist")]
+    partial class AddAvatarTourist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +73,7 @@ namespace Testovoe_zadaniye.Migrations
 
                     b.HasIndex("GuideId");
 
-                    b.ToTable("Tourists");
+                    b.ToTable("Tourist");
                 });
 
             modelBuilder.Entity("Testovoe_zadaniye.DataBase.TouristTour", b =>

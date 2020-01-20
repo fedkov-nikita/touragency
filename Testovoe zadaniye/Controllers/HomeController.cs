@@ -8,6 +8,9 @@ using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
+
+
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -30,7 +33,7 @@ namespace Testovoe_zadaniye.Controllers
 
             Addform model = new Addform();
             model.Guides = db.Guides.ToList();
-                        model.Tours = db.Tours.ToList();
+            model.Tours = db.Tours.ToList();
             model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
             model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
             return View(model);
@@ -38,14 +41,27 @@ namespace Testovoe_zadaniye.Controllers
 
         [HttpPost]
         public ActionResult AddTourist(Addform model)
-        {
+         {
+            if (model.Avatar != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                }
+
+                // установка массива байтов
+                temp = imageData;
+            }
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds=tours;
             return RedirectToAction("AddTouristform", model);
         }
-
+        static byte[] temp = null;
         public ActionResult AddTouristform(Addform model)
         {
+            ViewBag.UploadedPhoto = temp;
             model.Tours = db.Tours.ToList();
                 foreach(var t in model.Tours)
             {
@@ -72,6 +88,7 @@ namespace Testovoe_zadaniye.Controllers
             tourist.Hometown = model.Hometown;
             tourist.GuideId = model.GuideId;        
             tourist.Age = model.Age;
+            tourist.Avatar = temp;
             List<TouristTour> touristTours = new List<TouristTour>();
             db.Tourists.Add(tourist);
             // сохраняем в бд все изменения
