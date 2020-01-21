@@ -12,26 +12,19 @@ using System.IO;
 
 
 
-
 namespace Testovoe_zadaniye.Controllers
 {
-    public class HomeController : Controller
+    public class GuideSelectionController : Controller
     {
-        
         TouragencyContext db;
-        public HomeController(TouragencyContext context)
+        public GuideSelectionController(TouragencyContext context)
         {
-            db = context; 
+            db = context;
         }
-        public ActionResult Index()
+        public ActionResult GuideSelection()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

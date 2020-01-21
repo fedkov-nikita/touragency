@@ -14,22 +14,22 @@
     <div>
         <h3>Add new Torist</h3>
         <p>Enter fields:</p>
-        @using (Html.BeginForm("SaveNewTourist", "Home", FormMethod.Post))
+
+        @using (Html.BeginForm("AddTourist", "AddTourist", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.HiddenFor(x => x.SelectedTourIds)
             <table>
 
                 <tr>
                     <td>Hometown:</td>
-                    <td> @Html.TextBoxFor(x => x.Hometown, new { @class = "form-control", @readonly = "true" }) </td>
+                    <td> @Html.TextBoxFor(c => c.Hometown)</td>
                 </tr>
                 <tr>
                     <td>Full Name:</td>
-                    <td>@Html.TextBoxFor(x => x.Fullname, new { @class = "form-control", @readonly = "true" }) </td>
+                    <td> @Html.TextBoxFor(c => c.Fullname)</td>
                 </tr>
                 <tr>
                     <td>Age:</td>
-                    <td>@Html.TextBoxFor(x => x.Age, new { @class = "form-control", @readonly = "true" })</td>
+                    <td>@Html.TextBoxFor(c => c.Age)</td>
                 </tr>
                 <tr>
 
@@ -40,30 +40,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <img  src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UploadedPhoto))" />
+                        <p>
+                            <label>Аватар</label>
+                            <input name="Avatar" type="file" class="form-control" />
+                        </p>
                     </td>
                 </tr>
-
-
-
 
                 @for (int i = 0; i < Model.Tours.Count(); i++)
                 {
                     <tr>
                         <td>
-                            @Html.CheckBoxFor(c => c.Tours[i].selected, new { @disabled = "disabled" })
+                            @Html.CheckBoxFor(c => c.Tours[i].selected)
                             @Model.Tours[i].Name
                             @Html.HiddenFor(c => c.Tours[i].Name)
                             @Html.HiddenFor(c => c.Tours[i].Data)
                             @Html.HiddenFor(c => c.Tours[i].TourId)
-                            @Html.HiddenFor(c => c.Tours[i].selected)
                         </td>
                     </tr>
                 }
-
-
-
-
 
                 <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
             </table>
