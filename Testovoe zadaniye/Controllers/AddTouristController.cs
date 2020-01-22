@@ -96,7 +96,7 @@ namespace Testovoe_zadaniye.Controllers
             }
             db.TouristTour.AddRange(touristTours);
             db.SaveChanges();
-            return RedirectToAction("ToTouristList", "ToTouristList", new { id = tourist.GuideId });
+            return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
         }
     }
 }

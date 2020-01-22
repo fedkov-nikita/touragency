@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Testovoe_zadaniye.Models.Guide>
 @{
-    //ViewData["Title"] = "Список смартфонов";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
         {
     <tr>
         <td>@guide.Name</td>
-        <td><a href="~/ToTouristList/ToTouristList/@guide.GuideId">Tourists</a></td>
+        <td><a href="~/Navigation/ToTouristList/@guide.GuideId">Tourists</a></td>
     </tr>
         }
     </table>

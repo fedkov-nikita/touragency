@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Testovoe_zadaniye.Models.Tourist>
 @{
-    //ViewData["Title"] = "Список смартфонов";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
         <td>@tourist.Fullname</td>
         <td>@tourist.Age</td>
         <td>@tourist.GuideId</td>
-        <td><a href="~/ToTours/ToTours/@tourist.Touristid">Экскурсии</a></td>
+        <td><a href="~/Navigation/ToTours/@tourist.Touristid">Экскурсии</a></td>
         <td>
             @if (tourist.Avatar != null)
             {

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Testovoe_zadaniye.Models.Tourist>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tourists List</title>
+</head>
+<body>
+    <h3>Tourists</h3>
+    <table>
+        <tr>
+            <td>Home town</td>
+            <td>Fullname</td>
+            <td>Age</td>
+            <td>Guide</td>
+            <td>Tours</td>
+            <td></td>
+        </tr>
+        @foreach (var tourist in Model)
+        {
+            <tr>
+                <td>@tourist.Hometown</td>
+                <td>@tourist.Fullname</td>
+                <td>@tourist.Age</td>
+                <td>
+                    @if (tourist.Avatar != null)
+                    {
+                        <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(tourist.Avatar))" />
+                    }
+                </td>
+                <td><a href="~/Navigation/ToGuide/@tourist.GuideId">Гид</a></td>
+                <td><a href="~/Navigation/ToTours/@tourist.Touristid">Экскурсии</a></td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

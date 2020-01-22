@@ -28,7 +28,7 @@ namespace Testovoe_zadaniye.Controllers
             var g = db.Guides.Any(x => x.Login == guideLogin.Name && x.Password == guideLogin.Password);
             if (g == true)
             {
-                return RedirectToAction("GuideSelection", "GuideSelection");
+                return RedirectToAction("GuideSelection", "Navigation");
             }
             else
             {
