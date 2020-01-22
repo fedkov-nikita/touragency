@@ -1,43 +1,38 @@
 ﻿@model IEnumerable<Testovoe_zadaniye.Models.Tourist>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>Tourists List</title>
-</head>
-<body>
-    <h3>Tourists</h3>
-    <table>
+<img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+<table class="table table-striped table-sm">
+    <thead>
         <tr>
-            <td>Home town</td>
-            <td>Fullname</td>
-            <td>Age</td>
-            <td>Guide</td>
-            <td>Tours</td>
-            <td></td>
+            <th>Home town</th>
+            <th>Fullname</th>
+            <th>Age</th>
+            <th>Photo</th>
+            <th>Tours</th>
+            <th>Delete</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach (var tourist in Model)
         {
             <tr>
                 <td>@tourist.Hometown</td>
                 <td>@tourist.Fullname</td>
                 <td>@tourist.Age</td>
-                <td>@tourist.GuideId</td>
-                <td><a href="~/Navigation/ToTours/@tourist.Touristid">Экскурсии</a></td>
                 <td>
                     @if (tourist.Avatar != null)
                     {
                         <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(tourist.Avatar))" />
                     }
                 </td>
+                <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTours/@tourist.Touristid" role="button">Tours</a></td>
                 <td>
-                    <a asp-action="Delete" asp-controller="Navigation" asp-route-id="@tourist.Touristid">Удалить</a>
+                    <a class="btn btn-primary btn-lg" asp-action="Delete" asp-controller="Navigation" asp-route-id="@tourist.Touristid">Delete</a>
                 </td>
             </tr>
         }
-    </table>
-</body>
-</html>
+
+    </tbody>
+</table>
