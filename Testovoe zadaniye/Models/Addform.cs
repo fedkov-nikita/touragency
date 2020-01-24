@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Testovoe_zadaniye.Models;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace Testovoe_zadaniye.Models
 {
@@ -16,12 +16,13 @@ namespace Testovoe_zadaniye.Models
         // Родной город туриста
         public string Hometown { get; set; }
         // Полное имя туриста
+        [Display(Name = "Full Name")]
         public string Fullname { get; set; }
         // Возраст туриста
         public int Age { get; set; }
         // Логин Гида
+        [Display(Name = "Guide")]
         public int GuideId { get; set; }
-        // Имя Гида
         public int TourId { get; set; }
         public IFormFile Avatar { get; set; }
         // Название экскурсии
