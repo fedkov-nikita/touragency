@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Testovoe_zadaniye</title>
@@ -27,6 +29,9 @@
             <p>&copy;Zhara Travel</p>
         </footer>
     </div>
+    @*<div class="loaderbody" id="loaderbody">
+            <div class="loader"></div>
+        </div>*@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -48,7 +53,16 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/Script.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
+
+
+
 
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

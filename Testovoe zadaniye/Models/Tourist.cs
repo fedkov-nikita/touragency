@@ -6,11 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Testovoe_zadaniye.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Testovoe_zadaniye.Models
 {
     public class Tourist
     {
+        [Key]
         //id туриста
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Touristid { get; set; }
