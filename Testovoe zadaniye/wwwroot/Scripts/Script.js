@@ -19,12 +19,10 @@ function jQueryAjaxPost(form) {
                 if (response.success) {
                     $("#firstTab").html(response.html);
                     refreshAddNewTab($(form).attr('data-restUrl'), true);
-                    $.notify(response.message, "success");
                     if (typeof activatejQueryTable !== 'undefined' && $.isFunction(activatejQueryTable))
                         activatejQueryTable();
                 }
                 else {
-                    $.notify(response.message, "error");
                 }
             }
         }
@@ -63,3 +61,4 @@ function Edit(url) {
         }
     });
 }
+

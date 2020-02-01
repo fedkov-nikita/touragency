@@ -9,19 +9,25 @@
 {
     @Html.HiddenFor(c => c.Touristid)
     @Html.HiddenFor(c => c.UploadedPhoto)
+
+
+
     <div class="row">
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Hometown)
             @Html.EditorFor(c => c.Hometown, new { @class = "form-control", @placeholder = "Kyiv", @required = "" })
         </div>
+
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Fullname)
             @Html.EditorFor(c => c.Fullname, new { @class = "form-control", @placeholder = "Petrov I.", @required = "" })
         </div>
+
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Age)
             @Html.EditorFor(c => c.Age, new { @class = "form-control", @placeholder = "18", @required = "", type = "number", min = "0", step = "1" })
         </div>
+
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
@@ -29,12 +35,13 @@
             @Html.DropDownListFor(c => c.GuideId, Model.selectListg, new { @class = "custom-select d-block w-100" })
         </div>
     </div>
+
     <label>Current Photo:</label>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
-            @if(Model.UploadedPhoto != null )
+            @if (Model.UploadedPhoto != null)
             {
-            <img style='width:120px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.UploadedPhoto))" />
+                <img style='width:120px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.UploadedPhoto))" />
             }
         </div>
     </div>
@@ -50,13 +57,14 @@
             </div>
         </div>
     </div>
+
     <label for="selected">Choose Tours:</label>
     <div class="row justify-content-md-center">
 
         @for (int i = 0; i < Model.Tours.Count(); i++)
         {
 
-            <div class="col-md-4">
+            <div class="col-md-4" id= "checkDiv">
                 <div class="form-group form-check">
                     @Html.CheckBoxFor(c => c.Tours[i].selected, new { @class = "form-check-input" })
                     @Model.Tours[i].Name
@@ -68,11 +76,31 @@
         }
 
     </div>
+
     <div>
         <div class="row justify-content-md-center">
             <div class="col-md-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit">Confirm</button>
             </div>
         </div>
     </div>
 }
+
+<script>
+    var debounceTimer = null;
+    var eventHandler = function () {
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+            $('#submit').click();
+            console.log("The field has been changed.");
+
+        }, 2000);
+    }
+    $(document).ready(function () {
+        $("#Hometown, #Fullname").keyup(eventHandler);
+        $("#GuideId, #checkDiv input, #Age").click(eventHandler);
+        $("#Avatar").change(eventHandler);
+    });
+
+</script>

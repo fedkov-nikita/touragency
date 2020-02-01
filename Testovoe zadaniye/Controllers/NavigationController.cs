@@ -80,7 +80,6 @@ namespace Testovoe_zadaniye.Controllers
             model.GuideId = tourist.GuideId;
             model.UploadedPhoto = tourist.Avatar;
             model.Tours = db.Tours.ToList();
-            model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
             model.SelectedTourIds = db.TouristTour.Where(x => x.TouristId == tourist.Touristid).Select(x => x.TourId).ToList();
             model.Guides = db.Guides.ToList();
             model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
