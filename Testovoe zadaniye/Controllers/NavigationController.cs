@@ -38,14 +38,22 @@ namespace Testovoe_zadaniye.Controllers
         }
         public IActionResult ToTouristList(int? id)
         {
-            return View(db.Guides.Include(x => x.Tourists).First(
-                        i => i.GuideId == id.Value).Tourists);
+            var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
+
+            //return View(db.Guides.Include(x => x.Tourists).First(
+            //            i => i.GuideId == id.Value).Tourists);
+            return View(tourists);
         }
         public IActionResult ToTours(int? id)
         {
+
             var viewModel = new TouristindexData();
-            return View(db.TouristTour.Where(
-                        i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
+            
+            var tours = db.Tours.FromSqlRaw("sp_ShowFullTouristInfo @TouristId={0}", id).ToList();
+
+            //return View(db.TouristTour.Where(
+            //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
+            return View(tours);
         }
         public IActionResult TouristList()
         {

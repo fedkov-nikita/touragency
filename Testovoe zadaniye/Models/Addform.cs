@@ -26,7 +26,6 @@ namespace Testovoe_zadaniye.Models
         public string Path { get; set; }
         public IFormFile Avatar { get; set; }
         // Название экскурсии
-        public string Path { get; set; }
         public List<Tour> Tours { get; set; }
         public List<int> SelectedTourIds { get; set; }
         public List<Guide> Guides { get; set; }
