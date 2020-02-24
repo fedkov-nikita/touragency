@@ -17,8 +17,12 @@ namespace Testovoe_zadaniye.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TourId { get; set; }
         // Название экскурсии
+        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$")]
+        [StringLength(30)]
+        [Required]
         public string Name { get; set; }
         // Пароль Гида
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
         public ICollection<TouristTour> TouristTours { get; set; }
         [NotMapped]

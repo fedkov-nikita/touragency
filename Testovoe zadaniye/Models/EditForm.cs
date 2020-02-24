@@ -12,9 +12,14 @@ namespace Testovoe_zadaniye.Models
 {
     public class EditForm
     {
+        [Required]
         public string Path { get; set; }
+        [StringLength(60, MinimumLength = 2)]
+        [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         // Родной город туриста
         public string Hometown { get; set; }
+        [Required]
         // Полное имя туриста
         [Display(Name = "Full Name")]
         public string Fullname { get; set; }

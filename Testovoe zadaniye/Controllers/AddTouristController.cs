@@ -43,20 +43,20 @@ namespace Testovoe_zadaniye.Controllers
             if (model.Avatar != null)
             {
                 // путь к папке Files
-                string path = "/images/" + model.Avatar.FileName;
+                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+                string path = d + model.Avatar.FileName;
                 // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                string p = path;
+                string fileName = Path.GetFileName(p);
+                string fileExtension = Path.GetExtension(fileName);
+                string randomFileName = Path.GetRandomFileName();
+                string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
+                model.Path = fullPath;
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
                 {
                     await model.Avatar.CopyToAsync(fileStream);
                 }
-                // считываем переданный файл в массив байтов
-                //using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
-                //{
-                //    imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
-                //}
 
-                // установка массива байтов
-                model.Path = path;
             }
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
@@ -93,6 +93,7 @@ namespace Testovoe_zadaniye.Controllers
             tourist.Hometown = model.Hometown;
             tourist.GuideId = model.GuideId;
             tourist.Age = model.Age;
+
             tourist.Avatar = model.Path;
             List<TouristTour> touristTours = new List<TouristTour>();
             db.Tourists.Add(tourist);

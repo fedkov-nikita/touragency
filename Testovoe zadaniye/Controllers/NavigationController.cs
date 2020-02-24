@@ -49,7 +49,7 @@ namespace Testovoe_zadaniye.Controllers
 
             var viewModel = new TouristindexData();
             
-            var tours = db.Tours.FromSqlRaw("sp_ShowFullTouristInfo @TouristId={0}", id).ToList();
+            var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
 
             //return View(db.TouristTour.Where(
             //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
@@ -116,14 +116,20 @@ namespace Testovoe_zadaniye.Controllers
             
             if (model.Avatar != null)
             {
-                string path = "/images/" + model.Avatar.FileName;
+                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+                string path = d + model.Avatar.FileName;
+                string p = path;
+                string fileName = Path.GetFileName(p);
+                string fileExtension = Path.GetExtension(fileName);
+                string randomFileName = Path.GetRandomFileName();
+                string fullPath  = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
+                model.Path = fullPath;
                 // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
                 {
                     await model.Avatar.CopyToAsync(fileStream);
                 }
                 // установка массива байтов
-                model.Path = path;
             }
             tourist.Avatar = model.Path;
 
@@ -148,7 +154,7 @@ namespace Testovoe_zadaniye.Controllers
                         db.Entry(tourist).State = EntityState.Modified;
                         db.SaveChanges();
                     }
-            //return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
+
             return Ok();
             
             

@@ -13,9 +13,14 @@ namespace Testovoe_zadaniye.Models
     public class Addform
     {
         // Родной город туриста
+        [StringLength(60, MinimumLength = 2)]
+        [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string Hometown { get; set; }
+        [StringLength(60, MinimumLength = 4)]
         // Полное имя туриста
         [Display(Name = "Full Name")]
+        [Required]
         public string Fullname { get; set; }
         // Возраст туриста
         public int Age { get; set; }
