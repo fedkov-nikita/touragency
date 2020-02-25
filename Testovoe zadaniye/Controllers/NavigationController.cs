@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Testovoe_zadaniye.LoggingMechanism;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -24,24 +25,39 @@ namespace Testovoe_zadaniye.Controllers
         }
         public ActionResult GuideSelection()
         {
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
             return View();
         }
         public IActionResult ToGuide(int? id)
         {
             var viewModel = new TouristindexData();
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
             return View(db.Guides.Where(
                         i => i.GuideId == id.Value).ToList());
         }
         public ActionResult ToGuides()
         {
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
             return View(db.Guides.ToList());
         }
         public IActionResult ToTouristList(int? id)
         {
+
             var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
 
             //return View(db.Guides.Include(x => x.Tourists).First(
             //            i => i.GuideId == id.Value).Tourists);
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
             return View(tourists);
         }
         public IActionResult ToTours(int? id)
@@ -53,10 +69,19 @@ namespace Testovoe_zadaniye.Controllers
 
             //return View(db.TouristTour.Where(
             //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
             return View(tours);
         }
         public IActionResult TouristList()
         {
+            Logging logging = new Logging();
+            string methName =  logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
             return View(db.Tourists.ToList());
         }
         [HttpGet]
@@ -73,6 +98,11 @@ namespace Testovoe_zadaniye.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("ToTouristList",new { id = temp });
             }
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
             return NotFound();
         }
         [HttpGet]
@@ -154,6 +184,10 @@ namespace Testovoe_zadaniye.Controllers
                         db.Entry(tourist).State = EntityState.Modified;
                         db.SaveChanges();
                     }
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
 
             return Ok();
             

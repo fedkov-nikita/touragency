@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Runtime.CompilerServices;
+using Testovoe_zadaniye.LoggingMechanism;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -44,7 +45,7 @@ namespace Testovoe_zadaniye.Controllers
             if (model.Avatar != null)
             {
                 // путь к папке Files
-                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+                var d = Directory.CreateDirectory(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
                 string path = d + model.Avatar.FileName;
                 // сохраняем файл в папку Files в каталоге wwwroot
                 string p = path;
@@ -62,7 +63,10 @@ namespace Testovoe_zadaniye.Controllers
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
-            System.IO.File.AppendAllText($"Logs/mylog.txt", $"{DateTime.Now} {SomeMethod()} - done");
+            Logging logging = new Logging();
+            string methName =  logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
             return RedirectToAction("AddTouristform", model);
         }
         
@@ -79,6 +83,11 @@ namespace Testovoe_zadaniye.Controllers
             model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
             var selectedGuideItem = model.selectListg.First(x => x.Value == model.GuideId.ToString());
             selectedGuideItem.Selected = true;
+
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
 
             return View(model);
         }
@@ -110,13 +119,22 @@ namespace Testovoe_zadaniye.Controllers
             }
             db.TouristTour.AddRange(touristTours);
             db.SaveChanges();
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
+
+            string className = this.GetType().Name;
+            logging.LoggMassageClass(className);
+
             return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
         }
-        public string SomeMethod([CallerMemberName] string memberName = "")
-        {
-            var a = memberName;
-            return a;
-        }
+        //public string SomeMethod([CallerMemberName] string memberName = "")
+        //{
+        //    var a = memberName;
+        //    return a;
+        //}
 
 
     }

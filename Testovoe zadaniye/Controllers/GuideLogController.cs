@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Testovoe_zadaniye.LoggingMechanism;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -19,6 +20,7 @@ namespace Testovoe_zadaniye.Controllers
         public GuideLogController(TouragencyContext context)
         {
             db = context;
+
         }
         [HttpPost]
         public ActionResult GuideLog(GuideLogin guideLogin)
@@ -27,10 +29,24 @@ namespace Testovoe_zadaniye.Controllers
             var g = db.Guides.Any(x => x.Login == guideLogin.Name && x.Password == guideLogin.Password);
             if (g == true)
             {
+                Logging logging = new Logging();
+                string methName = logging.DefineMethodName();
+                logging.LoggMassage(methName);
+
+                string className = this.GetType().Name;
+                logging.LoggMassageClass(className);
+
                 return RedirectToAction("GuideSelection", "Navigation");
             }
             else
             {
+                Logging logging = new Logging();
+                string methName = logging.DefineMethodName();
+                logging.LoggMassage(methName);
+
+                string className = this.GetType().Name;
+                logging.LoggMassageClass(className);
+
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -39,5 +55,6 @@ namespace Testovoe_zadaniye.Controllers
         {
             return View();
         }
+
     }
 }

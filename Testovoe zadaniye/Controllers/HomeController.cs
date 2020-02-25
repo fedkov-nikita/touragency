@@ -10,22 +10,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.Extensions.Logging;
+using Testovoe_zadaniye.LoggingMechanism;
 
 namespace Testovoe_zadaniye.Controllers
 {
     public class HomeController : Controller
     {
         TouragencyContext db;
-        private readonly ILogger _logger;
 
-        public HomeController(TouragencyContext context, ILoggerFactory logFactory)
+
+        public HomeController(TouragencyContext context)
         {
-            _logger = logFactory.CreateLogger<HomeController>();
             db = context; 
         }
         public ActionResult Index()
         {
-            _logger.LogInformation("Log message in the Index() method");
+
+            Logging logging = new Logging();
+            string methName = logging.DefineMethodName();
+            logging.LoggMassage(methName);
+
+            string className = this.GetType().Name;
+            logging.LoggMassageClass(className);
+
             return View();
         }
 
