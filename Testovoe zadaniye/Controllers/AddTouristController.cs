@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -60,6 +61,8 @@ namespace Testovoe_zadaniye.Controllers
             }
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
+
+            System.IO.File.AppendAllText($"Logs/mylog.txt", $"{DateTime.Now} {SomeMethod()} - done");
             return RedirectToAction("AddTouristform", model);
         }
         
@@ -93,7 +96,6 @@ namespace Testovoe_zadaniye.Controllers
             tourist.Hometown = model.Hometown;
             tourist.GuideId = model.GuideId;
             tourist.Age = model.Age;
-
             tourist.Avatar = model.Path;
             List<TouristTour> touristTours = new List<TouristTour>();
             db.Tourists.Add(tourist);
@@ -110,5 +112,12 @@ namespace Testovoe_zadaniye.Controllers
             db.SaveChanges();
             return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
         }
+        public string SomeMethod([CallerMemberName] string memberName = "")
+        {
+            var a = memberName;
+            return a;
+        }
+
+
     }
 }

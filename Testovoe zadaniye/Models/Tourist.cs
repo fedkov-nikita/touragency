@@ -25,7 +25,6 @@ namespace Testovoe_zadaniye.Models
         public string Fullname { get; set; }
         // Возраст туриста
         public int Age { get; set; }
-        [Required]
         public string Avatar { get; set; }
         public int GuideId { get; set; }
         public Guide Guide { get; set; }

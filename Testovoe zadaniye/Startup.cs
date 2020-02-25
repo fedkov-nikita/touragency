@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Testovoe_zadaniye.DataBase;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
 
 namespace Testovoe_zadaniye
 {
@@ -40,8 +42,10 @@ namespace Testovoe_zadaniye
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env /*, ILoggerFactory loggerFactory*/)
         {
+            //loggerFactory.AddFile("Logs/mylog-{Date}.txt");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,6 +55,8 @@ namespace Testovoe_zadaniye
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
