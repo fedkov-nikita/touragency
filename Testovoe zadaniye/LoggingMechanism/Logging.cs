@@ -6,33 +6,6 @@ using System.Threading.Tasks;
 
 namespace Testovoe_zadaniye.LoggingMechanism
 {
-    //public class Logging
-    //{
-    //    public string LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
-    //    {
-    //        string p = System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
-    //    }
-
-
-    public class Logging
-    {
-        private static Logging instance;
-
-        private Logging()
-        { }
-
-        public void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
-        {
-            System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
-        }
-
-        public static Logging getInstance()
-        {
-            if (instance == null)
-                instance = new Logging();
-            return instance;
-        }
-    }
 
     abstract class Logger
     {
