@@ -22,7 +22,7 @@ namespace Testovoe_zadaniye.Controllers
         public HomeController(TouragencyContext context)
         {
             db = context;
-            LoggerCreator loggerCreator = new TxtLoggerCreator();
+            LoggerCreator loggerCreator = new ConsoleLoggerCreator();
             logger = loggerCreator.FactoryMethod();
         }
         public ActionResult Index()
@@ -40,10 +40,5 @@ namespace Testovoe_zadaniye.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

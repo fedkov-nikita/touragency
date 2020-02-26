@@ -8,3 +8,11 @@
  2/26/2020 5:24:44 PM Class NavigationController - method: ToGuides - action: Display guides list
  2/26/2020 5:24:46 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
  2/26/2020 5:24:49 PM Class NavigationController - method: ToTours - action: Display tours
+ 2/26/2020 5:35:29 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 2/26/2020 5:35:38 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 2/26/2020 5:35:38 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 2/26/2020 5:38:49 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 2/26/2020 5:38:56 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 2/26/2020 5:38:56 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 2/26/2020 5:38:58 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 2/26/2020 5:38:59 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
