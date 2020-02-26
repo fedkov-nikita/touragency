@@ -17,10 +17,12 @@ namespace Testovoe_zadaniye.Controllers
     public class GuideLogController : Controller
     {
         TouragencyContext db;
-        //Logging logging = Logging.getInstance();
+        Logger logger;
         public GuideLogController(TouragencyContext context)
         {
             db = context;
+            LoggerCreator loggerCreator = new TxtLoggerCreator();
+            logger = loggerCreator.FactoryMethod();
 
         }
         [HttpPost]
@@ -34,17 +36,17 @@ namespace Testovoe_zadaniye.Controllers
                 string message = "Successful Sign Up";
                 string className = this.GetType().Name;
 
-                //logging.LoggMessage(className, message);
+                logger.LoggMessage(className, message);
 
                 return RedirectToAction("GuideSelection", "Navigation");
             }
             else
             {
 
-                //string message = "Unsuccessful Sign Up";
-                //string className = this.GetType().Name;
+                string message = "Unsuccessful Sign Up";
+                string className = this.GetType().Name;
 
-                //logging.LoggMessage(className, message);
+                logger.LoggMessage(className, message);
 
                 return RedirectToAction("Index", "Home");
             }

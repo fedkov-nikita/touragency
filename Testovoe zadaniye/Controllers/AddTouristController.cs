@@ -23,11 +23,14 @@ namespace Testovoe_zadaniye.Controllers
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
-        //Logging logging = Logging.getInstance();
+        Logger logger;
         public AddTouristController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
+            LoggerCreator loggerCreator = new TxtLoggerCreator();
+            logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
+
         }
         public ActionResult AddTourist()
         {
@@ -68,7 +71,7 @@ namespace Testovoe_zadaniye.Controllers
 
             
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
 
             return RedirectToAction("AddTouristform", model);
@@ -90,10 +93,10 @@ namespace Testovoe_zadaniye.Controllers
 
 
 
-            //string message = "Submition of new tourist form";
-            //string className = this.GetType().Name;
+            string message = "Submition of new tourist form";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
 
 
@@ -128,10 +131,10 @@ namespace Testovoe_zadaniye.Controllers
             db.TouristTour.AddRange(touristTours);
             db.SaveChanges();
 
-            //string message = "Saving of new tourist";
-            //string className = this.GetType().Name;
+            string message = "Saving of new tourist";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
         }

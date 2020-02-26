@@ -14,44 +14,69 @@ namespace Testovoe_zadaniye.LoggingMechanism
     //    }
 
 
-    //class Logging
-    //{
-    //    private static Logging instance;
+    public class Logging
+    {
+        private static Logging instance;
 
-    //    private Logging()
-    //    { }
+        private Logging()
+        { }
 
-    //    public void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
-    //    {
-    //        System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
-    //    }
+        public void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
+        {
+            System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
+        }
 
-    //    public static Logging getInstance()
-    //    { 
-    //        if (instance == null)
-    //        instance = new Logging();
-    //        return instance;
-    //    }
-    //}
+        public static Logging getInstance()
+        {
+            if (instance == null)
+                instance = new Logging();
+            return instance;
+        }
+    }
 
     abstract class Logger
     {
-        
+
+        public abstract void LoggMessage(string className, string message, [CallerMemberName] string memberName = "");
     }
 
     class ConsoleLogger : Logger
     {
-        public void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
+        private static ConsoleLogger instance;
+
+        private ConsoleLogger()
+        { }
+
+        public override void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
         {
-            Console.WriteLine($"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
+            System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
+        }
+
+        public static ConsoleLogger getInstance()
+        {
+            if (instance == null)
+                instance = new ConsoleLogger();
+            return instance;
         }
     }
 
     class TxtLogger : Logger
     {
-        public void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
+        private static TxtLogger instance;
+
+        private TxtLogger()
+        { }
+
+        public override void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
         {
             System.IO.File.AppendAllText($"Logs/mylog.txt", $"\n {DateTime.Now} Class {className} - method: {memberName} - action: {message}");
+        }
+
+        public static TxtLogger getInstance()
+        {
+            if (instance == null)
+                instance = new TxtLogger();
+            return instance;
         }
     }
 
@@ -62,12 +87,12 @@ namespace Testovoe_zadaniye.LoggingMechanism
 
     class ConsoleLoggerCreator : LoggerCreator
     {
-        public override Logger FactoryMethod() { return new ConsoleLogger(); }
+        public override Logger FactoryMethod() { return ConsoleLogger.getInstance(); }
     }
 
     class TxtLoggerCreator : LoggerCreator
     {
-        public override Logger FactoryMethod() { return new TxtLogger(); }
+        public override Logger FactoryMethod() { return ConsoleLogger.getInstance(); }
     }
 }
 

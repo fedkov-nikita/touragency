@@ -1,0 +1,10 @@
+
+ 2/26/2020 5:23:54 PM Class HomeController - method: Index - action: Initial entering
+ 2/26/2020 5:24:00 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 2/26/2020 5:24:00 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 2/26/2020 5:24:39 PM Class HomeController - method: Index - action: Initial entering
+ 2/26/2020 5:24:44 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 2/26/2020 5:24:44 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 2/26/2020 5:24:44 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 2/26/2020 5:24:46 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 2/26/2020 5:24:49 PM Class NavigationController - method: ToTours - action: Display tours

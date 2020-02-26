@@ -18,11 +18,13 @@ namespace Testovoe_zadaniye.Controllers
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
-        //Logging logging = Logging.getInstance();
+        Logger logger;
 
         public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
+            LoggerCreator loggerCreator = new TxtLoggerCreator();
+            logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
         }
         public ActionResult GuideSelection()
@@ -31,17 +33,17 @@ namespace Testovoe_zadaniye.Controllers
             string message = "Select of proper guide option";
             string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View();
         }
         public IActionResult ToGuide(int? id)
         {
 
-            //string message = "Display tourist's guide";
-            //string className = this.GetType().Name;
+            string message = "Display tourist's guide";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View(db.Guides.Where(
                         i => i.GuideId == id.Value).ToList());
@@ -49,10 +51,10 @@ namespace Testovoe_zadaniye.Controllers
         public ActionResult ToGuides()
         {
 
-            //string message = "Display guides list";
-            //string className = this.GetType().Name;
+            string message = "Display guides list";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View(db.Guides.ToList());
         }
@@ -64,10 +66,10 @@ namespace Testovoe_zadaniye.Controllers
             //return View(db.Guides.Include(x => x.Tourists).First(
             //            i => i.GuideId == id.Value).Tourists);
 
-            //string message = "Display guide`s tourists";
-            //string className = this.GetType().Name;
+            string message = "Display guide`s tourists";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View(tourists);
         }
@@ -81,20 +83,20 @@ namespace Testovoe_zadaniye.Controllers
             //return View(db.TouristTour.Where(
             //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
 
-            //string message = "Display tours";
-            //string className = this.GetType().Name;
+            string message = "Display tours";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View(tours);
         }
         public IActionResult TouristList()
         {
 
-            //string message = "Display tourists list";
-            //string className = this.GetType().Name;
+            string message = "Display tourists list";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return View(db.Tourists.ToList());
         }
@@ -113,10 +115,10 @@ namespace Testovoe_zadaniye.Controllers
                 return RedirectToAction("ToTouristList", new { id = temp });
             }
 
-            //string message = "Deleting of tourist";
-            //string className = this.GetType().Name;
+            string message = "Deleting of tourist";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return NotFound();
         }
@@ -200,10 +202,10 @@ namespace Testovoe_zadaniye.Controllers
                 db.SaveChanges();
             }
 
-            //string message = "Editing od tourist";
-            //string className = this.GetType().Name;
+            string message = "Editing od tourist";
+            string className = this.GetType().Name;
 
-            //logging.LoggMessage(className, message);
+            logger.LoggMessage(className, message);
 
             return Ok();
 
