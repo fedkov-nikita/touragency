@@ -17,21 +17,24 @@ namespace Testovoe_zadaniye.Controllers
     public class HomeController : Controller
     {
         TouragencyContext db;
-
+        //Logging logging = Logging.getInstance();
 
         public HomeController(TouragencyContext context)
         {
             db = context; 
+
         }
         public ActionResult Index()
         {
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Initial entering";
+            //string className = this.GetType().Name;
 
-            string className = this.GetType().Name;
-            logging.LoggMassageClass(className);
+            //logging.LoggMessage(className, message);
+
+            LoggerCreator loggerCreator = new TxtLoggerCreator();
+            loggerCreator.FactoryMethod();
+
 
             return View();
         }

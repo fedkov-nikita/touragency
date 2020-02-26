@@ -18,6 +18,8 @@ namespace Testovoe_zadaniye.Controllers
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
+        //Logging logging = Logging.getInstance();
+
         public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
@@ -25,25 +27,33 @@ namespace Testovoe_zadaniye.Controllers
         }
         public ActionResult GuideSelection()
         {
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+
+            string message = "Select of proper guide option";
+            string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
+
             return View();
         }
         public IActionResult ToGuide(int? id)
         {
-            var viewModel = new TouristindexData();
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+
+            //string message = "Display tourist's guide";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
+
             return View(db.Guides.Where(
                         i => i.GuideId == id.Value).ToList());
         }
         public ActionResult ToGuides()
         {
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+
+            //string message = "Display guides list";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
+
             return View(db.Guides.ToList());
         }
         public IActionResult ToTouristList(int? id)
@@ -54,9 +64,10 @@ namespace Testovoe_zadaniye.Controllers
             //return View(db.Guides.Include(x => x.Tourists).First(
             //            i => i.GuideId == id.Value).Tourists);
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Display guide`s tourists";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
 
             return View(tourists);
         }
@@ -64,23 +75,26 @@ namespace Testovoe_zadaniye.Controllers
         {
 
             var viewModel = new TouristindexData();
-            
+
             var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
 
             //return View(db.TouristTour.Where(
             //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Display tours";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
 
             return View(tours);
         }
         public IActionResult TouristList()
         {
-            Logging logging = new Logging();
-            string methName =  logging.DefineMethodName();
-            logging.LoggMassage(methName);
+
+            //string message = "Display tourists list";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
 
             return View(db.Tourists.ToList());
         }
@@ -96,12 +110,13 @@ namespace Testovoe_zadaniye.Controllers
                 int temp = targetTourist.GuideId; // сохраняем айди гида
                 db.Entry(targetTourist).State = EntityState.Deleted; // удаляем туриста
                 await db.SaveChangesAsync();
-                return RedirectToAction("ToTouristList",new { id = temp });
+                return RedirectToAction("ToTouristList", new { id = temp });
             }
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Deleting of tourist";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
 
             return NotFound();
         }
@@ -111,7 +126,7 @@ namespace Testovoe_zadaniye.Controllers
             Tourist tourist = new Tourist();
             if (id != 0)
             {
-                    tourist = db.Tourists.Where(x => x.Touristid == id).FirstOrDefault();
+                tourist = db.Tourists.Where(x => x.Touristid == id).FirstOrDefault();
             }
             EditForm model = new EditForm();
             model.Hometown = tourist.Hometown;
@@ -143,7 +158,7 @@ namespace Testovoe_zadaniye.Controllers
             tourist.GuideId = model.GuideId;
             tourist.Age = model.Age;
             tourist.Touristid = model.Touristid;
-            
+
             if (model.Avatar != null)
             {
                 var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
@@ -152,7 +167,7 @@ namespace Testovoe_zadaniye.Controllers
                 string fileName = Path.GetFileName(p);
                 string fileExtension = Path.GetExtension(fileName);
                 string randomFileName = Path.GetRandomFileName();
-                string fullPath  = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
+                string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
                 model.Path = fullPath;
                 // сохраняем файл в папку Files в каталоге wwwroot
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
@@ -180,18 +195,19 @@ namespace Testovoe_zadaniye.Controllers
             db.SaveChanges();
 
             if (model.Touristid != 0)
-                    {
-                        db.Entry(tourist).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
+            {
+                db.Entry(tourist).State = EntityState.Modified;
+                db.SaveChanges();
+            }
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Editing od tourist";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
 
             return Ok();
-            
-            
+
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

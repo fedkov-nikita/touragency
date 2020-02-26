@@ -17,6 +17,7 @@ namespace Testovoe_zadaniye.Controllers
     public class GuideLogController : Controller
     {
         TouragencyContext db;
+        //Logging logging = Logging.getInstance();
         public GuideLogController(TouragencyContext context)
         {
             db = context;
@@ -29,23 +30,21 @@ namespace Testovoe_zadaniye.Controllers
             var g = db.Guides.Any(x => x.Login == guideLogin.Name && x.Password == guideLogin.Password);
             if (g == true)
             {
-                Logging logging = new Logging();
-                string methName = logging.DefineMethodName();
-                logging.LoggMassage(methName);
 
+                string message = "Successful Sign Up";
                 string className = this.GetType().Name;
-                logging.LoggMassageClass(className);
+
+                //logging.LoggMessage(className, message);
 
                 return RedirectToAction("GuideSelection", "Navigation");
             }
             else
             {
-                Logging logging = new Logging();
-                string methName = logging.DefineMethodName();
-                logging.LoggMassage(methName);
 
-                string className = this.GetType().Name;
-                logging.LoggMassageClass(className);
+                //string message = "Unsuccessful Sign Up";
+                //string className = this.GetType().Name;
+
+                //logging.LoggMessage(className, message);
 
                 return RedirectToAction("Index", "Home");
             }

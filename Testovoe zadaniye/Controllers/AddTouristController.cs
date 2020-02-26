@@ -23,7 +23,7 @@ namespace Testovoe_zadaniye.Controllers
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
-
+        //Logging logging = Logging.getInstance();
         public AddTouristController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
@@ -45,7 +45,7 @@ namespace Testovoe_zadaniye.Controllers
             if (model.Avatar != null)
             {
                 // путь к папке Files
-                var d = Directory.CreateDirectory(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
+                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
                 string path = d + model.Avatar.FileName;
                 // сохраняем файл в папку Files в каталоге wwwroot
                 string p = path;
@@ -63,9 +63,13 @@ namespace Testovoe_zadaniye.Controllers
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
-            Logging logging = new Logging();
-            string methName =  logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            string className = this.GetType().Name;
+            string message = "Upload new tourist form to submition";
+
+            
+
+            //logging.LoggMessage(className, message);
+
 
             return RedirectToAction("AddTouristform", model);
         }
@@ -85,9 +89,13 @@ namespace Testovoe_zadaniye.Controllers
             selectedGuideItem.Selected = true;
 
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+
+            //string message = "Submition of new tourist form";
+            //string className = this.GetType().Name;
+
+            //logging.LoggMessage(className, message);
+
+
 
             return View(model);
         }
@@ -120,22 +128,13 @@ namespace Testovoe_zadaniye.Controllers
             db.TouristTour.AddRange(touristTours);
             db.SaveChanges();
 
-            Logging logging = new Logging();
-            string methName = logging.DefineMethodName();
-            logging.LoggMassage(methName);
+            //string message = "Saving of new tourist";
+            //string className = this.GetType().Name;
 
-
-            string className = this.GetType().Name;
-            logging.LoggMassageClass(className);
+            //logging.LoggMessage(className, message);
 
             return RedirectToAction("ToTouristList", "Navigation", new { id = tourist.GuideId });
         }
-        //public string SomeMethod([CallerMemberName] string memberName = "")
-        //{
-        //    var a = memberName;
-        //    return a;
-        //}
-
 
     }
 }
