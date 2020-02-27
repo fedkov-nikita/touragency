@@ -68,31 +68,39 @@ namespace Testovoe_zadaniye.LoggingMechanism
         public override Logger FactoryMethod() { return TxtLogger.getInstance(); }
     }
 
-
-    abstract class TexCon
+    class TextConsoleCreator: LoggerCreator
     {
-        public abstract void CombinedLogMessage(string className, string message, [CallerMemberName] string memberName = "");
-    }
-
-    class TextConsoleLogger : TexCon
-    {
-        TxtLogger txtlogger;
-        ConsoleLogger consoleLogger;
-        public override void CombinedLogMessage(string className, string message, [CallerMemberName] string memberName = "")
+        public override Logger FactoryMethod()
         {
-            private static TxtLogger instance;
-            
-            
+            Logger logger = new CombinedToLoggerAdapter(TextConsoleLogger.getInstance());
+            return logger;
         }
+    }
 
-    }
-    abstract class TextConsoleLoggerCreator
+    class TextConsoleLogger
     {
-        public abstract TextConsoleLogger FactoryMethod();
-    }
-    class TextConsoleCreator : TextConsoleLoggerCreator
-    {
-        public override TextConsoleLogger FactoryMethod() { return new TextConsoleLogger(); }
+        Logger conlogger;
+        Logger txtlogger;
+
+        private TextConsoleLogger(){
+            LoggerCreator conloggerCreator = new ConsoleLoggerCreator();
+            conlogger = conloggerCreator.FactoryMethod();
+            LoggerCreator textloggerCreator = new TxtLoggerCreator();
+            txtlogger = textloggerCreator.FactoryMethod();
+        }    
+
+        private static TextConsoleLogger instance;
+        public void CombinedLogMessage(string className, string message, [CallerMemberName] string memberName = "")
+        {
+            conlogger.LoggMessage(className, message, memberName);
+            txtlogger.LoggMessage(className, message, memberName);
+        }
+        public static TextConsoleLogger getInstance()
+        {
+            if (instance == null)
+                instance = new TextConsoleLogger();
+            return instance;
+        }
     }
 
     class CombinedToLoggerAdapter : Logger
@@ -105,7 +113,7 @@ namespace Testovoe_zadaniye.LoggingMechanism
 
         public override void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
         {
-            textConsoleLogger.CombinedLogMessage(className, message);
+            textConsoleLogger.CombinedLogMessage(className, message, memberName);
         }
     }
 
