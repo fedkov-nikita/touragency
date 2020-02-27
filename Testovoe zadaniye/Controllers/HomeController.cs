@@ -18,12 +18,16 @@ namespace Testovoe_zadaniye.Controllers
     {
         TouragencyContext db;
         Logger logger;
+        TextConsoleLogger texcon;
 
         public HomeController(TouragencyContext context)
         {
             db = context;
             LoggerCreator loggerCreator = new ConsoleLoggerCreator();
             logger = loggerCreator.FactoryMethod();
+
+            TextConsoleLoggerCreator textConsoleLogger = new TextConsoleCreator();
+            texcon = textConsoleLogger.FactoryMethod();
         }
         public ActionResult Index()
         {
@@ -31,10 +35,8 @@ namespace Testovoe_zadaniye.Controllers
             string message = "Initial entering";
             string className = this.GetType().Name;
 
-            logger.LoggMessage(className, message);
-
-
-
+            //logger.LoggMessage(className, message);
+            texcon.CombinedLogMessage(className, message) ;
 
 
             return View();

@@ -10,7 +10,6 @@ namespace Testovoe_zadaniye.LoggingMechanism
 
     abstract class Logger
     {
-
         public abstract void LoggMessage(string className, string message, [CallerMemberName] string memberName = "");
     }
 
@@ -68,5 +67,51 @@ namespace Testovoe_zadaniye.LoggingMechanism
     {
         public override Logger FactoryMethod() { return TxtLogger.getInstance(); }
     }
+
+
+    abstract class TexCon
+    {
+        public abstract void CombinedLogMessage(string className, string message, [CallerMemberName] string memberName = "");
+    }
+
+    class TextConsoleLogger : TexCon
+    {
+        TxtLogger txtlogger;
+        ConsoleLogger consoleLogger;
+        public override void CombinedLogMessage(string className, string message, [CallerMemberName] string memberName = "")
+        {
+            private static TxtLogger instance;
+            
+            
+        }
+
+    }
+    abstract class TextConsoleLoggerCreator
+    {
+        public abstract TextConsoleLogger FactoryMethod();
+    }
+    class TextConsoleCreator : TextConsoleLoggerCreator
+    {
+        public override TextConsoleLogger FactoryMethod() { return new TextConsoleLogger(); }
+    }
+
+    class CombinedToLoggerAdapter : Logger
+    {
+        TextConsoleLogger textConsoleLogger;
+        public CombinedToLoggerAdapter(TextConsoleLogger text)
+        {
+            textConsoleLogger = text;
+        }
+
+        public override void LoggMessage(string className, string message, [CallerMemberName] string memberName = "")
+        {
+            textConsoleLogger.CombinedLogMessage(className, message);
+        }
+    }
+
 }
+
+
+
+
 
