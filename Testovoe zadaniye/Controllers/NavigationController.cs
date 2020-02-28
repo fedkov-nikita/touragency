@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
 
+
 namespace Testovoe_zadaniye.Controllers
 {
     public class NavigationController : Controller
@@ -163,10 +164,9 @@ namespace Testovoe_zadaniye.Controllers
 
             if (model.Avatar != null)
             {
-                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
-                string path = d + model.Avatar.FileName;
-                string p = path;
-                string fileName = Path.GetFileName(p);
+                var directory = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+                string path = directory + model.Avatar.FileName;
+                string fileName = Path.GetFileName(path);
                 string fileExtension = Path.GetExtension(fileName);
                 string randomFileName = Path.GetRandomFileName();
                 string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
@@ -176,7 +176,7 @@ namespace Testovoe_zadaniye.Controllers
                 {
                     await model.Avatar.CopyToAsync(fileStream);
                 }
-                // установка массива байтов
+               
             }
             tourist.Avatar = model.Path;
 

@@ -28,6 +28,7 @@ namespace Testovoe_zadaniye.Controllers
             combinedloggCreator = new TextConsoleCreator();
             logger = combinedloggCreator.FactoryMethod();
 
+
         }
         public ActionResult Index()
         {

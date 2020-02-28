@@ -48,11 +48,10 @@ namespace Testovoe_zadaniye.Controllers
             if (model.Avatar != null)
             {
                 // путь к папке Files
-                var d = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
-                string path = d + model.Avatar.FileName;
+                var directory = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+                string path = directory + model.Avatar.FileName;
                 // сохраняем файл в папку Files в каталоге wwwroot
-                string p = path;
-                string fileName = Path.GetFileName(p);
+                string fileName = Path.GetFileName(path);
                 string fileExtension = Path.GetExtension(fileName);
                 string randomFileName = Path.GetRandomFileName();
                 string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
