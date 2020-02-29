@@ -24,8 +24,8 @@ namespace Testovoe_zadaniye.FileUploading
         {
             builder.CreateReserveSave();
             builder.BuildPartA();
-            builder.BuildPartA();
-            builder.BuildPartA();
+            builder.BuildPartB();
+            builder.BuildPartC();
             return builder.ReserveSave;
         }
     }
@@ -40,19 +40,54 @@ namespace Testovoe_zadaniye.FileUploading
         public abstract void BuildPartA();
         public abstract void BuildPartB();
         public abstract void BuildPartC();
-        public abstract ReserveSave ReserveMethod();
     }
 
     class ReserveSave
     {
-        List<object> parts = new List<object>();
-        public void ReserveMethod(string passToUpload, string passToZip, string name)
+        private string uploadLink;
+
+        public string UploadLink
+        {
+            get
+            {
+                return uploadLink;
+            }
+
+            set
+            {
+                uploadLink = value;
+            }
+        }
+        private string zipLink;
+        public string ZipLink { 
+            get 
+            {
+                return zipLink;
+            }
+            set 
+            { 
+                zipLink = value;
+            } 
+        }
+        private string fileName;
+        public string FileName {
+            get
+            {
+                return fileName;
+            }
+            set 
+            {
+                fileName = value;
+            }
+                
+        }
+        public void ReserveMethod()
         {
             using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
-                zip.AddDirectory(passToUpload); // Кладем в архив папку вместе с содежимым
-                zip.Save(passToZip+name);  // Создаем архив  
+                zip.AddDirectory(uploadLink); // Кладем в архив папку вместе с содежимым
+                zip.Save($@"{zipLink}{fileName}.zip");  // Создаем архив  
             }
         }
     }
@@ -63,11 +98,13 @@ namespace Testovoe_zadaniye.FileUploading
 
         public override void BuildPartA()
         {
-            string folderToSave = $@"C:\Users\VsemPC\Desktop\";
+            string folderToSave = @"‪C:\Users\Peppa\Desktop\";
+            this.ReserveSave.ZipLink = folderToSave;
         }
         public override void BuildPartB()
         {
-            string folderToUpload = @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images";
+            string folderToUpload = @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images";
+            this.ReserveSave.UploadLink = folderToUpload;
         }
         public override void BuildPartC()
         {
@@ -75,11 +112,7 @@ namespace Testovoe_zadaniye.FileUploading
             string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
             string fileName = System.IO.Path.GetRandomFileName();
             string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
-        }
-
-        public override ReserveSave ReserveMethod()
-        {
-            return process;
+            this.ReserveSave.FileName = withoutExtensionFileName;
         }
     }
 }
