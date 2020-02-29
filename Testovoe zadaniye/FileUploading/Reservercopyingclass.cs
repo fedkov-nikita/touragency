@@ -17,33 +17,79 @@ using Ionic.Zip;
 
 namespace Testovoe_zadaniye.FileUploading
 {
+    /// <summary>
+    /// MainApp startup class for Structural
+    /// Builder Design Pattern.
+    /// </summary>
 
+
+    /// <summary>
+    /// The 'Director' class
+    /// </summary>
     class Director
     {
-        public ReserveSave Construct(Builder builder)
+        // Builder uses a complex series of steps
+        public void Construct(Builder builder)
         {
-            builder.CreateReserveSave();
             builder.BuildPartA();
             builder.BuildPartB();
             builder.BuildPartC();
-            return builder.ReserveSave;
         }
     }
 
+    /// <summary>
+    /// The 'Builder' abstract class
+    /// </summary>
     abstract class Builder
     {
-        public ReserveSave ReserveSave { get; private set; }
-        public void CreateReserveSave()
-        {
-            ReserveSave = new ReserveSave();
-        }
         public abstract void BuildPartA();
         public abstract void BuildPartB();
         public abstract void BuildPartC();
+        public abstract Product GetResult();
     }
 
-    class ReserveSave
+    /// <summary>
+    /// The 'ConcreteBuilder1' class
+    /// </summary>
+    class ConcreteBuilder : Builder
     {
+        private Product _product = new Product();
+
+        public override void BuildPartA()
+        {
+            _product.Add(@"‪C:\Users\Peppa\Desktop\");
+        }
+
+        public override void BuildPartB()
+        {
+            _product.Add(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
+        }
+
+        public override void BuildPartC()
+        {
+            DateTime now = DateTime.Now;
+            string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
+            string fileName = System.IO.Path.GetRandomFileName();
+            string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
+
+            _product.Add(withoutExtensionFileName);
+        }
+
+        public override Product GetResult()
+        {
+            return _product;
+        }
+    }
+
+    class Product
+    {
+        private List<string> _parts = new List<string>();
+
+        public void Add(string part)
+        {
+            _parts.Add(part);
+        }
+
         private string uploadLink;
 
         public string UploadLink
@@ -59,89 +105,158 @@ namespace Testovoe_zadaniye.FileUploading
             }
         }
         private string zipLink;
-        public string ZipLink { 
-            get 
+        public string ZipLink
+        {
+            get
             {
                 return zipLink;
             }
-            set 
-            { 
+            set
+            {
                 zipLink = value;
-            } 
+            }
         }
         private string fileName;
-        public string FileName {
+        public string FileName
+        {
             get
             {
                 return fileName;
             }
-            set 
+            set
             {
                 fileName = value;
             }
-                
+
         }
+
         public void ReserveMethod()
         {
             using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
+                foreach (string part in _parts) { 
+                    if (part == @"‪C:\Users\Peppa\Desktop\")
+                    {
+                        ZipLink = part;
+                    }
+                    else if (part == @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images")
+                    {
+                        UploadLink = part;
+                    }
+                    else 
+                    {
+                        FileName = part;
+                    }
+                
+                }
+                
                 zip.AddDirectory(uploadLink); // Кладем в архив папку вместе с содежимым
                 zip.Save($@"{zipLink}{fileName}.zip");  // Создаем архив  
             }
         }
     }
-
-    class ImageReserveBuilder : Builder
-    {
-        ReserveSave process = new ReserveSave();
-
-        public override void BuildPartA()
-        {
-            string folderToSave = @"‪C:\Users\Peppa\Desktop\";
-            this.ReserveSave.ZipLink = folderToSave;
-        }
-        public override void BuildPartB()
-        {
-            string folderToUpload = @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images";
-            this.ReserveSave.UploadLink = folderToUpload;
-        }
-        public override void BuildPartC()
-        {
-            DateTime now = DateTime.Now;
-            string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
-            string fileName = System.IO.Path.GetRandomFileName();
-            string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
-            this.ReserveSave.FileName = withoutExtensionFileName;
-        }
-    }
 }
-    
-//    public class ReserveCopyingClass
-//    {
-//        IWebHostEnvironment _appEnvironment;
-//        TouragencyContext db;
 
-//        public ReserveCopyingClass(IWebHostEnvironment appEnvironment)
+//{
+
+//    class Director
+//    {
+//        public ReserveSave Construct(Builder builder)
 //        {
-//            appEnvironment = _appEnvironment;
+//            builder.CreateReserveSave();
+//            builder.BuildPartA();
+//            builder.BuildPartB();
+//            builder.BuildPartC();
+//            return builder.ReserveSave;
+//        }
+//    }
+
+//    abstract class Builder
+//    {
+//        public ReserveSave ReserveSave { get; private set; }
+//        public void CreateReserveSave()
+//        {
+//            ReserveSave = new ReserveSave();
+//        }
+//        public abstract void BuildPartA();
+//        public abstract void BuildPartB();
+//        public abstract void BuildPartC();
+//    }
+
+//    class ReserveSave
+//    {
+//        private string uploadLink;
+
+//        public string UploadLink
+//        {
+//            get
+//            {
+//                return uploadLink;
+//            }
+
+//            set
+//            {
+//                uploadLink = value;
+//            }
+//        }
+//        private string zipLink;
+//        public string ZipLink { 
+//            get 
+//            {
+//                return zipLink;
+//            }
+//            set 
+//            { 
+//                zipLink = value;
+//            } 
+//        }
+//        private string fileName;
+//        public string FileName {
+//            get
+//            {
+//                return fileName;
+//            }
+//            set 
+//            {
+//                fileName = value;
+//            }
 
 //        }
-//        public async void ReserveMethod()
+//        public void ReserveMethod()
 //        {
 //            using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
 //            {
 //                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
-//                zip.AddDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images"); // Кладем в архив папку вместе с содежимым
-//                string fileName = System.IO.Path.GetRandomFileName();
-//                DateTime now = DateTime.Now;
-//                string time = now.ToString("date dd.MM.yyyy_hh-mm-ss");
-//                string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName);
-//                zip.Save($@"C:\Users\VsemPC\Desktop\{withoutExtensionFileName}{time}.zip");  // Создаем архив  
+//                zip.AddDirectory(uploadLink); // Кладем в архив папку вместе с содежимым
+//                zip.Save($@"{zipLink}{fileName}.zip");  // Создаем архив  
 //            }
 //        }
+//    }
 
+//    class ImageReserveBuilder : Builder
+//    {
+//        ReserveSave process = new ReserveSave();
 
+//        public override void BuildPartA()
+//        {
+//            string folderToSave = @"‪C:\Users\Peppa\Desktop\";
+//            this.ReserveSave.ZipLink = folderToSave;
+//        }
+//        public override void BuildPartB()
+//        {
+//            string folderToUpload = @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images";
+//            this.ReserveSave.UploadLink = folderToUpload;
+//        }
+//        public override void BuildPartC()
+//        {
+//            DateTime now = DateTime.Now;
+//            string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
+//            string fileName = System.IO.Path.GetRandomFileName();
+//            string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
+//            this.ReserveSave.FileName = withoutExtensionFileName;
+//        }
 //    }
 //}
+
 

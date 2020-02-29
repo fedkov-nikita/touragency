@@ -20,17 +20,18 @@ namespace Testovoe_zadaniye.Controllers
     {
         Builder builder;
         Director director;
-        ReserveSave resSave;
+        Product product;
 
         public AdminController()
         {
             director = new Director();
-            builder = new ImageReserveBuilder();
-            resSave = director.Construct(builder);
+            builder = new ConcreteBuilder();
+            director.Construct(builder);
+            product = builder.GetResult();
         }
         public IActionResult Reserver()
         {
-            resSave.ReserveMethod();
+            product.ReserveMethod();
             return Ok();
         }
     }
