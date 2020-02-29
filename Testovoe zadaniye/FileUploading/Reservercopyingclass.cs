@@ -83,6 +83,13 @@ namespace Testovoe_zadaniye.FileUploading
 
     class Product
     {
+        public string uploadLink;
+
+        public string zipLink;
+
+        public string fileName;
+
+
         private List<string> _parts = new List<string>();
 
         public void Add(string part)
@@ -90,46 +97,7 @@ namespace Testovoe_zadaniye.FileUploading
             _parts.Add(part);
         }
 
-        private string uploadLink;
-
-        public string UploadLink
-        {
-            get
-            {
-                return uploadLink;
-            }
-
-            set
-            {
-                uploadLink = value;
-            }
-        }
-        private string zipLink;
-        public string ZipLink
-        {
-            get
-            {
-                return zipLink;
-            }
-            set
-            {
-                zipLink = value;
-            }
-        }
-        private string fileName;
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
-            set
-            {
-                fileName = value;
-            }
-
-        }
-
+   
         public void ReserveMethod()
         {
             using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
@@ -138,15 +106,15 @@ namespace Testovoe_zadaniye.FileUploading
                 foreach (string part in _parts) { 
                     if (part == @"‪C:\Users\Peppa\Desktop\")
                     {
-                        ZipLink = part;
+                        zipLink = part;
                     }
                     else if (part == @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images")
                     {
-                        UploadLink = part;
+                        uploadLink = part;
                     }
                     else 
                     {
-                        FileName = part;
+                        fileName = part;
                     }
                 
                 }
