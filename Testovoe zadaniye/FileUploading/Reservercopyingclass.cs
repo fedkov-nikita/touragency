@@ -26,6 +26,35 @@ namespace Testovoe_zadaniye.FileUploading
     /// <summary>
     /// The 'Director' class
     /// </summary>
+    /// 
+    class ReserveSave
+    {
+        Director director;
+        Builder builder;
+        Product product;
+
+        public ReserveSave()
+        {
+            director = new Director();
+            builder = new ConcreteBuilder();
+            director.Construct(builder);
+            product = builder.GetResult();
+
+
+        }
+        
+        public void ReserveMethod()
+        {
+            
+            using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
+            {
+                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
+                zip.AddDirectory(product.uploadLink); // Кладем в архив папку вместе с содежимым
+                zip.Save($@"{product.zipLink}{product.fileName}.zip");  // Создаем архив  
+            }
+        }
+    }
+
     class Director
     {
         // Builder uses a complex series of steps
@@ -57,12 +86,12 @@ namespace Testovoe_zadaniye.FileUploading
 
         public override void BuildPartA()
         {
-            _product.Add(@"‪C:\Users\Peppa\Desktop\");
+            _product.zipLink = @"‪C:\Users\Peppa\Desktop\";
         }
 
         public override void BuildPartB()
         {
-            _product.Add(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
+            _product.uploadLink = @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images";
         }
 
         public override void BuildPartC()
@@ -71,8 +100,8 @@ namespace Testovoe_zadaniye.FileUploading
             string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
             string fileName = System.IO.Path.GetRandomFileName();
             string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
+            _product.fileName = withoutExtensionFileName;
 
-            _product.Add(withoutExtensionFileName);
         }
 
         public override Product GetResult()
@@ -88,41 +117,6 @@ namespace Testovoe_zadaniye.FileUploading
         public string zipLink;
 
         public string fileName;
-
-
-        private List<string> _parts = new List<string>();
-
-        public void Add(string part)
-        {
-            _parts.Add(part);
-        }
-
-   
-        public void ReserveMethod()
-        {
-            using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
-            {
-                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
-                foreach (string part in _parts) { 
-                    if (part == @"‪C:\Users\Peppa\Desktop\")
-                    {
-                        zipLink = part;
-                    }
-                    else if (part == @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images")
-                    {
-                        uploadLink = part;
-                    }
-                    else 
-                    {
-                        fileName = part;
-                    }
-                
-                }
-                
-                zip.AddDirectory(uploadLink); // Кладем в архив папку вместе с содежимым
-                zip.Save($@"{zipLink}{fileName}.zip");  // Создаем архив  
-            }
-        }
     }
 }
 

@@ -110,3 +110,5 @@
  2/29/2020 2:33:02 PM Class NavigationController - method: TouristList - action: Display tourists list
  2/29/2020 2:45:00 PM Class HomeController - method: Index - action: Initial entering
  2/29/2020 2:45:02 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/1/2020 11:55:41 AM Class HomeController - method: Index - action: Initial entering
+ 3/1/2020 11:55:43 AM Class NavigationController - method: TouristList - action: Display tourists list
