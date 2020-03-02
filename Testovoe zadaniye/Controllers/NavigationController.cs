@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
-
+using Microsoft.AspNetCore.Http;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -21,6 +21,8 @@ namespace Testovoe_zadaniye.Controllers
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
         Logger logger;
+        FileManager fileManager;
+        IFormFile formFile;
 
         public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
@@ -28,6 +30,8 @@ namespace Testovoe_zadaniye.Controllers
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
+            fileManager = new FileManager(formFile, _appEnvironment);
+
         }
         public ActionResult GuideSelection()
         {
@@ -163,8 +167,10 @@ namespace Testovoe_zadaniye.Controllers
             tourist.Age = model.Age;
             tourist.Touristid = model.Touristid;
 
+
             if (model.Avatar != null)
             {
+                fileManager.DeletePhoto(model.Path);
                 model.Path = await model.Avatar.PathReturn(_appEnvironment);
             }
             tourist.Avatar = model.Path;
