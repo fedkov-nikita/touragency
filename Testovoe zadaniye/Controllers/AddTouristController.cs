@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
+using Testovoe_zadaniye.FileUploading;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,6 +25,7 @@ namespace Testovoe_zadaniye.Controllers
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
         Logger logger;
+
         public AddTouristController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
@@ -47,21 +49,9 @@ namespace Testovoe_zadaniye.Controllers
         {
             if (model.Avatar != null)
             {
-                // путь к папке Files
-                var directory = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
-                string path = directory + model.Avatar.FileName;
-                // сохраняем файл в папку Files в каталоге wwwroot
-                string fileName = Path.GetFileName(path);
-                string fileExtension = Path.GetExtension(fileName);
-                string randomFileName = Path.GetRandomFileName();
-                string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
-                model.Path = fullPath;
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
-                {
-                    await model.Avatar.CopyToAsync(fileStream);
-                }
-
+                model.Path = await model.Avatar.PathReturn(_appEnvironment) ;
             }
+
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 

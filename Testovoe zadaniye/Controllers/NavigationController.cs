@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
+using Testovoe_zadaniye.FileUploading;
 
 
 namespace Testovoe_zadaniye.Controllers
@@ -164,19 +165,7 @@ namespace Testovoe_zadaniye.Controllers
 
             if (model.Avatar != null)
             {
-                var directory = Directory.CreateDirectory(@"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
-                string path = directory + model.Avatar.FileName;
-                string fileName = Path.GetFileName(path);
-                string fileExtension = Path.GetExtension(fileName);
-                string randomFileName = Path.GetRandomFileName();
-                string fullPath = "/images/" + Path.GetFileNameWithoutExtension(randomFileName) + fileExtension;
-                model.Path = fullPath;
-                // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
-                {
-                    await model.Avatar.CopyToAsync(fileStream);
-                }
-               
+                model.Path = await model.Avatar.PathReturn(_appEnvironment);
             }
             tourist.Avatar = model.Path;
 

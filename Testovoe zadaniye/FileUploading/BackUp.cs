@@ -29,14 +29,14 @@ namespace Testovoe_zadaniye.FileUploading
     /// 
     class ReserveSave
     {
-        Director director;
-        Builder builder;
-        Product product;
+        ReserveFileManager director;
+        ReserverBuilder builder;
+        Reserver product;
 
         public ReserveSave()
         {
-            director = new Director();
-            builder = new ConcreteBuilder();
+            director = new ReserveFileManager();
+            builder = new ConcreteReserverBuilder();
             director.Construct(builder);
             product = builder.GetResult();
 
@@ -50,15 +50,15 @@ namespace Testovoe_zadaniye.FileUploading
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
                 zip.AddDirectory(product.uploadLink); // Кладем в архив папку вместе с содежимым
-                zip.Save($@"{product.zipLink}{product.fileName}.zip");  // Создаем архив  
+                zip.Save($@"{product.zipLink}\{product.fileName}.zip");  // Создаем архив  
             }
         }
     }
 
-    class Director
+    class ReserveFileManager
     {
         // Builder uses a complex series of steps
-        public void Construct(Builder builder)
+        public void Construct(ReserverBuilder builder)
         {
             builder.BuildPartA();
             builder.BuildPartB();
@@ -69,29 +69,29 @@ namespace Testovoe_zadaniye.FileUploading
     /// <summary>
     /// The 'Builder' abstract class
     /// </summary>
-    abstract class Builder
+    abstract class ReserverBuilder
     {
         public abstract void BuildPartA();
         public abstract void BuildPartB();
         public abstract void BuildPartC();
-        public abstract Product GetResult();
+        public abstract Reserver GetResult();
     }
 
     /// <summary>
     /// The 'ConcreteBuilder1' class
     /// </summary>
-    class ConcreteBuilder : Builder
+    class ConcreteReserverBuilder : ReserverBuilder
     {
-        private Product _product = new Product();
+        private Reserver _product = new Reserver();
 
         public override void BuildPartA()
         {
-            _product.zipLink = @"‪C:\Users\Peppa\Desktop\";
+            _product.zipLink = @"C:\Users\VsemPC\Desktop";
         }
 
         public override void BuildPartB()
         {
-            _product.uploadLink = @"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images";
+            _product.uploadLink = @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images";
         }
 
         public override void BuildPartC()
@@ -104,13 +104,13 @@ namespace Testovoe_zadaniye.FileUploading
 
         }
 
-        public override Product GetResult()
+        public override Reserver GetResult()
         {
             return _product;
         }
     }
 
-    class Product
+    class Reserver
     {
         public string uploadLink;
 
@@ -119,6 +119,9 @@ namespace Testovoe_zadaniye.FileUploading
         public string fileName;
     }
 }
+
+
+// Faceted builder realisation
 
 //{
 
