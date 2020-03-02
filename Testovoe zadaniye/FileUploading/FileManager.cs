@@ -33,7 +33,7 @@ namespace Testovoe_zadaniye.FileUploading
             }
             return fullPath;
         }
-
+         //Удаление имеющегося фото 
         public void DeletePhoto(string delFileFolder)
         {
                 File.Delete(_appEnvironment.WebRootPath + delFileFolder);
