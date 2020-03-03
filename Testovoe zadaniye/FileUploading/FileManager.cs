@@ -8,19 +8,24 @@ using System.Threading.Tasks;
 
 namespace Testovoe_zadaniye.FileUploading
 {
-    public class FileManager
+    public interface IFileManager
+    {
+        Task<string> UploadPhoto(IFormFile formFile);
+        void DeletePhoto(string delFileFolder);
+
+
+    }
+    public class FileManager: IFileManager
     {
         IWebHostEnvironment _appEnvironment;
-        IFormFile _formFile;
-        public FileManager(IFormFile formFile, IWebHostEnvironment appEnvironment )
+        public FileManager(IWebHostEnvironment appEnvironment)
         {
             _appEnvironment = appEnvironment;
-            _formFile = formFile;
         }
-        public async Task<string> UploadPhoto()
+        public async Task<string> UploadPhoto(IFormFile formFile)
         {
-            var directory = Directory.CreateDirectory(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
-            string path = directory + _formFile.FileName;
+            var directory = Directory.CreateDirectory( @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
+            string path = directory + formFile.FileName;
             // сохраняем файл в папку Files в каталоге wwwroot
             string fileName = Path.GetFileName(path);
             string fileExtension = Path.GetExtension(fileName);
@@ -29,7 +34,7 @@ namespace Testovoe_zadaniye.FileUploading
 
             using (var fileStream = new FileStream(_appEnvironment.WebRootPath + fullPath, FileMode.Create))
             {
-                await _formFile.CopyToAsync(fileStream);
+                await formFile.CopyToAsync(fileStream);
             }
             return fullPath;
         }
@@ -45,9 +50,9 @@ namespace Testovoe_zadaniye.FileUploading
         
         public static async Task<string> PathReturn(this IFormFile file, IWebHostEnvironment appEnvironment )
         {
-            FileManager fileManager = new FileManager(file, appEnvironment);
+            FileManager fileManager = new FileManager(appEnvironment);
 
-            return await fileManager.UploadPhoto();
+            return await fileManager.UploadPhoto(file);
 
         }
     }

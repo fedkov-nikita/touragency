@@ -22,7 +22,6 @@ namespace Testovoe_zadaniye.Controllers
         IWebHostEnvironment _appEnvironment;
         Logger logger;
         FileManager fileManager;
-        IFormFile formFile;
 
         public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment)
         {
@@ -30,7 +29,7 @@ namespace Testovoe_zadaniye.Controllers
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
-            fileManager = new FileManager(formFile, _appEnvironment);
+            fileManager = new FileManager(_appEnvironment);
 
         }
         public ActionResult GuideSelection()
@@ -212,7 +211,6 @@ namespace Testovoe_zadaniye.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
 
     }
 }

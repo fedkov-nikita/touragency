@@ -17,30 +17,16 @@ using Ionic.Zip;
 
 namespace Testovoe_zadaniye.FileUploading
 {
-    /// <summary>
-    /// MainApp startup class for Structural
-    /// Builder Design Pattern.
-    /// </summary>
-
-
-    /// <summary>
-    /// The 'Director' class
-    /// </summary>
-    /// 
     class ReserveSave
     {
-        ReserveFileManager director;
-        ReserverBuilder builder;
-        Reserver product;
+        Reserver reserver;
 
         public ReserveSave()
         {
-            director = new ReserveFileManager();
-            builder = new ConcreteReserverBuilder();
-            director.Construct(builder);
-            product = builder.GetResult();
-
-
+            reserver = Reserver.CreateConResBuilder().BuildPartA()
+                                                     .BuildPartB()
+                                                     .BuildPartC()
+                                                     .Build();
         }
         
         public void ReserveMethod()
@@ -49,64 +35,47 @@ namespace Testovoe_zadaniye.FileUploading
             using (ZipFile zip = new ZipFile()) // Создаем объект для работы с архивом
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression; // MAX степень сжатия
-                zip.AddDirectory(product.uploadLink); // Кладем в архив папку вместе с содежимым
-                zip.Save($@"{product.zipLink}\{product.fileName}.zip");  // Создаем архив  
+                zip.AddDirectory(reserver.uploadLink); // Кладем в архив папку вместе с содежимым
+                zip.Save($@"{reserver.zipLink}\{reserver.fileName}.zip");  // Создаем архив  
             }
         }
     }
 
-    class ReserveFileManager
+    class ConcreteReserverBuilder 
     {
-        // Builder uses a complex series of steps
-        public void Construct(ReserverBuilder builder)
+        private Reserver _reserver = new Reserver();
+
+
+        public ConcreteReserverBuilder()
         {
-            builder.BuildPartA();
-            builder.BuildPartB();
-            builder.BuildPartC();
+            _reserver = new Reserver(); // создание обьекта класса Reserver
         }
-    }
-
-    /// <summary>
-    /// The 'Builder' abstract class
-    /// </summary>
-    abstract class ReserverBuilder
-    {
-        public abstract void BuildPartA();
-        public abstract void BuildPartB();
-        public abstract void BuildPartC();
-        public abstract Reserver GetResult();
-    }
-
-    /// <summary>
-    /// The 'ConcreteBuilder1' class
-    /// </summary>
-    class ConcreteReserverBuilder : ReserverBuilder
-    {
-        private Reserver _product = new Reserver();
-
-        public override void BuildPartA()
+        public  ConcreteReserverBuilder BuildPartA()
         {
-            _product.zipLink = @"C:\Users\VsemPC\Desktop";
+            _reserver.zipLink = @"C:\Users\VsemPC\Desktop";
+            return this; // возврат уже существующего обьекта класса ConcreteReseverBuilder
         }
 
-        public override void BuildPartB()
+        public ConcreteReserverBuilder BuildPartB()
         {
-            _product.uploadLink = @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images";
+            _reserver.uploadLink = @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images";
+            return this; // возврат уже существующего обьекта класса ConcreteReseverBuilder
         }
 
-        public override void BuildPartC()
+        public ConcreteReserverBuilder BuildPartC()
         {
             DateTime now = DateTime.Now;
             string time = now.ToString("date dd.MM.yyyy~hh-mm-ss");
             string fileName = System.IO.Path.GetRandomFileName();
             string withoutExtensionFileName = Path.GetFileNameWithoutExtension(fileName) + time;
-            _product.fileName = withoutExtensionFileName;
+            _reserver.fileName = withoutExtensionFileName;
+            return this; // возврат уже существующего обьекта класса ConcreteReseverBuilder 
 
         }
 
-        public override Reserver GetResult()
+        public Reserver Build()
         {
-            return _product;
+            return _reserver; // возврат обьекта класса Reserver
         }
     }
 
@@ -117,6 +86,11 @@ namespace Testovoe_zadaniye.FileUploading
         public string zipLink;
 
         public string fileName;
+
+        public static ConcreteReserverBuilder CreateConResBuilder()
+        {
+            return new ConcreteReserverBuilder();
+        }
     }
 }
 

@@ -29,6 +29,15 @@ namespace Testovoe_zadaniye.Controllers
         public ActionResult GuideLog(GuideLogin guideLogin)
         {
             if (guideLogin.Name == null && guideLogin.Password == null) return RedirectToAction("Index");
+
+
+            if (Request.Cookies.ContainsKey("name") 
+                && Request.Cookies.ContainsKey($"password") 
+                && Request.Cookies["name"] == guideLogin.Name 
+                && Request.Cookies[$"password"] == guideLogin.Password) 
+                return RedirectToAction("GuideSelection", "Navigation");
+            
+
             var g = db.Guides.Any(x => x.Login == guideLogin.Name && x.Password == guideLogin.Password);
             if (g == true)
             {
@@ -37,7 +46,8 @@ namespace Testovoe_zadaniye.Controllers
                 string className = this.GetType().Name;
 
                 logger.LoggMessage(className, message);
-
+                HttpContext.Response.Cookies.Append("ytryrty", $"rewrewrew");
+                HttpContext.Response.Cookies.Append($"{guideLogin}{guideLogin.Password}", $"{guideLogin.Password}");
                 return RedirectToAction("GuideSelection", "Navigation");
             }
             else
@@ -51,6 +61,7 @@ namespace Testovoe_zadaniye.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
         [HttpGet]
         public ActionResult GuideLog()
         {
