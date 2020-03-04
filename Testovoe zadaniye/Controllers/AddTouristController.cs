@@ -54,12 +54,9 @@ namespace Testovoe_zadaniye.Controllers
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
-            string className = this.GetType().Name;
+
             string message = "Upload new tourist form to submition";
-
-            
-
-            logger.LoggMessage(className, message);
+            logger.LoggMessage(this.GetType().Name, message);
 
 
             return RedirectToAction("AddTouristform", model);

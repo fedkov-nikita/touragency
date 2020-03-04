@@ -50,6 +50,9 @@ namespace Testovoe_zadaniye.Controllers
             db.Tours.Add(tour);
             db.SaveChanges();
 
+            string message = "Add of new Tour";
+            logger.LoggMessage(this.GetType().Name, message);
+
             return RedirectToAction("GuideToToursAcces", "Navigation");
         }
 
@@ -82,6 +85,8 @@ namespace Testovoe_zadaniye.Controllers
                 db.Entry(tour).State = EntityState.Modified;
                 db.SaveChanges();
             }
+            string message = "Edit of chosen Tour";
+            logger.LoggMessage(this.GetType().Name, message);
 
             return Ok();
         }
