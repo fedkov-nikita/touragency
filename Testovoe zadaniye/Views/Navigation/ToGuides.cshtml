@@ -16,10 +16,11 @@
             <tbody>
                 @foreach (var guide in Model)
                 {
-                    <tr>
-                        <td>@guide.Name</td>
-                        <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTouristList/@guide.GuideId" role="button">>></a></td>
-                    </tr>
+                <tr>
+                    <td>@guide.Name</td>
+                    <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTouristList/@guide.GuideId" role="button">>></a></td>
+                    <td><a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideEdit/@guide.GuideId" role="button">Edit Guide</a></td>
+                </tr>
                 }
             </tbody>
         </table>

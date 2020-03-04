@@ -46,9 +46,16 @@ namespace Testovoe_zadaniye.Controllers
             Tour tour = new Tour();
             tour.Name = addTour.Name;
             tour.Data = addTour.Date;
-
+            if (tour.Name != null && tour.Data != null)
+            {
             db.Tours.Add(tour);
             db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Some field of tour is null");
+            }
+
 
             string message = "Add of new Tour";
             logger.LoggMessage(this.GetType().Name, message);
