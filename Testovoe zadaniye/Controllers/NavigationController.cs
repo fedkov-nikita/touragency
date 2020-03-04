@@ -154,7 +154,47 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(model);
         }
+        public IActionResult TourList()
+        {
 
+            string message = "Display tours List";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return View(db.Tours.ToList());
+        }
+        public ActionResult ToTourAdd()
+        {
+            AddTour model = new AddTour();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ToTourAdd(AddTour addTour)
+        {
+           
+                Tour tour = new Tour();
+                tour.Name = addTour.Name;
+                tour.Data = addTour.Date;
+
+                db.Tours.Add(tour);
+                db.SaveChanges();
+
+            return RedirectToAction("GuideToToursAcces", "Navigation");
+        }
+
+        public IActionResult GuideToToursAcces()
+        {
+
+            string message = "Display tours List for guide";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return View(db.Tours.ToList());
+        }
 
         [HttpPost]
         public async Task<ActionResult> ToEditAsync(EditForm model)
@@ -196,15 +236,49 @@ namespace Testovoe_zadaniye.Controllers
                 db.SaveChanges();
             }
 
-            string message = "Editing od tourist";
+            string message = "Editing of tourist";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
 
             return Ok();
-
-
         }
+
+        public ActionResult ToTourEdit(int id = 0)
+        {
+            Tour tour = new Tour();
+            if (id != 0)
+            {
+                tour = db.Tours.Where(x => x.TourId == id).FirstOrDefault();
+            }
+            EditTourForm model = new EditTourForm();
+            model.Date = tour.Data;
+            model.Name = tour.Name;
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ToTourEdit(EditTourForm model)
+        {
+            Tour tour = new Tour();
+            tour.Data = model.Date;
+            tour.Name = model.Name;
+
+            if (model.TourId != 0)
+            {
+                db.Entry(tour).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return Ok();
+        }
+
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

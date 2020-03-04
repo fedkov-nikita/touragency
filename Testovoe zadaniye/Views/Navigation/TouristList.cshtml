@@ -3,41 +3,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
-<table class="table table-striped table-sm">
-    <thead>
-        <tr>
-            <th>Home town</th>
-            <th>Fullname</th>
-            <th>Age</th>
-            <th>Photo</th>
-            <th>Guide</th>
-            <th>Tours</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var tourist in Model)
-        {
-        <tr>
-            <td>@tourist.Hometown</td>
-            <td>@tourist.Fullname</td>
-            <td>@tourist.Age</td>
-            <td>
-                @if (tourist.Avatar != null)
-                    {
-                <img src="@Url.Content(tourist.Avatar)" width="100" height="100">
-                    }
-            </td>
-            <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToGuide/@tourist.GuideId" role="button">Guide</a></td>
-            <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTours/@tourist.Touristid" role="button">Tours</a></td>
-        </tr>
-        }
-        
+<section class="text-center">
+    <div class="container">
+        <img src="~/images/logo.png" alt="" width="100" height="100">
+    </div>
+</section>
+
+<div class="no-background">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Home town</th>
+                            <th>Fullname</th>
+                            <th>Age</th>
+                            <th>Photo</th>
+                            <th>Guide</th>
+                            <th>Tours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tourist in Model)
+                        {
+                        <tr>
+                            <td>@tourist.Hometown</td>
+                            <td>@tourist.Fullname</td>
+                            <td>@tourist.Age</td>
+                            <td>
+                                @if (tourist.Avatar != null)
+                            {
+                                <img src="@Url.Content(tourist.Avatar)" width="100" height="100">
+                            }
+                            </td>
+                            <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToGuide/@tourist.GuideId" role="button">Guide</a></td>
+                            <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTours/@tourist.Touristid" role="button">Tours</a></td>
+                        </tr>
+                        }
 
 
-    </tbody>
-</table>
 
-<div class="row justify-content-md-center">
-    <td><a class="btn btn-primary btn-lg" href="~/Admin/Reserver" role="button">Backup Photos</a></td>
+                    </tbody>
+                </table>
+
+                <div class="row justify-content-md-center">
+                    <a class="btn btn-primary btn-lg" href="~/Admin/Reserver" role="button">Backup Photos</a>&nbsp &nbsp
+                    <a class="btn btn-primary btn-lg" href="~/Navigation/TourList" role="button">Tours List »</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+

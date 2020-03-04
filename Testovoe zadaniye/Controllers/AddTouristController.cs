@@ -36,7 +36,6 @@ namespace Testovoe_zadaniye.Controllers
         }
         public ActionResult AddTourist()
         {
-
             Addform model = new Addform();
             model.Guides = db.Guides.ToList();
             model.Tours = db.Tours.ToList();

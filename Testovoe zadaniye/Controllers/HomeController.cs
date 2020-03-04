@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.Extensions.Logging;
 using Testovoe_zadaniye.LoggingMechanism;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -32,7 +34,6 @@ namespace Testovoe_zadaniye.Controllers
         }
         public ActionResult Index()
         {
-
             string message = "Initial entering";
             string className = this.GetType().Name;
 

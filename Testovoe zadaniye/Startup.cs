@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Testovoe_zadaniye.DataBase;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Testovoe_zadaniye
 {
@@ -34,6 +34,7 @@ namespace Testovoe_zadaniye
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+
             });
 
 
@@ -42,9 +43,9 @@ namespace Testovoe_zadaniye
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env /*, ILoggerFactory loggerFactory*/)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env )
         {
-            //loggerFactory.AddFile("Logs/mylog-{Date}.txt");
+
 
             if (env.IsDevelopment())
             {
