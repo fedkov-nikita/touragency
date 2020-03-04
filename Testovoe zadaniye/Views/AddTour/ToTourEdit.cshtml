@@ -2,10 +2,10 @@
 
 <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
 
-@using (Html.BeginForm("ToTourEdit", "Navigation", FormMethod.Post, new {
+@using (Html.BeginForm("ToTourEdit", "AddTour", FormMethod.Post, new {
         enctype = "multipart/form-data",
         onSubmit = "return jQueryAjaxPost(this);",
-        data_restUrl = Url.Action("ToTourEdit", "Navigation", new { id = 0 }),
+        data_restUrl = Url.Action("ToTourEdit", "AddTour", new { id = 0 }),
         id = "jqSubmit"
     }))
 

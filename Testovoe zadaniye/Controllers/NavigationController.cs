@@ -164,26 +164,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(db.Tours.ToList());
         }
-        public ActionResult ToTourAdd()
-        {
-            AddTour model = new AddTour();
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult ToTourAdd(AddTour addTour)
-        {
-           
-                Tour tour = new Tour();
-                tour.Name = addTour.Name;
-                tour.Data = addTour.Date;
-
-                db.Tours.Add(tour);
-                db.SaveChanges();
-
-            return RedirectToAction("GuideToToursAcces", "Navigation");
-        }
+        
 
         public IActionResult GuideToToursAcces()
         {
@@ -243,44 +224,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return Ok();
         }
-
-        public ActionResult ToTourEdit(int id = 0)
-        {
-            Tour tour = new Tour();
-            if (id != 0)
-            {
-                tour = db.Tours.Where(x => x.TourId == id).FirstOrDefault();
-            }
-            EditTourForm model = new EditTourForm();
-            model.Date = tour.Data;
-            model.Name = tour.Name;
-            model.TourId = tour.TourId;
-
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult ToTourEdit(EditTourForm model)
-        {
-            Tour tour = new Tour();
-            tour.Data = model.Date;
-            tour.Name = model.Name;
-            tour.TourId = model.TourId;
-
-            if (model.TourId != 0)
-            {
-                db.Entry(tour).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-
-            return Ok();
-        }
-
-
-
-
-
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
