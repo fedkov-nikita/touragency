@@ -2,10 +2,10 @@
 
 <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
 
-@using (Html.BeginForm("ToEdit", "Navigation", FormMethod.Post, new {
+@using (Html.BeginForm("ToTourEdit", "Navigation", FormMethod.Post, new {
         enctype = "multipart/form-data",
         onSubmit = "return jQueryAjaxPost(this);",
-        data_restUrl = Url.Action("ToEdit", "Navigation", new { id = 0 }),
+        data_restUrl = Url.Action("ToTourEdit", "Navigation", new { id = 0 }),
         id = "jqSubmit"
     }))
 
@@ -41,9 +41,9 @@
             }, 2000);
         }
         $(document).ready(function () {
-            $("#Hometown, #Fullname").keyup(eventHandler);
-            $("#GuideId, #checkDiv input, #Age").click(eventHandler);
-            $("#Avatar").change(eventHandler);
+            $("#Name").keyup(eventHandler);
+            //$("#GuideId, #checkDiv input, #Age").click(eventHandler);
+            $("#Date").change(eventHandler);
         });
 
 

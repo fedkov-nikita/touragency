@@ -254,6 +254,7 @@ namespace Testovoe_zadaniye.Controllers
             EditTourForm model = new EditTourForm();
             model.Date = tour.Data;
             model.Name = tour.Name;
+            model.TourId = tour.TourId;
 
 
             return View(model);
@@ -265,6 +266,7 @@ namespace Testovoe_zadaniye.Controllers
             Tour tour = new Tour();
             tour.Data = model.Date;
             tour.Name = model.Name;
+            tour.TourId = model.TourId;
 
             if (model.TourId != 0)
             {
