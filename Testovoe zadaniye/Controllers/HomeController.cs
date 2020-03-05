@@ -34,6 +34,7 @@ namespace Testovoe_zadaniye.Controllers
         }
         public ActionResult Index()
         {
+           
             string message = "Initial entering";
             string className = this.GetType().Name;
 

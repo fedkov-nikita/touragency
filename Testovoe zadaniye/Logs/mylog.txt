@@ -785,3 +785,92 @@
  3/4/2020 11:58:50 PM Class NavigationController - method: ToGuides - action: Display guides list
  3/4/2020 11:59:18 PM Class NavigationController - method: ToGuides - action: Display guides list
  3/4/2020 11:59:19 PM Class AddGuideController - method: ToGuideEdit - action: Edit of chosen Guide
+ 3/5/2020 10:48:43 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 10:48:47 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 10:48:47 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 10:48:49 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:49:00 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:49:24 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:49:41 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:49:53 AM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 10:50:15 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:50:28 AM Class AddTourController - method: ToTourEdit - action: Edit of chosen Tour
+ 3/5/2020 10:50:32 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:50:43 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:50:48 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:50:53 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:51:19 AM Class AddTourController - method: ToTourEdit - action: Edit of chosen Tour
+ 3/5/2020 10:51:19 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:51:28 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:51:48 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:53:02 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 10:53:12 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 10:53:12 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 10:53:29 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:53:32 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:54:15 AM Class AddGuideController - method: ToGuideEdit - action: Edit of chosen Guide
+ 3/5/2020 10:54:16 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:54:22 AM Class AddGuideController - method: ToGuideEdit - action: Edit of chosen Guide
+ 3/5/2020 10:54:25 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:09 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 10:55:23 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 10:55:23 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 10:55:24 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:27 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:29 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:30 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:35 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:36 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:37 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:55:52 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 10:55:58 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 10:55:58 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 10:56:24 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 10:57:05 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 10:57:10 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 10:57:10 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 10:57:37 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 10:57:41 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 11:00:25 AM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 11:00:29 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 11:00:32 AM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 11:00:36 AM Class NavigationController - method: ToTours - action: Display tours
+ 3/5/2020 11:00:39 AM Class NavigationController - method: ToTours - action: Display tours
+ 3/5/2020 11:05:45 AM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 11:31:50 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 11:31:50 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 11:31:53 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 1:39:19 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 1:39:25 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 1:39:25 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 1:40:29 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 1:40:35 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 1:40:40 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 1:40:55 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 2:04:32 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 2:04:36 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/5/2020 2:04:46 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 2:04:46 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 2:04:51 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 2:05:13 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 2:05:19 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 2:08:50 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 2:08:56 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 2:08:56 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 2:12:33 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 2:12:37 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 2:12:37 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 2:13:16 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 2:13:21 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 2:13:21 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 2:13:43 PM Class HomeController - method: Index - action: Initial entering
+ 3/5/2020 2:13:48 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/5/2020 2:13:48 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/5/2020 2:13:59 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 2:14:01 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
+ 3/5/2020 2:14:04 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/5/2020 2:14:06 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 2:14:14 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 2:14:17 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/5/2020 2:14:50 PM Class NavigationController - method: ToEditAsync - action: Editing of tourist
+ 3/5/2020 2:14:53 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists

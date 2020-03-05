@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Testovoe_zadaniye.LoggingMechanism
 {
-
+    
     abstract class Logger
     {
         public abstract void LoggMessage(string className, string message, [CallerMemberName] string memberName = "");
@@ -15,6 +15,8 @@ namespace Testovoe_zadaniye.LoggingMechanism
 
     class ConsoleLogger : Logger
     {
+
+
         private static ConsoleLogger instance;
 
         private ConsoleLogger()
@@ -31,6 +33,7 @@ namespace Testovoe_zadaniye.LoggingMechanism
                 instance = new ConsoleLogger();
             return instance;
         }
+
     }
 
     class TxtLogger : Logger

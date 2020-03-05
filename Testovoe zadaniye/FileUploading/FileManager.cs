@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace Testovoe_zadaniye.FileUploading
         {
             _appEnvironment = appEnvironment;
         }
-        public async Task<string> UploadPhoto(IFormFile formFile)
+        public async Task<string> UploadPhoto(IFormFile formFile) 
         {
             var directory = Directory.CreateDirectory( @"C:\Users\VsemPC\Desktop\touragency-master\Testovoe zadaniye\wwwroot\images");
             string path = directory + formFile.FileName;
@@ -41,7 +42,9 @@ namespace Testovoe_zadaniye.FileUploading
          //Удаление имеющегося фото 
         public void DeletePhoto(string delFileFolder)
         {
-                File.Delete(_appEnvironment.WebRootPath + delFileFolder);
+            
+            File.Delete(_appEnvironment.WebRootPath + delFileFolder);
+            
         }
 
     }
