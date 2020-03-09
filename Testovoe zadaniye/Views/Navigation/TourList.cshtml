@@ -26,7 +26,7 @@
 <body>
 
     <p><center><input type="button" value="Click to Display Map" onclick="DisplayGoogleMap()" /></center></p>
-
+    <a class="btn btn-primary btn-lg" href="~/Navigation/TouristList" role="button">Go back</a>
     <p><center><div id="myDiv" style="width:800px;height:600px;"></div></center></p>
 
     <script type="text/javascript">
@@ -53,7 +53,7 @@
             //
             var TourEight = new google.maps.LatLng(41.385321, 2.180710);
             //
-            var TourNine = new google.maps.LatLng(41.613967, 2.654539 );
+            var TourNine = new google.maps.LatLng(41.613967, 2.654539);
             //
             var TourTen = new google.maps.LatLng(41.375696, 2.177621);
             //
@@ -100,61 +100,61 @@
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourThree,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourFour,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourFive,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourSix,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourSeven,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourEight,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourNine,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourTen,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
             //Set Marker on the Map
             var marker = new google.maps.Marker({
                 position: TourEleven,
-                map : map
+                map: map
             });
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
@@ -163,4 +163,5 @@
             marker.setMap(map);
         }
     </script>
+
 </body>
