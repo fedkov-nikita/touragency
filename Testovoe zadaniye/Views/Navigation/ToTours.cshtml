@@ -5,6 +5,12 @@
 <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
 
 <div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <p><h1>Tours list</h1></p>
+    </div>
+</div>
+
+<div class="row justify-content-md-center">
     @foreach (var tour in Model)
     {
         <div class="card-deck mb-3 text-center">
@@ -20,5 +26,5 @@
     }
 </div>
 
-<a class="btn btn-primary btn-lg" href="~/Navigation/TouristList" role="button">Go back</a>
+<a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a>
 

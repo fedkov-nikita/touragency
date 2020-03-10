@@ -4,7 +4,15 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <h3>Please enter new tourist</h3>
+    </div>
+</div>
+
 @using (Html.BeginForm("AddTourist", "AddTourist", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
@@ -58,13 +66,16 @@
         }
 
     </div>
-    <div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
-            </div>
+
+
+    <div class="row justify-content-md-center">
+
+        <div class="col-md-2">
+            <p><a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a></p>
+            <p><button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button></p>
         </div>
     </div>
+
 
 
 }

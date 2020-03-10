@@ -105,6 +105,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(db.Tourists.ToList());
         }
+
         [HttpGet]
         [ActionName("Delete")]
 

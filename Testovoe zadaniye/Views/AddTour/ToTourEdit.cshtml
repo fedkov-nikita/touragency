@@ -2,12 +2,19 @@
 
 <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
 
-@using (Html.BeginForm("ToTourEdit", "AddTour", FormMethod.Post, new {
-        enctype = "multipart/form-data",
-        onSubmit = "return jQueryAjaxPost(this);",
-        data_restUrl = Url.Action("ToTourEdit", "AddTour", new { id = 0 }),
-        id = "jqSubmit"
-    }))
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <h3>Enter tour changes</h3>
+    </div>
+</div>
+
+@using (Html.BeginForm("ToTourEdit", "AddTour", FormMethod.Post, new
+{
+    enctype = "multipart/form-data",
+    onSubmit = "return jQueryAjaxPost(this);",
+    data_restUrl = Url.Action("ToTourEdit", "AddTour", new { id = 0 }),
+    id = "jqSubmit"
+}))
 
 {
     @Html.HiddenFor(c => c.TourId)
@@ -28,23 +35,30 @@
         </div>
     </div>
 
+        <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a>
+        <div class="spinner-border" id="spinner"></div>
+     
 }
-    <script>
-        var debounceTimer = null;
-        var eventHandler = function () {
 
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(function () {
-                $('#jqSubmit').submit();
-                console.log("The field has been changed.");
+<script>
 
-            }, 2000);
-        }
-        $(document).ready(function () {
-            $("#Name").keyup(eventHandler);
-            //$("#GuideId, #checkDiv input, #Age").click(eventHandler);
-            $("#Date").change(eventHandler);
-        });
+    $('#spinner').hide();
+    var debounceTimer = null;
+    var eventHandler = function () {
+
+        clearTimeout(debounceTimer);
+            $('#spinner').show();
+        debounceTimer = setTimeout(function () {
+            $('#jqSubmit').submit();
+            console.log("The field has been changed.");
+            $('#spinner').hide();
+        }, 2000);
+    }
+    $(document).ready(function () {
+        $("#Name").keyup(eventHandler);
+        //$("#GuideId, #checkDiv input, #Age").click(eventHandler);
+        $("#Date").change(eventHandler);
+    });
 
 
-    </script>
+</script>

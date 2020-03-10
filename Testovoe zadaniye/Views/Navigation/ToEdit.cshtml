@@ -1,12 +1,19 @@
 ﻿@model Testovoe_zadaniye.Models.EditForm
 
-    <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+<img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <p><h1>Enter tourist changes</h1></p>
+    </div>
+</div>
+
 @using (Html.BeginForm("ToEdit", "Navigation", FormMethod.Post, new
 {
     enctype = "multipart/form-data",
     onSubmit = "return jQueryAjaxPost(this);",
     data_restUrl = Url.Action("ToEdit", "Navigation", new { id = 0 }),
-    id="jqSubmit"
+    id = "jqSubmit"
 }))
 {
     @Html.HiddenFor(c => c.Touristid)
@@ -77,17 +84,22 @@
         }
 
     </div>
+
+    <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a> 
+    <div class="spinner-border" id="spinner"></div>
 }
 
 <script>
+    $('#spinner').hide();
     var debounceTimer = null;
     var eventHandler = function () {
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
+            $('#spinner').show();
             $('#jqSubmit').submit();
             console.log("The field has been changed.");
-
+            $('#spinner').hide();
         }, 2000);
     }
     $(document).ready(function () {
@@ -95,6 +107,4 @@
         $("#GuideId, #checkDiv input, #Age").click(eventHandler);
         $("#Avatar").change(eventHandler);
     });
-
-
 </script>

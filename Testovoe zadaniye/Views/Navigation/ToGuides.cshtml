@@ -9,8 +9,9 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Tourists</th>
+                    <th>Name of Guide</th>
+                    <th>Tourists List</th>
+                    <th>Edit Guide</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,12 +20,22 @@
                     <tr>
                         <td>@guide.Name</td>
                         <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTouristList/@guide.GuideId" role="button">>></a></td>
-                        <td><a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideEdit/@guide.GuideId" role="button">Edit Guide</a></td>
+                        <td><a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideEdit/@guide.GuideId" role="button">Edit</a></td>
                     </tr>
                 }
             </tbody>
         </table>
+
+    </div>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-2">
         <a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideAdd" role="button">Register new guide</a>
     </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious page</a>
     </div>
-   
+</div>
+
+
