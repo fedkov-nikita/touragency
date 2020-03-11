@@ -56,12 +56,50 @@
                 </table>
 
                 <div class="row justify-content-md-center">
+
                     <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a>&nbsp &nbsp
-                    <a class="btn btn-primary btn-lg" href="~/Admin/Reserver" role="button">Backup Photos</a>&nbsp &nbsp
+
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="btnReserv">Backup Photos</a>&nbsp &nbsp
+
                     <a class="btn btn-primary btn-lg" href="~/Navigation/TourList" role="button">Tours List »</a>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="alert alert-primary" role="alert" id="backupAlert">
+    Backup save succesfully!
+</div>
+
+<script>
+    $('#backupAlert').hide();
+    var debounceTimer = null;
+    $(document).ready(function () {
+        $("#btnReserv").click(function () {
+            clearTimeout(debounceTimer);
+            $.ajax({
+
+                type: "GET",
+                url: "/Admin/Reserver",
+                success: function () {
+
+                    $("#backupAlert").show();
+
+                    debounceTimer = setTimeout(function () {
+                        $('#backupAlert').hide();
+                    }, 4000);
+                }
+
+            })
+
+        })
+
+    })
+
+</script>
+
+
 

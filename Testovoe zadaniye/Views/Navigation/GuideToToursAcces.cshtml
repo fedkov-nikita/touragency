@@ -23,6 +23,7 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">@tour.Data </h1>
                     <a class="btn btn-primary btn-lg" href="~/AddTour/ToTourEdit/@tour.TourId" role="button">Edit Tour</a>
+                    <a class="btn btn-primary btn-lg" asp-action="DeleteTour" asp-controller="Navigation" asp-route-id="@tour.TourId" onclick="return confirm ('Are yo sure yo want to delete: @tour.Name')">Delete</a>
                 </div>
             </div>
         </div>

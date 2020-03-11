@@ -128,6 +128,52 @@ namespace Testovoe_zadaniye.Controllers
 
             return NotFound();
         }
+
+        [HttpGet]
+        [ActionName("DeleteTour")]
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteTour(int? id)
+        {
+            if (id != null)
+            {
+                var targetTour = db.Tours.First(x => x.TourId == id.Value); //Вынимаем тур по id из базы.
+                db.Entry(targetTour).State = EntityState.Deleted; // удаляем тур
+                await db.SaveChangesAsync();
+                return RedirectToAction("GuideToToursAcces");
+            }
+
+            string message = "Deleting of Tour";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        [ActionName("DeleteGuide")]
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteGuide(int? id)
+        {
+            if (id != null)
+            {
+                var targetGuide = db.Guides.First(x => x.GuideId == id.Value); //Вынимаем тур по id из базы.
+                db.Entry(targetGuide).State = EntityState.Deleted; // удаляем тур
+                await db.SaveChangesAsync();
+                return RedirectToAction("ToGuides");
+            }
+
+            string message = "Deleting of Guide";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return NotFound();
+        }
+
+
         [HttpGet]
         public ActionResult ToEdit(int id = 0)
         {

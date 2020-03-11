@@ -85,21 +85,24 @@
 
     </div>
 
-    <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a> 
-    <div class="spinner-border" id="spinner"></div>
+
+    <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a>
+
 }
 
-<script>
-    $('#spinner').hide();
-    var debounceTimer = null;
-    var eventHandler = function () {
+<div class="spinner-border" id="spin"></div>
 
+<script>
+    $('#spin').hide();
+    var debounceTimer = null;
+
+    var eventHandler = function () {
         clearTimeout(debounceTimer);
+        $('#spin').show();
         debounceTimer = setTimeout(function () {
-            $('#spinner').show();
             $('#jqSubmit').submit();
             console.log("The field has been changed.");
-            $('#spinner').hide();
+            $('#spin').hide();
         }, 2000);
     }
     $(document).ready(function () {

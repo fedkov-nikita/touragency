@@ -12,6 +12,7 @@
                     <th>Name of Guide</th>
                     <th>Tourists List</th>
                     <th>Edit Guide</th>
+                    <th>Delete Guide</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,7 @@
                         <td>@guide.Name</td>
                         <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTouristList/@guide.GuideId" role="button">>></a></td>
                         <td><a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideEdit/@guide.GuideId" role="button">Edit</a></td>
+                        <td><a class="btn btn-primary btn-lg" asp-action="DeleteGuide" asp-controller="Navigation" asp-route-id="@guide.GuideId" onclick="return confirm ('Are yo sure yo want to delete: @guide.Name')">Delete</a></td>
                     </tr>
                 }
             </tbody>
