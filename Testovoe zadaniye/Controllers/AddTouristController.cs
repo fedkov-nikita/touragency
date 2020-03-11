@@ -51,15 +51,27 @@ namespace Testovoe_zadaniye.Controllers
                 model.Path = await model.Avatar.PathReturn(_appEnvironment) ;
             }
 
+           
+
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
 
+            
+
+            //if (model.Avatar.Length > 200000)
+            //{
+            //    ModelState.AddModelError("Avatar", "Файл больше 2 Мб");
+            //}
+
             string message = "Upload new tourist form to submition";
             logger.LoggMessage(this.GetType().Name, message);
 
-
+            if (ModelState.IsValid)
             return RedirectToAction("AddTouristform", model);
+
+
+            return View(model);
         }
         
         public ActionResult AddTouristform(Addform model)

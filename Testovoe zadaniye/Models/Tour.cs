@@ -26,6 +26,8 @@ namespace Testovoe_zadaniye.Models
         public DateTime Data { get; set; }
         public ICollection<TouristTour> TouristTours { get; set; }
         [NotMapped]
+
+        [Required]
         public bool selected { get; set; }
     }
 }

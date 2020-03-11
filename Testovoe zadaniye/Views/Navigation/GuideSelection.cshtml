@@ -2,15 +2,30 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <h3>Guide menu</h3>
+    <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+    <p>Select action:</p>
+</head>
+<body>
+
     <div class="row justify-content-md-center">
         <div class="col-md-4">
-
-            <h3>Guide menu</h3>
-            <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
-            <p>Select action:</p>
-            <p><a class="btn btn-primary btn-lg" href="~/Navigation/ToGuides" role="button">Schedule »</a></p>
-            <p><a class="btn btn-primary btn-lg" href="~/AddTourist/AddTourist" role="button">Add Tourist »</a></p>
-            <p><a class="btn btn-primary btn-lg" href="~/Navigation/GuideToToursAcces" role="button">Tours List »</a></p>
-
+            <p><a class="btn btn-primary btn-lg" href="~/Navigation/ToGuides" role="button">Guide schedule </a></p>
         </div>
     </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <p><a class="btn btn-primary btn-lg" href="~/AddTourist/AddTourist" role="button">Add Tourist </a></p>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <p><a class="btn btn-primary btn-lg" href="~/Navigation/GuideToToursAcces" role="button">Tours List </a></p>
+        </div>
+    </div>
+
+</body>
+
