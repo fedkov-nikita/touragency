@@ -24,16 +24,20 @@
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Hometown)
             @Html.EditorFor(c => c.Hometown, new { @class = "form-control", @placeholder = "Kyiv", @required = "" })
+            @Html.ValidationMessageFor(m => m.Hometown,"", new { @class = "text-danger" })
+
         </div>
 
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Fullname)
             @Html.EditorFor(c => c.Fullname, new { @class = "form-control", @placeholder = "Petrov I.", @required = "" })
+            @Html.ValidationMessageFor(m => m.Fullname,"", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Age)
             @Html.EditorFor(c => c.Age, new { @class = "form-control", @placeholder = "18", @required = "", type = "number", min = "0", step = "1" })
+            @Html.ValidationMessageFor(m => m.Age,"", new { @class = "text-danger" })
         </div>
 
     </div>

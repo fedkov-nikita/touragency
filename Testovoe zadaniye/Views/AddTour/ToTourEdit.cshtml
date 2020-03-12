@@ -23,6 +23,7 @@
         <div class="col-md-3 mb-3">
             @Html.LabelFor(c => c.Name)
             @Html.TextBoxFor(c => c.Name, new { @class = "form-control", @required = "" })
+            @Html.ValidationMessageFor(model => model.Name ,"", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row justify-content-md-center">

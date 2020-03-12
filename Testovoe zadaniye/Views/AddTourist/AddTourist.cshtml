@@ -15,23 +15,25 @@
 
 @using (Html.BeginForm("AddTourist", "AddTourist", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
+
     <div class="row">
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Hometown)
             @Html.TextBoxFor(c => c.Hometown, new { @class = "form-control", @placeholder = "Kyiv", @required = "" })
-            @Html.ValidationMessageFor(c => c.Hometown)
+            @Html.ValidationMessageFor(c => c.Hometown, "", new { @class = "text-danger" })
 
         </div>
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Fullname)
             @Html.TextBoxFor(c => c.Fullname, new { @class = "form-control", @placeholder = "Petrov I.", @required = "" })
-            @Html.ValidationMessageFor(c => c.Fullname)
+            @Html.ValidationMessageFor(c => c.Fullname, "", new { @class = "text-danger" })
 
         </div>
         <div class="col-md-6 mb-3">
             @Html.LabelFor(c => c.Age)
             @Html.TextBoxFor(c => c.Age, new { @class = "form-control", @placeholder = "18", @required = "", type = "number", min = "0", step = "1" })
-            @Html.ValidationMessageFor(c => c.Age)
+            @Html.ValidationMessageFor(c => c.Age, "", new { @class = "text-danger" })
 
         </div>
     </div>
@@ -54,7 +56,7 @@
             </div>
         </div>
     </div>
-   <p><h3>Choose Tours:</h3></p> 
+    <p><h3>Choose Tours:</h3></p>
     <div class="row justify-content-md-center">
 
         @for (int i = 0; i < Model.Tours.Count(); i++)
@@ -70,15 +72,14 @@
                 </div>
             </div>
         }
-
     </div>
 
 
     <div class="row justify-content-md-center">
 
-        
+
         <div class="col-md-2">
-           <p><a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a></p> 
+            <p><a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a></p>
             <p><button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button></p>
         </div>
     </div>

@@ -14,16 +14,20 @@ namespace Testovoe_zadaniye.Models
     {
         [Required]
         public string Path { get; set; }
-        [StringLength(60, MinimumLength = 2)]
+        [StringLength(40, MinimumLength = 2)]
         [Required]
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         // Родной город туриста
         public string Hometown { get; set; }
-        [Required]
+
+        [StringLength(40, MinimumLength = 4)]
         // Полное имя туриста
         [Display(Name = "Full Name")]
+        [Required]
         public string Fullname { get; set; }
         // Возраст туриста
+        [Required]
+        [Range(6, 150)]
         public int Age { get; set; }
         // Логин Гида
         [Display(Name = "Guide")]

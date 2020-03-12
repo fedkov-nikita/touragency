@@ -23,18 +23,21 @@
         <div class="col-md-5 mb-3">
             @Html.LabelFor(c => c.Name)
             @Html.TextBoxFor(c => c.Name, new { @class = "form-control", @required = "" })
+            @Html.ValidationMessageFor(c => c.Name,"", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-5 mb-3">
             @Html.LabelFor(c => c.Login)
             @Html.TextBoxFor(c => c.Login, new { @class = "form-control", @required = "" })
+            @Html.ValidationMessageFor(c => c.Login,"", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-5 mb-3">
             @Html.LabelFor(c => c.Password)
             @Html.TextBoxFor(c => c.Password, new { @class = "form-control", @required = "" })
+            @Html.ValidationMessageFor(c => c.Password,"", new { @class = "text-danger" })
         </div>
     </div>
 

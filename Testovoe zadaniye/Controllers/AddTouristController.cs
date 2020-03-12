@@ -51,18 +51,20 @@ namespace Testovoe_zadaniye.Controllers
                 model.Path = await model.Avatar.PathReturn(_appEnvironment) ;
             }
 
-           
+            model.Guides = db.Guides.ToList();
+            model.Tours = db.Tours.ToList();
+            model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
+            model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
+
+
 
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
-
-            
-
-            //if (model.Avatar.Length > 200000)
-            //{
-            //    ModelState.AddModelError("Avatar", "Файл больше 2 Мб");
-            //}
+            if (model.Avatar.Length > 100000)
+            {
+                ModelState.AddModelError("Avatar", "File size bigger then 1Mb");
+            }
 
             string message = "Upload new tourist form to submition";
             logger.LoggMessage(this.GetType().Name, message);
@@ -81,7 +83,9 @@ namespace Testovoe_zadaniye.Controllers
             foreach (var t in model.Tours)
             {
                 if (model.SelectedTourIds.Contains(t.TourId))
+                
                     t.selected = true;
+                
             }
             model.Guides = db.Guides.ToList();
             model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
