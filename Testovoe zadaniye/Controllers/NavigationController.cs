@@ -96,7 +96,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(tours);
         }
-        public IActionResult TouristList(int pageNumber=1, int pageSize=2)
+        public IActionResult TouristList(int pageNumber=1, int pageSize=5)
         {
             int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
@@ -223,15 +223,23 @@ namespace Testovoe_zadaniye.Controllers
         }
         
 
-        public IActionResult GuideToToursAcces()
+        public IActionResult GuideToToursAcces(int pageNumber = 1, int pageSize = 5)
         {
-
+            int ExcludeRecords = (pageNumber * pageSize) - pageSize; 
             string message = "Display tours List for guide";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
 
-            return View(db.Tours.ToList());
+            var result = new PagedResult<Tour>
+            {
+                Data = db.Tours.OrderBy(c => c.Name).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList(),
+                TotalItems = db.Tours.Count(),
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return View(result);
         }
 
         [HttpPost]

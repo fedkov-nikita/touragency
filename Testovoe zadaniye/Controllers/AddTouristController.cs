@@ -51,17 +51,17 @@ namespace Testovoe_zadaniye.Controllers
                 model.Path = await model.Avatar.PathReturn(_appEnvironment) ;
             }
 
-            model.Guides = db.Guides.ToList();
-            model.Tours = db.Tours.ToList();
-            model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
-            model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
+            //model.Guides = db.Guides.ToList();
+            //model.Tours = db.Tours.ToList();
+            //model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
+            //model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
 
 
 
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
 
-            if (model.Avatar.Length > 100000)
+            if (model.Avatar.Length > 1000000)
             {
                 ModelState.AddModelError("Avatar", "File size bigger then 1Mb");
             }
