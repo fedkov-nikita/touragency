@@ -14,7 +14,7 @@ namespace Testovoe_zadaniye.Models
         public string Login { get; set; }
         // Пароль Гида
         [Required]
-        [StringLength(30, MinimumLength = 5)] 
+        [RegularExpression("^[A-Z]-[a-zA-Z0-9]*$", ErrorMessage = "Only numbers and alphabets allowed, capital letter is compulsory ")]
         public string Password { get; set; }
 
         [StringLength(30, MinimumLength = 2)]

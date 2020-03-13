@@ -2604,3 +2604,136 @@
  3/12/2020 6:51:08 PM Class NavigationController - method: ToGuides - action: Display guides list
  3/12/2020 6:51:12 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide
  3/12/2020 6:51:35 PM Class AddTourController - method: ToTourEdit - action: Edit of chosen Tour
+ 3/13/2020 11:42:14 AM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 11:42:19 AM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 11:43:40 AM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 11:43:43 AM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 11:43:56 AM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 11:44:00 AM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 12:51:29 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 12:51:33 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 12:53:18 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 12:53:21 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:05:10 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:08:12 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:08:16 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:13:28 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:18:42 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 1:18:46 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:23:28 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 1:23:32 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:23:45 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:23:50 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:23:56 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:24:57 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 1:25:02 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:25:06 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:28:02 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 1:28:06 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:28:39 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:28:46 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:28:50 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:30:21 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:30:26 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:31:30 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:33:01 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 1:33:07 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 2:44:25 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 2:44:33 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:13:43 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:13:58 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:14:17 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:14:21 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:14:43 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:28:10 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:28:14 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:28:16 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:28:18 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:42:56 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:42:59 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:02 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:07 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:10 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:11 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:14 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:14 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:15 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:18 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:21 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:23 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:34 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:43 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:44 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:46 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:43:54 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:01 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:03 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:04 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:05 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:08 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:11 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:12 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:14 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:15 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:17 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:20 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:22 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:23 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:24 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:44:25 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:26 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:50:30 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:33 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:36 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:39 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:40 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:42 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:43 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:50:45 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:00 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:51:04 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:07 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:08 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:10 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:14 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:16 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:17 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:19 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:21 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:22 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:51:24 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:11 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 3:53:17 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:19 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:22 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:23 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:28 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:32 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:33 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:37 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 3:53:38 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:19:15 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 4:19:19 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:38:52 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 4:38:53 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:38:57 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:38:59 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:39:00 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:40:52 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 4:40:59 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:41:03 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:41:12 PM Class NavigationController - method: TouristList - action: Display tourists list
+ 3/13/2020 4:41:21 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/13/2020 4:41:21 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/13/2020 4:41:23 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/13/2020 4:41:27 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/13/2020 4:41:29 PM Class NavigationController - method: ToTouristList - action: Display guide`s tourists
+ 3/13/2020 4:41:41 PM Class NavigationController - method: ToTours - action: Display tours
+ 3/13/2020 4:41:45 PM Class NavigationController - method: ToTours - action: Display tours
+ 3/13/2020 4:44:41 PM Class HomeController - method: Index - action: Initial entering
+ 3/13/2020 4:45:08 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/13/2020 4:45:08 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/13/2020 4:45:10 PM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/13/2020 4:45:20 PM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/13/2020 4:45:20 PM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/13/2020 4:45:31 PM Class NavigationController - method: GuideToToursAcces - action: Display tours List for guide

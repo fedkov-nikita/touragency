@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Http;
+using cloudscribe.Pagination.Models;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -95,15 +96,24 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(tours);
         }
-        public IActionResult TouristList()
+        public IActionResult TouristList(int pageNumber=1, int pageSize=2)
         {
+            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
             string message = "Display tourists list";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
 
-            return View(db.Tourists.ToList());
+            var result = new PagedResult<Tourist>
+            {          
+                Data = db.Tourists.OrderBy(c=>c.Fullname).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList(),
+                TotalItems = db.Tourists.Count(),
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return View(result);
         }
 
         [HttpGet]

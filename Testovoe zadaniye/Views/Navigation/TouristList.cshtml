@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Testovoe_zadaniye.Models.Tourist>
+﻿@model cloudscribe.Pagination.Models.PagedResult<Tourist>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var tourist in Model)
+                        @foreach (var tourist in Model.Data)
                         {
                             <tr>
                                 <td>@tourist.Hometown</td>
@@ -54,6 +54,23 @@
 
                     </tbody>
                 </table>
+
+                <cs-pager
+                          cs-pager-li-current-class = "page-item active"
+                          cs-pager-li-other-class = "page item"
+                          cs-pager-li-non-active-class = "page-item"
+                          cs-pager-link-current-class = "page-link"
+                          cs-pager-link-other-class = "page-link"
+                          cs-paging-pagenumber= "@Model.PageNumber"
+                          cs-paging-totalitems = "@Model.TotalItems"
+                          cs-paging-pagesize="@Model.PageSize"
+                          cs-pagenumber-param="pagenumber"
+                          asp-controller="Navigation"
+                          asp-action = "TouristList">
+   
+                          
+
+                          </cs-pager>
 
                 <div class="row justify-content-md-center">
 
