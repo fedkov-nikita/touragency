@@ -1,9 +1,7 @@
-﻿@model cloudscribe.Pagination.Models.PagedResult<Tourist>
+﻿@model Testovoe_zadaniye.Paginator.Pagin<Tourist>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <section class="text-center">
     <div class="container">
@@ -67,8 +65,6 @@
                           cs-pagenumber-param="pagenumber"
                           asp-controller="Navigation"
                           asp-action = "TouristList">
-   
-                          
 
                           </cs-pager>
 

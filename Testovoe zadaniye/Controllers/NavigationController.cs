@@ -14,6 +14,7 @@ using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Http;
 using cloudscribe.Pagination.Models;
+using Testovoe_zadaniye.Paginator;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -105,7 +106,7 @@ namespace Testovoe_zadaniye.Controllers
 
             logger.LoggMessage(className, message);
 
-            var result = new PagedResult<Tourist>
+            var result = new Pagin<Tourist>
             {          
                 Data = db.Tourists.OrderBy(c=>c.Fullname).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList(),
                 TotalItems = db.Tourists.Count(),
@@ -231,7 +232,7 @@ namespace Testovoe_zadaniye.Controllers
 
             logger.LoggMessage(className, message);
 
-            var result = new PagedResult<Tour>
+            var result = new Pagin<Tour>
             {
                 Data = db.Tours.OrderBy(c => c.Name).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList(),
                 TotalItems = db.Tours.Count(),
