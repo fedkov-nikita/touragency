@@ -136,7 +136,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(tours);
         }
-        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 5)
+        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 2)
         {
             int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
@@ -310,7 +310,7 @@ namespace Testovoe_zadaniye.Controllers
         }
         
 
-        public IActionResult GuideToToursAcces(int pageNumber = 1, int pageSize = 5)
+        public IActionResult GuideToToursAcces(int pageNumber = 1, int pageSize = 2)
         {
             int ExcludeRecords = (pageNumber * pageSize) - pageSize; 
             string message = "Display tours List for guide";

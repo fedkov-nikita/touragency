@@ -15,7 +15,7 @@ namespace Testovoe_zadaniye.Paginator
             public int PageSize { get; set; }
             public string Name { get; set; }
             public string HomeTown { get; set; }
-        public int Age { get; set; }
+            public int Age { get; set; }
 
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalItems, PageSize));
 

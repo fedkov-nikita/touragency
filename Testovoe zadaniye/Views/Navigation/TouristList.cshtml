@@ -19,16 +19,16 @@
 
         <form method="get">
             <div class="form-inline form-group">
-                <label class="control-label">Name: </label>
-                <input name="searchString" class="form-control" />
+                <label class="control-label">Name: </label>&nbsp&nbsp
+                <input name="searchString" class="form-control" />&nbsp&nbsp
 
-                <label class="control-label"> Age: </label>
-                <input name="age" class="form-control" />
+                <label class="control-label"> Age: </label>&nbsp&nbsp
+                <input name="age" class="form-control" />&nbsp&nbsp
 
-                <label class="control-label"> Home Town: </label>
-                <input name="homeTown" class="form-control" />
+                <label class="control-label"> Home Town: </label>&nbsp&nbsp
+                <input name="homeTown" class="form-control" />&nbsp&nbsp
 
-                <input type="submit" value="Фильтр" class="btn btn-default" />
+                <input type="submit" value="Search" class="btn btn-primary btn-lg" />
             </div>
         </form>
 
@@ -71,22 +71,30 @@
 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li class="page-item"><a class="page-link" href="/Navigation/touristlist?pageNumber=@(Model.PageNumber - 1)">Previous</a></li>
+                        }
 
                         @for (var i = 1; i <= Model.TotalPages; i++)
                         {
-                            
-                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/touristlist?pageNumber=@i">@i</a></li>
-                         
+
+                            <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/touristlist?pageNumber=@i">@i</a></li>
+
                         }
 
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        @if (Model.HasNextPage)
+                        {
+                            <li class="page-item"><a class="page-link" href="/Navigation/touristlist?pageNumber=@(Model.PageNumber+1)">Next</a></li>
+                        }
+
                     </ul>
                 </nav>
 
                 <div class="row justify-content-md-center">
 
-                    <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a>&nbsp &nbsp
+                    <a class="btn btn-primary btn-lg" href="~/Home/Index" role="button">Pevious Page</a>&nbsp &nbsp
 
                     <a class="btn btn-primary btn-lg" href="#" role="button" id="btnReserv">Backup Photos</a>&nbsp &nbsp
 

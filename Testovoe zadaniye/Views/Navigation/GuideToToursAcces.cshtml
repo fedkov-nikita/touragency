@@ -19,23 +19,66 @@
 
 <div class="no-background">
     <div class="container">
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber - 1)">Previous</a></li>
+                }
+
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@i">@i</a></li>
+
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber+1)">Next</a></li>
+                }
+            </ul>
+        </nav>
+
         <div class="row justify-content-md-center">
             @foreach (var tour in Model.Data)
             {
 
-            <main role="main" class="container">
-                <div class="jumbotron">
-                    <h1>@tour.Name</h1>
-                    <h3 class="card-title pricing-card-title">@tour.Data </h3>
+                <main role="main" class="container">
+                    <div class="jumbotron">
+                        <h1>@tour.Name</h1>
+                        <h3 class="card-title pricing-card-title">@tour.Data </h3>
 
-                    <p class="lead">For additional information about tour contact please contact ZharaTravel LLC.</p>
-                    <a class="btn btn-primary btn-lg" href="~/AddTour/ToTourEdit/@tour.TourId" role="button">Edit Tour</a>
-                    <a class="btn btn-primary btn-lg" asp-action="DeleteTour" asp-controller="Navigation" asp-route-id="@tour.TourId" onclick="return confirm ('Are yo sure yo want to delete: @tour.Name')">Delete</a>
-                </div>
-            </main>
+                        <p class="lead">For additional information about tour contact please contact ZharaTravel LLC.</p>
+                        <a class="btn btn-primary btn-lg" href="~/AddTour/ToTourEdit/@tour.TourId" role="button">Edit Tour</a>
+                        <a class="btn btn-primary btn-lg" asp-action="DeleteTour" asp-controller="Navigation" asp-route-id="@tour.TourId" onclick="return confirm ('Are yo sure yo want to delete: @tour.Name')">Delete</a>
+                    </div>
+                </main>
 
             }
         </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumer=@(Model.PageNumber - 1)">Previous</a></li>
+                }
+
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@i">@i</a></li>
+
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber+1)">Next</a></li>
+                }
+            </ul>
+        </nav>
 
         <div class="container">
 
@@ -49,161 +92,146 @@
 
         </div>
 
-        <cs-pager cs-pager-li-current-class="page-item active"
-                  cs-pager-li-other-class="page item"
-                  cs-pager-li-non-active-class="page-item"
-                  cs-pager-link-current-class="page-link"
-                  cs-pager-link-other-class="page-link"
-                  cs-paging-pagenumber="@Model.PageNumber"
-                  cs-paging-totalitems="@Model.TotalItems"
-                  cs-paging-pagesize="@Model.PageSize"
-                  cs-pagenumber-param="pagenumber"
-                  asp-controller="Navigation"
-                  asp-action="GuideToToursAcces">
-        </cs-pager>
+
 
     </div>
 </div>
 
+        <center><p><div id="myDiv" style="width:800px;height:600px;"></div></p></center>
 
-<center><p><div id="myDiv" style="width:800px;height:600px;"></div></p></center>
+        <script src="https://maps.googleapis.com/maps/api/js?"></script>
 
+        <script type="text/javascript">
+            function DisplayGoogleMap() {
 
+                //Set the Latitude and Longitude of the Map
+                var myAddress = new google.maps.LatLng(41.3877306, 2.1626061);
 
-
-<script src="https://maps.googleapis.com/maps/api/js?"></script>
-
-<script type="text/javascript">
-    function DisplayGoogleMap() {
-
-        //Set the Latitude and Longitude of the Map
-        var myAddress = new google.maps.LatLng(41.3877306, 2.1626061);
-
-        // Section of tours
-        //
-        var TourOne = new google.maps.LatLng(41.404641, 2.174969);
-        //
-        var TourTwo = new google.maps.LatLng(41.391798, 2.164656);
-        //
-        var TourThree = new google.maps.LatLng(41.368319, 2.154031);
-        //
-        var TourFour = new google.maps.LatLng(41.380574, 2.122917);
-        //
-        var TourFive = new google.maps.LatLng(41.422757, 2.119255);
-        //
-        var TourSix = new google.maps.LatLng(41.639508, 2.713662);
-        //
-        var TourSeven = new google.maps.LatLng(41.363846, 2.167728);
-        //
-        var TourEight = new google.maps.LatLng(41.385321, 2.180710);
-        //
-        var TourNine = new google.maps.LatLng(41.613967, 2.654539);
-        //
-        var TourTen = new google.maps.LatLng(41.375696, 2.177621);
-        //
-        var TourEleven = new google.maps.LatLng(41.414397, 2.153142);
+                // Section of tours
+                //
+                var TourOne = new google.maps.LatLng(41.404641, 2.174969);
+                //
+                var TourTwo = new google.maps.LatLng(41.391798, 2.164656);
+                //
+                var TourThree = new google.maps.LatLng(41.368319, 2.154031);
+                //
+                var TourFour = new google.maps.LatLng(41.380574, 2.122917);
+                //
+                var TourFive = new google.maps.LatLng(41.422757, 2.119255);
+                //
+                var TourSix = new google.maps.LatLng(41.639508, 2.713662);
+                //
+                var TourSeven = new google.maps.LatLng(41.363846, 2.167728);
+                //
+                var TourEight = new google.maps.LatLng(41.385321, 2.180710);
+                //
+                var TourNine = new google.maps.LatLng(41.613967, 2.654539);
+                //
+                var TourTen = new google.maps.LatLng(41.375696, 2.177621);
+                //
+                var TourEleven = new google.maps.LatLng(41.414397, 2.153142);
 
 
-        //Create Options or set different Characteristics of Google Map
-        var mapOptions = {
-            center: myAddress,
-            zoom: 10,
-            minZoom: 10,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+                //Create Options or set different Characteristics of Google Map
+                var mapOptions = {
+                    center: myAddress,
+                    zoom: 10,
+                    minZoom: 10,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
 
-        //Display the Google map in the div control with the defined Options
-        var map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);
+                //Display the Google map in the div control with the defined Options
+                var map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);
 
 
 
-        var marker = new google.maps.Marker({
-            position: myAddress,
-            map: map,
-            animation: google.maps.Animation.BOUNCE,
+                var marker = new google.maps.Marker({
+                    position: myAddress,
+                    map: map,
+                    animation: google.maps.Animation.BOUNCE,
 
-        });
+                });
 
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourOne,
-            map: map
-        });
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourOne,
+                    map: map
+                });
 
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourTwo,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourTwo,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourThree,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourFour,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourThree,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourFour,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourFive,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourFive,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourSix,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourSix,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourSeven,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourEight,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourSeven,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourEight,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourNine,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourNine,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourTen,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourTen,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
-        //Set Marker on the Map
-        var marker = new google.maps.Marker({
-            position: TourEleven,
-            map: map
-        });
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                //Set Marker on the Map
+                var marker = new google.maps.Marker({
+                    position: TourEleven,
+                    map: map
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
 
 
-        marker.setMap(map);
-    }
-</script>
+                marker.setMap(map);
+            }
+        </script>
 
