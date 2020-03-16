@@ -13,11 +13,50 @@ using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Http;
-using cloudscribe.Pagination.Models;
 using Testovoe_zadaniye.Paginator;
+using System.Linq.Expressions;
 
 namespace Testovoe_zadaniye.Controllers
 {
+    public static class ExpressionBuilderExtension
+    {
+        public static Expression<Func<T, bool>> AndAlso<T>(
+               this Expression<Func<T, bool>> expr1,
+               Expression<Func<T, bool>> expr2)
+        {
+            var parameter = Expression.Parameter(typeof(T));
+
+            var leftVisitor = new ReplaceExpressionVisitor(expr1.Parameters[0], parameter);
+            var left = leftVisitor.Visit(expr1.Body);
+
+            var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
+            var right = rightVisitor.Visit(expr2.Body);
+
+            return Expression.Lambda<Func<T, bool>>(
+                Expression.AndAlso(left, right), parameter);
+        }
+
+        class ReplaceExpressionVisitor
+            : ExpressionVisitor
+        {
+            private readonly Expression _oldValue;
+            private readonly Expression _newValue;
+
+            public ReplaceExpressionVisitor(Expression oldValue, Expression newValue)
+            {
+                _oldValue = oldValue;
+                _newValue = newValue;
+            }
+
+            public override Expression Visit(Expression node)
+            {
+                if (node == _oldValue)
+                    return _newValue;
+                return base.Visit(node);
+            }
+        }
+    }
+   
     public class NavigationController : Controller
     {
         TouragencyContext db;
@@ -97,7 +136,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(tours);
         }
-        public IActionResult TouristList(int pageNumber=1, int pageSize=5)
+        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 5)
         {
             int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
@@ -106,12 +145,59 @@ namespace Testovoe_zadaniye.Controllers
 
             logger.LoggMessage(className, message);
 
+            int count;
+            List<Tourist> touristData;
+            Expression<Func<Tourist, bool>> filter = null;
+
+            if (age != null && age != 0)
+            {
+                filter = (a => a.Age == age);
+            }
+
+            if (!String.IsNullOrEmpty(homeTown))
+            {
+                if (filter != null)
+                {
+                    filter = filter.AndAlso(a => a.Hometown.Contains(homeTown));
+                }
+                else
+                {
+                    filter = (a => a.Hometown.Contains(homeTown));
+                }
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                if (filter != null)
+                {
+                    filter = filter.AndAlso(c => c.Fullname.Contains(searchString));
+                }
+                else
+                {
+                    filter = (c => c.Fullname.Contains(searchString));
+                }
+            }
+
+            IQueryable<Tourist> dataSearch = db.Tourists;
+            if (filter != null)
+            {
+                dataSearch = dataSearch.Where(filter);
+            }
+
+            var data = dataSearch.OrderBy(c => c.Fullname).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList();
+            var dataCount = dataSearch.Count();
+            count = dataCount;
+            touristData = data;
+
             var result = new Pagin<Tourist>
-            {          
-                Data = db.Tourists.OrderBy(c=>c.Fullname).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList(),
-                TotalItems = db.Tourists.Count(),
+            {
+                Data = touristData,
+                TotalItems = count,
                 PageNumber = pageNumber,
-                PageSize = pageSize
+                PageSize = pageSize,
+                Name = searchString,
+                Age = age??0,
+                HomeTown = homeTown
             };
 
             return View(result);
