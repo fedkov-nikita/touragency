@@ -15,6 +15,7 @@ using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Http;
 using Testovoe_zadaniye.Paginator;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -73,6 +74,7 @@ namespace Testovoe_zadaniye.Controllers
             fileManager = new FileManager(_appEnvironment);
 
         }
+        [Authorize]
         public ActionResult GuideSelection()
         {
 
@@ -94,6 +96,8 @@ namespace Testovoe_zadaniye.Controllers
             return View(db.Guides.Where(
                         i => i.GuideId == id.Value).ToList());
         }
+
+        [Authorize]
         public ActionResult ToGuides()
         {
 
@@ -104,6 +108,8 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(db.Guides.ToList());
         }
+
+        [Authorize]
         public IActionResult ToTouristList(int? id)
         {
 
@@ -136,7 +142,8 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(tours);
         }
-        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 2)
+
+        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
         {
             int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
@@ -205,7 +212,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [HttpGet]
         [ActionName("Delete")]
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -228,7 +235,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [HttpGet]
         [ActionName("DeleteTour")]
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> DeleteTour(int? id)
         {
@@ -250,7 +257,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [HttpGet]
         [ActionName("DeleteGuide")]
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> DeleteGuide(int? id)
         {
@@ -270,7 +277,7 @@ namespace Testovoe_zadaniye.Controllers
             return NotFound();
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult ToEdit(int id = 0)
         {
@@ -308,8 +315,8 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(db.Tours.ToList());
         }
-        
 
+        [Authorize]
         public IActionResult GuideToToursAcces(int pageNumber = 1, int pageSize = 2)
         {
             int ExcludeRecords = (pageNumber * pageSize) - pageSize; 
@@ -329,6 +336,7 @@ namespace Testovoe_zadaniye.Controllers
             return View(result);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> ToEditAsync(EditForm model)
         {

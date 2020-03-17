@@ -9,7 +9,10 @@ namespace Testovoe_zadaniye.Models
 {
     public class GuideLogin
     {
+        [Required(ErrorMessage = "Enter your login!")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Enter your password!")]
         public string Password { get; set; }
 
     }

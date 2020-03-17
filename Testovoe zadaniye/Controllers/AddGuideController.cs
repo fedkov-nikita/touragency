@@ -14,7 +14,11 @@ using Microsoft.AspNetCore.Http;
 using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
-
+using Testovoe_zadaniye.Controllers;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -32,6 +36,7 @@ namespace Testovoe_zadaniye.Controllers
             _appEnvironment = appEnvironment;
 
         }
+        [Authorize]
         public ActionResult ToGuideAdd()
         {
             AddGuide model = new AddGuide();
@@ -39,34 +44,66 @@ namespace Testovoe_zadaniye.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult ToGuideAdd(AddGuide addGuide)
+        public async Task<IActionResult> ToGuideAdd(AddGuide addGuide)
         {
 
-            Guide guide = new Guide();
-            guide.Name = addGuide.Name;
-            guide.Login = addGuide.Login;
-            guide.Password = addGuide.Password;
-
-            if (guide.Name != null && guide.Login != null && guide.Password != null)
+            if (ModelState.IsValid)
             {
-                db.Guides.Add(guide);
-                db.SaveChanges();
+                Guide guide = await db.Guides.FirstOrDefaultAsync(u => u.Name == addGuide.Name);
+                if (guide == null)
+                {
+                    // добавляем пользователя в бд
+                    db.Guides.Add(new Guide { Login = addGuide.Name, Password = addGuide.Password });
+                    await db.SaveChangesAsync();
+
+                    await Authenticate(addGuide.Name); // аутентификация
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                    ModelState.AddModelError("", "Login is already exist");
             }
-            else
-            {
-                throw new Exception("Some field of guide is null");
-            }
+            return View(addGuide);
+
+            //Guide guide = new Guide();
+            //guide.Name = addGuide.Name;
+            //guide.Login = addGuide.Login;
+            //guide.Password = addGuide.Password;
+
+            //if (guide.Name != null && guide.Login != null && guide.Password != null)
+            //{
+            //    db.Guides.Add(guide);
+            //    db.SaveChanges();
+            //}
+            //else
+            //{
+            //    throw new Exception("Some field of guide is null");
+            //}
 
 
-            
 
-            string message = "Add of new Guide";
-            logger.LoggMessage(this.GetType().Name, message);
 
-            return RedirectToAction("GuideToToursAcces", "Navigation");
+            //string message = "Add of new Guide";
+            //logger.LoggMessage(this.GetType().Name, message);
+
+            //return RedirectToAction("GuideToToursAcces", "Navigation");
         }
 
+        private async Task Authenticate(string userName)
+        {
+            // создаем один claim
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+            };
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+        [Authorize]
         public ActionResult ToGuideEdit(int id = 0)
         {
             Guide guide = new Guide();
@@ -84,7 +121,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         [HttpPost]
         public ActionResult ToGuideEdit(EditGuideForm model)
         {

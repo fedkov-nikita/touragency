@@ -36,7 +36,11 @@ namespace Testovoe_zadaniye
                 options.MinimumSameSitePolicy = SameSiteMode.None;
 
             });
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/GuideLog/GuideLog");
+                });
 
             services.AddRazorPages();
             services.AddDbContext<TouragencyContext>(item => item.UseSqlServer(Configuration.GetConnectionString("myconn")));
@@ -63,8 +67,9 @@ namespace Testovoe_zadaniye
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-
+              
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { 
             endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

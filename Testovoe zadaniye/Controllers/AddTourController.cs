@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -32,13 +32,15 @@ namespace Testovoe_zadaniye.Controllers
             _appEnvironment = appEnvironment;
 
         }
-        public ActionResult ToTourAdd()
+
+        [Authorize]
+        public IActionResult ToTourAdd()
         {
             AddTour model = new AddTour();
 
             return View(model);
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult ToTourAdd(AddTour addTour)
         {
@@ -62,7 +64,7 @@ namespace Testovoe_zadaniye.Controllers
 
             return RedirectToAction("GuideToToursAcces", "Navigation");
         }
-
+        [Authorize]
         public ActionResult ToTourEdit(int id = 0)
         {
             Tour tour = new Tour();
@@ -79,6 +81,7 @@ namespace Testovoe_zadaniye.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult ToTourEdit(EditTourForm model)
         {

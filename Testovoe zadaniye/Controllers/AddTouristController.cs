@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
+using Microsoft.AspNetCore.Authorization;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,6 +35,7 @@ namespace Testovoe_zadaniye.Controllers
             _appEnvironment = appEnvironment;
 
         }
+        [Authorize]
         public ActionResult AddTourist()
         {
             Addform model = new Addform();
@@ -43,6 +45,7 @@ namespace Testovoe_zadaniye.Controllers
             model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
             return View(model);
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddTourist(Addform model)
         {
@@ -50,13 +53,6 @@ namespace Testovoe_zadaniye.Controllers
             {
                 model.Path = await model.Avatar.PathReturn(_appEnvironment) ;
             }
-
-            //model.Guides = db.Guides.ToList();
-            //model.Tours = db.Tours.ToList();
-            //model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
-            //model.selectListt = new MultiSelectList(model.Tours, "TourId", "Name");
-
-
 
             List<int> tours = model.Tours.Where(x => x.selected == true).Select(x => x.TourId).ToList();
             model.SelectedTourIds = tours;
@@ -75,7 +71,8 @@ namespace Testovoe_zadaniye.Controllers
 
             return View(model);
         }
-        
+
+        [Authorize]
         public ActionResult AddTouristform(Addform model)
         {
             
@@ -104,6 +101,7 @@ namespace Testovoe_zadaniye.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult SaveNewTourist(Addform model)
         {

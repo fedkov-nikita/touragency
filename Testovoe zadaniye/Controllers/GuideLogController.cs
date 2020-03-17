@@ -16,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -31,56 +33,51 @@ namespace Testovoe_zadaniye.Controllers
 
         }
         [HttpPost]
-        public ActionResult GuideLog(GuideLogin guideLogin)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> GuideLog(GuideLogin guideLogin)
         {
-            if (guideLogin.Name == null && guideLogin.Password == null) return RedirectToAction("Index");
-
-
-            if (Request.Cookies.ContainsKey("name") 
-                && Request.Cookies.ContainsKey($"password") 
-                && Request.Cookies["name"] == guideLogin.Name 
-                && Request.Cookies[$"password"] == guideLogin.Password) 
-                return RedirectToAction("GuideSelection", "Navigation");
-            
-
-            var g = db.Guides.Any(x => x.Login == guideLogin.Name && x.Password == guideLogin.Password);
-            if (g == true)
+            if (ModelState.IsValid)
             {
-
-                string message = "Successful Sign Up";
-                string className = this.GetType().Name;
-
-                logger.LoggMessage(className, message);
-
-                if (Request.Cookies.ContainsKey("name"))
+                Guide guide = await db.Guides.FirstOrDefaultAsync(c => c.Login == guideLogin.Name && c.Password == guideLogin.Password);
+                if (guide != null)
                 {
-                    string name = Request.Cookies["name"];
-                    
+                    string message = "Successful Sign Up";
+                    string className = this.GetType().Name;
+
+                    logger.LoggMessage(className, message);
+                    await Authenticate(guideLogin.Name); // аутентификация
+
+                    return RedirectToAction("GuideSelection", "Navigation");
                 }
-                else
-                {
-                    Response.Cookies.Append("name", "Tom");
-                    
-                }
+                ModelState.AddModelError("", "Wrong login or password");
 
-                return RedirectToAction("GuideSelection", "Navigation");
             }
-            else
-            {
-
-                string message = "Unsuccessful Sign Up";
-                string className = this.GetType().Name;
-
-                logger.LoggMessage(className, message);
-
-                return RedirectToAction("Index", "Home");
-            }
+            return View(guideLogin);
         }
 
         [HttpGet]
         public ActionResult GuideLog()
         {
             return View();
+        }
+
+        private async Task Authenticate(string userName)
+        {
+            // создаем один claim
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+            };
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("GuideLog", "GuideLog");
         }
 
     }
