@@ -51,16 +51,16 @@ namespace Testovoe_zadaniye.Controllers
 
             if (ModelState.IsValid)
             {
-                Guide guide = await db.Guides.FirstOrDefaultAsync(u => u.Name == addGuide.Name);
+                Guide guide = await db.Guides.FirstOrDefaultAsync(u => u.Login == addGuide.Login);
                 if (guide == null)
                 {
                     // добавляем пользователя в бд
-                    db.Guides.Add(new Guide { Login = addGuide.Name, Password = addGuide.Password });
+                    db.Guides.Add(new Guide { Name =addGuide.Name ,Login = addGuide.Login, Password = addGuide.Password });
                     await db.SaveChangesAsync();
 
                     await Authenticate(addGuide.Name); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GuideSelection", "Navigation");
                 }
                 else
                     ModelState.AddModelError("", "Login is already exist");
