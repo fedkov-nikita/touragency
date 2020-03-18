@@ -89,6 +89,9 @@ namespace Testovoe_zadaniye.AppServices.Services
 
         public async Task<List<Tourist>> TouristListById(int? id)
         {
+            //var tourist = await db.Guides.Include(c => c.Tourists).FirstAsync(c => c.GuideId == id);
+            //   var tourists =  tourist.Tourists.ToList();
+
             var tourists = await db.Tourists.Where(c => c.GuideId==id).ToListAsync();
 
             return tourists;
