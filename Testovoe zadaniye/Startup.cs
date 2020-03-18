@@ -14,6 +14,9 @@ using Testovoe_zadaniye.DataBase;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Testovoe_zadaniye.AppServices;
+using Testovoe_zadaniye.AppServices.Interfaces;
+using Testovoe_zadaniye.AppServices.Services;
 
 namespace Testovoe_zadaniye
 {
@@ -29,6 +32,7 @@ namespace Testovoe_zadaniye
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ITouristListForTouristService, TouristListForTouristService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -47,7 +51,7 @@ namespace Testovoe_zadaniye
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env )
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
 
@@ -61,7 +65,10 @@ namespace Testovoe_zadaniye
                 app.UseHsts();
             }
 
-            
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync(messageSender.Send());
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

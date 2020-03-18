@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Testovoe_zadaniye.Paginator;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Authorization;
+using ITouristListForTouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristListForTouristService;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -64,14 +65,16 @@ namespace Testovoe_zadaniye.Controllers
         IWebHostEnvironment _appEnvironment;
         Logger logger;
         FileManager fileManager;
+        ITouristListForTouristService _touristServ;
 
-        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment)
+        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristListForTouristService touristServ)
         {
             db = context;
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
             fileManager = new FileManager(_appEnvironment);
+            _touristServ = touristServ;
 
         }
         [Authorize]
@@ -143,69 +146,16 @@ namespace Testovoe_zadaniye.Controllers
             return View(tours);
         }
 
-        public IActionResult TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
+        public async Task<IActionResult> TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
         {
-            int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+            
 
             string message = "Display tourists list";
             string className = this.GetType().Name;
-
             logger.LoggMessage(className, message);
 
-            int count;
-            List<Tourist> touristData;
-            Expression<Func<Tourist, bool>> filter = null;
+            var result = await _touristServ.FullTouristList(age, homeTown, searchString, pageNumber, pageSize);
 
-            if (age != null && age != 0)
-            {
-                filter = (a => a.Age == age);
-            }
-
-            if (!String.IsNullOrEmpty(homeTown))
-            {
-                if (filter != null)
-                {
-                    filter = filter.AndAlso(a => a.Hometown.Contains(homeTown));
-                }
-                else
-                {
-                    filter = (a => a.Hometown.Contains(homeTown));
-                }
-            }
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                if (filter != null)
-                {
-                    filter = filter.AndAlso(c => c.Fullname.Contains(searchString));
-                }
-                else
-                {
-                    filter = (c => c.Fullname.Contains(searchString));
-                }
-            }
-
-            IQueryable<Tourist> dataSearch = db.Tourists;
-            if (filter != null)
-            {
-                dataSearch = dataSearch.Where(filter);
-            }
-
-            var data = dataSearch.OrderBy(c => c.Fullname).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToList();
-            var dataCount = dataSearch.Count();
-            count = dataCount;
-            touristData = data;
-
-            var result = new Pagin<Tourist>
-            {
-                Data = touristData,
-                TotalItems = count,
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                Name = searchString,
-                Age = age??0,
-                HomeTown = homeTown
-            };
 
             return View(result);
         }

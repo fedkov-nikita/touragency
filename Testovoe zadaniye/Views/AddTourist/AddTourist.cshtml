@@ -49,7 +49,7 @@
                 <label for="Avatar">Photo:</label>
                 <div class=" custom-file">
                     @Html.TextBoxFor(m => m.Avatar, new { type = "file", @class = "custom-file-input" })
-                    @Html.ValidationMessageFor(m => m.Avatar)
+                    @Html.ValidationMessageFor(m => m.Avatar, "", new { @class = "text-danger" })
                     @Html.LabelFor(c => c.Avatar, new { @class = "custom-file-label" })
 
                 </div>
@@ -69,21 +69,29 @@
                     @Html.HiddenFor(c => c.Tours[i].Name)
                     @Html.HiddenFor(c => c.Tours[i].Data)
                     @Html.HiddenFor(c => c.Tours[i].TourId)
+                    @Html.ValidationMessageFor(c => c.Tours[i].selected, "", new { @class = "text-danger" });
                 </div>
             </div>
         }
     </div>
 
-
     <div class="row justify-content-md-center">
 
 
         <div class="col-md-2">
-            <p><a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Pevious Page</a></p>
-            <p><button class="btn btn-primary btn-lg btn-block" type="submit">Confirm</button></p>
+            <p><a class="btn btn-primary my-2" href="javascript: history.go(-1)" role="button">Pevious Page</a></p>
+            <p><button class="btn btn-primary my-2" type="submit">Confirm</button></p>
         </div>
     </div>
 
 
 
 }
+<script>
+
+    $(".form-check-input").each(function () {
+        if (this.checked == false)
+            console.log('false')
+    })
+</script>
+
