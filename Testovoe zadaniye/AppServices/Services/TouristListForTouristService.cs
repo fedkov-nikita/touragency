@@ -87,5 +87,12 @@ namespace Testovoe_zadaniye.AppServices.Services
             return result;
         }
 
+        public async Task<List<Tourist>> TouristListById(int? id)
+        {
+            var tourists = await db.Tourists.Where(c => c.GuideId==id).ToListAsync();
+
+            return tourists;
+        }
+
     }
 }

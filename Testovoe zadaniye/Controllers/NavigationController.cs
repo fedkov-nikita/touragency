@@ -113,21 +113,20 @@ namespace Testovoe_zadaniye.Controllers
         }
 
         [Authorize]
-        public IActionResult ToTouristList(int? id)
+        public async Task<IActionResult> ToTouristList(int? id)
         {
-
-            var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
-
-            //return View(db.Guides.Include(x => x.Tourists).First(
-            //            i => i.GuideId == id.Value).Tourists);
+            //SQL Request Example
+            //var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
+            //return View(tourists);
 
             string message = "Display guide`s tourists";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
 
-            return View(tourists);
+            return View(await _touristServ.TouristListById(id));   
         }
+
         public IActionResult ToTours(int? id)
         {
 
@@ -149,13 +148,12 @@ namespace Testovoe_zadaniye.Controllers
         public async Task<IActionResult> TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
         {
             
-
             string message = "Display tourists list";
             string className = this.GetType().Name;
+
             logger.LoggMessage(className, message);
 
             var result = await _touristServ.FullTouristList(age, homeTown, searchString, pageNumber, pageSize);
-
 
             return View(result);
         }
