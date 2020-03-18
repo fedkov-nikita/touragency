@@ -65,11 +65,6 @@ namespace Testovoe_zadaniye
                 app.UseHsts();
             }
 
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync(messageSender.Send());
-            //});
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
