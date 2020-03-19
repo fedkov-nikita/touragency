@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Testovoe_zadaniye.LoggingMechanism
 {
-    
-    abstract class Logger
+
+    public abstract class Logger
     {
         public abstract void LoggMessage(string className, string message, [CallerMemberName] string memberName = "");
     }
@@ -56,7 +56,12 @@ namespace Testovoe_zadaniye.LoggingMechanism
         }
     }
 
-    abstract class LoggerCreator
+    public interface ILoggerCreator
+    {
+        public Logger FactoryMethod();
+    }
+
+    abstract class LoggerCreator: ILoggerCreator
     {
         public abstract Logger FactoryMethod();
     }

@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Testovoe_zadaniye.Paginator;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Authorization;
-using ITouristListForTouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristListForTouristService;
+using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -65,9 +65,9 @@ namespace Testovoe_zadaniye.Controllers
         IWebHostEnvironment _appEnvironment;
         Logger logger;
         FileManager fileManager;
-        ITouristListForTouristService _touristServ;
+        ITouristService _touristServ;
 
-        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristListForTouristService touristServ)
+        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ)
         {
             db = context;
             LoggerCreator loggerCreator = new TxtLoggerCreator();
@@ -112,20 +112,6 @@ namespace Testovoe_zadaniye.Controllers
             return View(db.Guides.ToList());
         }
 
-        [Authorize]
-        public async Task<IActionResult> ToTouristList(int? id)
-        {
-            //SQL Request Example
-            //var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
-            //return View(tourists);
-
-            string message = "Display guide`s tourists";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
-
-            return View(await _touristServ.TouristListById(id));   
-        }
 
         public IActionResult ToTours(int? id)
         {
@@ -145,41 +131,9 @@ namespace Testovoe_zadaniye.Controllers
             return View(tours);
         }
 
-        public async Task<IActionResult> TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
-        {
-            
-            string message = "Display tourists list";
-            string className = this.GetType().Name;
+        
 
-            logger.LoggMessage(className, message);
-
-            var result = await _touristServ.FullTouristList(age, homeTown, searchString, pageNumber, pageSize);
-
-            return View(result);
-        }
-
-        [HttpGet]
-        [ActionName("Delete")]
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id != null)
-            {
-                var targetTourist = db.Tourists.First(x => x.Touristid == id.Value); //Вынимаем турста по id из базы.
-                int temp = targetTourist.GuideId; // сохраняем айди гида
-                db.Entry(targetTourist).State = EntityState.Deleted; // удаляем туриста
-                await db.SaveChangesAsync();
-                return RedirectToAction("ToTouristList", new { id = temp });
-            }
-
-            string message = "Deleting of tourist";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
-
-            return NotFound();
-        }
+        
 
         [HttpGet]
         [ActionName("DeleteTour")]

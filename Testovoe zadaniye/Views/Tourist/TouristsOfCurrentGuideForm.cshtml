@@ -37,7 +37,7 @@
                 </td>
                 <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToTours/@tourist.Touristid" role="button">Tours</a></td>
                 <td>
-                    <a class="btn btn-primary btn-lg" asp-action="Delete" asp-controller="Navigation" asp-route-id="@tourist.Touristid" onclick="return confirm ('Are yo sure yo want to delete: @tourist.Fullname')">Delete</a>
+                    <a class="btn btn-primary btn-lg" asp-action="Delete" asp-controller="Tourist" asp-route-id="@tourist.Touristid" onclick="return confirm ('Are yo sure yo want to delete: @tourist.Fullname')">Delete</a>
                 </td>
                 <td><a class="btn btn-primary btn-lg" href="~/Navigation/ToEdit/@tourist.Touristid" role="button">Edit</a></td>
             </tr>
