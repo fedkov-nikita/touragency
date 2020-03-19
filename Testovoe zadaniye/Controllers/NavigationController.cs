@@ -17,63 +17,26 @@ using Testovoe_zadaniye.Paginator;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
+using Testovoe_zadaniye.AppServices.Interfaces;
 
 namespace Testovoe_zadaniye.Controllers
 {
-    public static class ExpressionBuilderExtension
-    {
-        public static Expression<Func<T, bool>> AndAlso<T>(
-               this Expression<Func<T, bool>> expr1,
-               Expression<Func<T, bool>> expr2)
-        {
-            var parameter = Expression.Parameter(typeof(T));
-
-            var leftVisitor = new ReplaceExpressionVisitor(expr1.Parameters[0], parameter);
-            var left = leftVisitor.Visit(expr1.Body);
-
-            var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
-            var right = rightVisitor.Visit(expr2.Body);
-
-            return Expression.Lambda<Func<T, bool>>(
-                Expression.AndAlso(left, right), parameter);
-        }
-
-        class ReplaceExpressionVisitor
-            : ExpressionVisitor
-        {
-            private readonly Expression _oldValue;
-            private readonly Expression _newValue;
-
-            public ReplaceExpressionVisitor(Expression oldValue, Expression newValue)
-            {
-                _oldValue = oldValue;
-                _newValue = newValue;
-            }
-
-            public override Expression Visit(Expression node)
-            {
-                if (node == _oldValue)
-                    return _newValue;
-                return base.Visit(node);
-            }
-        }
-    }
    
     public class NavigationController : Controller
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
         Logger logger;
-        FileManager fileManager;
+        IFileManager _fileManager;
         ITouristService _touristServ;
 
-        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ)
+        public NavigationController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ, IFileManager fileManager)
         {
             db = context;
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
-            fileManager = new FileManager(_appEnvironment);
+            _fileManager = fileManager;
             _touristServ = touristServ;
 
         }
@@ -179,34 +142,7 @@ namespace Testovoe_zadaniye.Controllers
             return NotFound();
         }
 
-        [Authorize]
-        [HttpGet]
-        public ActionResult ToEdit(int id = 0)
-        {
-            Tourist tourist = new Tourist();
-            if (id != 0)
-            {
-                tourist = db.Tourists.Where(x => x.Touristid == id).FirstOrDefault();
-            }
-            EditForm model = new EditForm();
-            model.Hometown = tourist.Hometown;
-            model.Fullname = tourist.Fullname;
-            model.Age = tourist.Age;
-            model.GuideId = tourist.GuideId;
-            model.Path = tourist.Avatar;
-            model.Tours = db.Tours.ToList();
-            model.SelectedTourIds = db.TouristTour.Where(x => x.TouristId == tourist.Touristid).Select(x => x.TourId).ToList();
-            model.Guides = db.Guides.ToList();
-            model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
-            model.Touristid = tourist.Touristid;
-            foreach (var t in model.Tours)
-            {
-                if (model.SelectedTourIds.Contains(t.TourId))
-                    t.selected = true;
-            }
-
-            return View(model);
-        }
+        
         public IActionResult TourList()
         {
 
@@ -238,54 +174,7 @@ namespace Testovoe_zadaniye.Controllers
             return View(result);
         }
 
-        [Authorize]
-        [HttpPost]
-        public async Task<ActionResult> ToEditAsync(EditForm model)
-        {
-            Tourist tourist = new Tourist();
-            tourist.Fullname = model.Fullname;
-            tourist.Hometown = model.Hometown;
-            tourist.GuideId = model.GuideId;
-            tourist.Age = model.Age;
-            tourist.Touristid = model.Touristid;
-
-
-            if (model.Avatar != null)
-            {
-                fileManager.DeletePhoto(model.Path);
-                model.Path = await model.Avatar.PathReturn(_appEnvironment);
-            }
-            tourist.Avatar = model.Path;
-
-            List<TouristTour> touristToursToRemove = new List<TouristTour>();
-            touristToursToRemove = db.TouristTour.Where(x => x.TouristId == tourist.Touristid).ToList();
-            db.RemoveRange(touristToursToRemove);
-            db.SaveChanges();
-
-            List<TouristTour> touristToursToAdd = new List<TouristTour>();
-            foreach (var t in model.Tours.Where(x => x.selected == true))
-            {
-                TouristTour touristTour = new TouristTour();
-                touristTour.TouristId = tourist.Touristid;
-                touristTour.TourId = t.TourId;
-                touristToursToAdd.Add(touristTour);
-            }
-            db.TouristTour.AddRange(touristToursToAdd);
-            db.SaveChanges();
-
-            if (model.Touristid != 0)
-            {
-                db.Entry(tourist).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-
-            string message = "Editing of tourist";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
-
-            return Ok();
-        }
+        
        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

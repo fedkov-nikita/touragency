@@ -18,5 +18,8 @@ namespace Testovoe_zadaniye.AppServices.Interfaces
         public Task ProcessNewTouristModel(Addform model);
         public Task ProcessEnteredTouristModel(Addform model);
         public Task<Tourist> SaveTouristModel(Addform model);
+        public Task<int> DeleteCurrentTourist(int? id);
+        public Task<EditForm> ShowCurrentTouristEditForm(int? id);
+        public Task SaveEditedTourist(EditForm model);
     }
 }

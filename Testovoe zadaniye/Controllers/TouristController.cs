@@ -11,6 +11,7 @@ using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
 using Microsoft.EntityFrameworkCore;
+using Testovoe_zadaniye.AppServices.Interfaces;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,14 +24,16 @@ namespace Testovoe_zadaniye.Controllers
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
         Logger logger;
+        IFileManager _fileManagerServ;
 
-        public TouristController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ)
+        public TouristController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ, IFileManager filemanager)
         {
             db = context;
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
             _touristServ = touristServ;
+            _fileManagerServ = filemanager;
 
         }
 
@@ -100,7 +103,7 @@ namespace Testovoe_zadaniye.Controllers
             return View(await _touristServ.TouristListById(id));
         }
 
-        public async Task<IActionResult> TouristList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
+        public async Task<IActionResult> AllTouristsList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)
         {
 
             string message = "Display tourists list";
@@ -119,21 +122,43 @@ namespace Testovoe_zadaniye.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteTourist(int? id)
         {
-            if (id != null)
-            {
-                var targetTourist = db.Tourists.First(x => x.Touristid == id.Value); //Вынимаем турста по id из базы.
-                int temp = targetTourist.GuideId; // сохраняем айди гида
-                db.Entry(targetTourist).State = EntityState.Deleted; // удаляем туриста
-                await db.SaveChangesAsync();
-                return RedirectToAction("TouristsOfCurrentGuideForm", new { id = temp });
-            }
-
+            
             string message = "Deleting of tourist";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
 
+            if (id != 0)
+            {
+                int guideId = await _touristServ.DeleteCurrentTourist(id);
+                return RedirectToAction("TouristsOfCurrentGuideForm", new { id = guideId });
+            }
+
             return NotFound();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> EditTourist(int id = 0)
+        {
+
+            var result = await _touristServ.ShowCurrentTouristEditForm(id);
+
+            return View(result);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> EditTouristAsync(EditForm model)
+        {
+            await _touristServ.SaveEditedTourist(model);
+
+            string message = "Editing of tourist";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return Ok();
         }
 
     }
