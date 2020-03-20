@@ -1,35 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Testovoe_zadaniye.DataBase;
-using Testovoe_zadaniye.LoggingMechanism;
+using Testovoe_zadaniye.AppServices.Interfaces;
 
 namespace Testovoe_zadaniye.Controllers
 {
     public class HomeController : Controller
     {
-        TouragencyContext db;
-        readonly Logger logger;
-        LoggerCreator combinedloggCreator;
+        ILoggerCreator _loggerCreator;
 
-
-        public HomeController(TouragencyContext context)
+        public HomeController(ILoggerCreator loggerCreator)
         {
-            db = context;
-
-            combinedloggCreator = new TextConsoleCreator();
-            logger = combinedloggCreator.FactoryMethod();
-
-
+            _loggerCreator = loggerCreator;
         }
         public ActionResult Index()
         {
            
             string message = "Initial entering";
             string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var result = _loggerCreator.FactoryMethod();
+            result.LoggMessage(className, message);
 
             return View();
         }
-
     }
 }

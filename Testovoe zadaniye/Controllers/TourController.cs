@@ -1,9 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
-using Microsoft.AspNetCore.Hosting;
-using Testovoe_zadaniye.LoggingMechanism;
 using Microsoft.AspNetCore.Authorization;
 using Testovoe_zadaniye.AppServices.Interfaces;
 
@@ -11,25 +8,20 @@ namespace Testovoe_zadaniye.Controllers
 {
     public class TourController : Controller
     {
-        TouragencyContext db;
-        IWebHostEnvironment _appEnvironment;
-        Logger logger;
+
+        ILoggerCreator _loggerCreator;
         ITourService _tourService;
 
-        public TourController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITourService tourService)
+        public TourController(ITourService tourService, ILoggerCreator loggerCreator)
         {
-            db = context;
-            LoggerCreator loggerCreator = new TxtLoggerCreator();
-            logger = loggerCreator.FactoryMethod();
-            _appEnvironment = appEnvironment;
+            _loggerCreator = loggerCreator;
             _tourService = tourService;
-
         }
 
         [Authorize]
         public IActionResult AddTour()
         {
-            var result = _tourService;
+            var result =_tourService.CreateNewTourForm();
             return View(result);
         }
 
@@ -40,9 +32,10 @@ namespace Testovoe_zadaniye.Controllers
             await _tourService.SaveNewTour(addTour);
 
             string message = "Add of new Tour";
+            var logger = _loggerCreator.FactoryMethod();
             logger.LoggMessage(this.GetType().Name, message);
 
-            return RedirectToAction("GuideToToursAcces", "Navigation");
+            return RedirectToAction("AllToursForGuide", "Guide");
         }
 
         [Authorize]
@@ -59,23 +52,23 @@ namespace Testovoe_zadaniye.Controllers
             _tourService.SaveEditedTour(model);
 
             string message = "Edit of chosen Tour";
+            var logger = _loggerCreator.FactoryMethod();
             logger.LoggMessage(this.GetType().Name, message);
 
             return Ok();
         }
 
-        public IActionResult ToTours(int? id)
+        public async Task<IActionResult> ToursOfTourist(int? id)
         {
             string message = "Display tours";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             //SQL useful realisation
             //var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
             //return View(tours);
 
-            var tours = _tourService.ToursOfChosenTourist(id);
+            var tours = await _tourService.ToursOfChosenTourist(id);
 
             return View(tours);
         }
@@ -89,28 +82,28 @@ namespace Testovoe_zadaniye.Controllers
             if (id != null)
             {
                 string message = "Deleting of Tour";
-                string className = this.GetType().Name;
-                logger.LoggMessage(className, message);
+                var logger = _loggerCreator.FactoryMethod();
+                logger.LoggMessage(this.GetType().Name, message);
 
                 await _tourService.DeleteChosenTour(id);
-                return RedirectToAction("AllToursForGuide");
+                return RedirectToAction("AllToursForGuide", "Guide");
             }
 
             string message1 = "Unsucessful tour delete";
-            string className1 = this.GetType().Name;
-            logger.LoggMessage(className1, message1);
+            var logger1 = _loggerCreator.FactoryMethod();
+            logger1.LoggMessage(this.GetType().Name, message1);
 
             return NotFound();
         }
 
-        public IActionResult AllToursList()
+        public async Task<IActionResult> AllToursList()
         {
 
             string message = "Display tours List";
-            string className = this.GetType().Name;
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
-            var result = _tourService.ShowAllTours();
+            var result = await _tourService.ShowAllTours();
 
             return View(result);
         }

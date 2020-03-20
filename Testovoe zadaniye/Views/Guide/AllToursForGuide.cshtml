@@ -51,8 +51,8 @@
                         <h3 class="card-title pricing-card-title">@tour.Data </h3>
 
                         <p class="lead">For additional information about tour contact please contact ZharaTravel LLC.</p>
-                        <a class="btn btn-primary btn-lg" href="~/AddTour/ToTourEdit/@tour.TourId" role="button">Edit Tour</a>
-                        <a class="btn btn-primary btn-lg" asp-action="DeleteTour" asp-controller="Navigation" asp-route-id="@tour.TourId" onclick="return confirm ('Are yo sure yo want to delete: @tour.Name')">Delete</a>
+                        <a class="btn btn-primary btn-lg" href="~/Tour/EditTour/@tour.TourId" role="button">Edit Tour</a>
+                        <a class="btn btn-primary btn-lg" asp-action="DeleteTour" asp-controller="Tour" asp-route-id="@tour.TourId" onclick="return confirm ('Are yo sure yo want to delete: @tour.Name')">Delete</a>
                     </div>
                 </main>
 
@@ -84,9 +84,9 @@
 
             <p>
 
-                <a href="~/AddTour/ToTourAdd" class="btn btn-primary my-2">Add Tour</a>
+                <a href="~/Tour/AddTour" class="btn btn-primary my-2">Add Tour</a>
                 <a href="#" class="btn btn-secondary my-2" onclick="DisplayGoogleMap()">Display Map</a>
-                <a href="~/Navigation/GuideSelection" class="btn btn-secondary my-2">Previous page</a>
+                <a href="~/Guide/GuideNAvigation" class="btn btn-secondary my-2">Previous page</a>
 
             </p>
 
@@ -127,9 +127,6 @@
                 //
                 var TourNine = new google.maps.LatLng(41.613967, 2.654539);
                 //
-                var TourTen = new google.maps.LatLng(41.375696, 2.177621);
-                //
-                var TourEleven = new google.maps.LatLng(41.414397, 2.153142);
 
 
                 //Create Options or set different Characteristics of Google Map

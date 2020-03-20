@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Testovoe_zadaniye.LoggingMechanism;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
@@ -17,17 +15,13 @@ namespace Testovoe_zadaniye.Controllers
 {
     public class GuideController : Controller
     {
-        TouragencyContext db;
-        IWebHostEnvironment _appEnvironment;
-        Logger logger;
+
+        ILoggerCreator _loggerCreator;
         IGuideService _guideService;
 
-        public GuideController(TouragencyContext context, IWebHostEnvironment appEnvironment, IGuideService guideService)
+        public GuideController(IGuideService guideService, ILoggerCreator loggerCreator)
         {
-            db = context;
-            LoggerCreator loggerCreator = new TxtLoggerCreator();
-            logger = loggerCreator.FactoryMethod();
-            _appEnvironment = appEnvironment;
+            _loggerCreator = loggerCreator;
             _guideService = guideService;
 
         }
@@ -48,6 +42,9 @@ namespace Testovoe_zadaniye.Controllers
 
                 if (result == null)
                 {
+                    string message = "Save of new guide form";
+                    var logger = _loggerCreator.FactoryMethod();
+                    logger.LoggMessage(this.GetType().Name, message);
                     return RedirectToAction("GuideNavigation", "Guide");
                 }
                 else
@@ -69,7 +66,8 @@ namespace Testovoe_zadaniye.Controllers
             await _guideService.SaveCurrentEditedGuideForm(model);
 
             string message = "Edit of chosen Guide";
-            logger.LoggMessage(this.GetType().Name, message);
+            var result = _loggerCreator.FactoryMethod();
+            result.LoggMessage(this.GetType().Name, message);
 
             return Ok();
         }
@@ -85,18 +83,17 @@ namespace Testovoe_zadaniye.Controllers
                 if (result != null)
                 {
                     string message = "Successful Sign Up";
-                    string className = this.GetType().Name;
+                    var logger = _loggerCreator.FactoryMethod();
+                    logger.LoggMessage(this.GetType().Name, message);
 
-                    logger.LoggMessage(className, message);
                     await Authenticate(guideLogin.Name); // аутентификация
 
                     return RedirectToAction("GuideNavigation", "Guide");
                 }
 
                 string message2 = "Unsuccessful Sign Up";
-                string className2 = this.GetType().Name;
-
-                logger.LoggMessage(className2, message2);
+                var logger1 = _loggerCreator.FactoryMethod();
+                logger1.LoggMessage(this.GetType().Name, message2);
 
                 ModelState.AddModelError(string.Empty, "Wrong login or password");
 
@@ -113,27 +110,25 @@ namespace Testovoe_zadaniye.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("GuideLog", "GuideLog");
+            return RedirectToAction("GuideAuthentication", "Guide");
         }
 
         [Authorize]
         public ActionResult GuideNavigation()
         {
 
-            string message = "Select of proper guide option";
-            string className = this.GetType().Name;
-            logger.LoggMessage(className, message);
+            string message = "ShowGuideNavigationForm";
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             return View();
         }
 
         public async Task<IActionResult> GuideOfChosenTouristInfo(int? id)
         {
-
             string message = "Display tourist's guide";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             var result = await _guideService.GuideInfoById(id);
 
@@ -143,11 +138,9 @@ namespace Testovoe_zadaniye.Controllers
         [Authorize]
         public async Task<ActionResult> AllGuidesList()
         {
-
             string message = "Display guides list";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             var result = await _guideService.AllGuidesList();
 
@@ -165,15 +158,15 @@ namespace Testovoe_zadaniye.Controllers
                 await _guideService.DeleteCurrentGuide(id);
 
                 string message = "Deleting of Guide";
-                string className = this.GetType().Name;
-                logger.LoggMessage(className, message);
+                var logger = _loggerCreator.FactoryMethod();
+                logger.LoggMessage(this.GetType().Name, message);
 
                 return RedirectToAction("AllGuidesList");
             }
 
             string message1 = "Deleting of Guide";
-            string className1 = this.GetType().Name;
-            logger.LoggMessage(className1, message1);
+            var logger1 = _loggerCreator.FactoryMethod();
+            logger1.LoggMessage(this.GetType().Name, message1);
 
             return NotFound();
         }
@@ -183,9 +176,9 @@ namespace Testovoe_zadaniye.Controllers
         {
             
             string message = "Display tours List for guide";
-            string className = this.GetType().Name;
 
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             var result = await _guideService.AllToursListForGuide(pageNumber, pageSize);
 

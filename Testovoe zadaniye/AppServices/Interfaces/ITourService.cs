@@ -11,7 +11,7 @@ namespace Testovoe_zadaniye.AppServices.Interfaces
         public AddTour CreateNewTourForm();
         public Task SaveNewTour(AddTour addTour);
         public EditTourForm CreateEditTourForm(int id);
-        public Task SaveEditedTour(EditTourForm);
+        public Task SaveEditedTour(EditTourForm model);
         public Task<List<Tour>> ToursOfChosenTourist(int? id);
         public Task DeleteChosenTour(int? id);
         public Task<List<Tour>> ShowAllTours();

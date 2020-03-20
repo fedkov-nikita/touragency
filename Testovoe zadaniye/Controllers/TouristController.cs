@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
-using Microsoft.AspNetCore.Hosting;
-using Testovoe_zadaniye.LoggingMechanism;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
 using Testovoe_zadaniye.AppServices.Interfaces;
+
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,20 +14,13 @@ namespace Testovoe_zadaniye.Controllers
     public class TouristController : Controller
     {
         ITouristService _touristServ;
-        TouragencyContext db;
-        IWebHostEnvironment _appEnvironment;
-        Logger logger;
-        IFileManager _fileManagerServ;
+        ILoggerCreator _loggerCreator;
 
-        public TouristController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITouristService touristServ, IFileManager filemanager)
+
+        public TouristController(ITouristService touristServ, ILoggerCreator loggerCreator)
         {
-            db = context;
-            LoggerCreator loggerCreator = new TxtLoggerCreator();
-            logger = loggerCreator.FactoryMethod();
-            _appEnvironment = appEnvironment;
+            _loggerCreator = loggerCreator;
             _touristServ = touristServ;
-            _fileManagerServ = filemanager;
-
         }
 
         [Authorize]
@@ -47,6 +38,7 @@ namespace Testovoe_zadaniye.Controllers
             await _touristServ.ProcessNewTouristModel(model);
 
             string message = "Upload new tourist form to submition";
+            var logger = _loggerCreator.FactoryMethod();
             logger.LoggMessage(this.GetType().Name, message);
 
             if (ModelState.IsValid)
@@ -61,9 +53,8 @@ namespace Testovoe_zadaniye.Controllers
             await _touristServ.ProcessNewTouristModel(model);
 
             string message = "Submition of new tourist form";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             return View(model);
         }
@@ -76,9 +67,8 @@ namespace Testovoe_zadaniye.Controllers
             var result =  await _touristServ.SaveTouristModel(model);
 
             string message = "Saving of new tourist";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             return RedirectToAction("TouristsOfCurrentGuideForm", "Tourist", new { id = result.GuideId });
         }
@@ -91,9 +81,8 @@ namespace Testovoe_zadaniye.Controllers
             //return View(tourists);
 
             string message = "Display guide`s tourists";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             return View(await _touristServ.TouristListByGuideId(id));
         }
@@ -102,9 +91,8 @@ namespace Testovoe_zadaniye.Controllers
         {
 
             string message = "Display tourists list";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             var result = await _touristServ.FullTouristList(age, homeTown, searchString, pageNumber, pageSize);
 
@@ -119,9 +107,8 @@ namespace Testovoe_zadaniye.Controllers
         {
             
             string message = "Deleting of tourist";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             if (id != 0)
             {
@@ -149,9 +136,8 @@ namespace Testovoe_zadaniye.Controllers
             await _touristServ.SaveEditedTourist(model);
 
             string message = "Editing of tourist";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            var logger = _loggerCreator.FactoryMethod();
+            logger.LoggMessage(this.GetType().Name, message);
 
             return Ok();
         }

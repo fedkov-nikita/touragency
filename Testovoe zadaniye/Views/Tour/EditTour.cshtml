@@ -8,11 +8,11 @@
     </div>
 </div>
 
-@using (Html.BeginForm("ToTourEdit", "AddTour", FormMethod.Post, new
+@using (Html.BeginForm("EditTour", "Tour", FormMethod.Post, new
 {
     enctype = "multipart/form-data",
     onSubmit = "return jQueryAjaxPost(this);",
-    data_restUrl = Url.Action("ToTourEdit", "AddTour", new { id = 0 }),
+    data_restUrl = Url.Action("EditTour", "Tour", new { id = 0 }),
     id = "jqSubmit"
 }))
 
