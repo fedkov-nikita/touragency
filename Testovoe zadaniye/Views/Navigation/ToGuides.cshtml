@@ -21,7 +21,7 @@
                     <tr>
                         <td>@guide.Name</td>
                         <td><a class="btn btn-primary btn-lg" href="~/Tourist/TouristsOfCurrentGuideForm/@guide.GuideId" role="button">>></a></td>
-                        <td><a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideEdit/@guide.GuideId" role="button">Edit</a></td>
+                        <td><a class="btn btn-primary btn-lg" href="~/Guide/EditGuide/@guide.GuideId" role="button">Edit</a></td>
                         <td><a class="btn btn-primary btn-lg" asp-action="DeleteGuide" asp-controller="Navigation" asp-route-id="@guide.GuideId" onclick="return confirm ('Are yo sure yo want to delete: @guide.Name')">Delete</a></td>
                     </tr>
                 }
@@ -33,7 +33,7 @@
 
 <div class="row justify-content-md-center">
     <div class="col-md-2">
-        <a class="btn btn-primary btn-lg" href="~/AddGuide/ToGuideAdd" role="button">Register new guide</a>
+        <a class="btn btn-primary btn-lg" href="~/Guide/AddGuide" role="button">Register new guide</a>
     </div>
     <div class="col-md-2">
         <a class="btn btn-primary btn-lg" href="~/Navigation/GuideSelection" role="button">To guide menu</a>

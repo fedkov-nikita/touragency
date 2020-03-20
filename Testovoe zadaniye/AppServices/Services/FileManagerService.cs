@@ -18,7 +18,7 @@ namespace Testovoe_zadaniye.AppServices.Services
         }
         public async Task<string> UploadPhoto(IFormFile formFile)
         {
-            var directory = Directory.CreateDirectory(@"E:\TestovoeZadanie\Testovoe zadaniye\Testovoe zadaniye\wwwroot\images");
+            var directory = Directory.CreateDirectory(@"E:\TestovoeZadanie\touragency\Testovoe zadaniye\wwwroot\images");
             string path = directory + formFile.FileName;
             // сохраняем файл в папку Files в каталоге wwwroot
             string fileName = Path.GetFileName(path);

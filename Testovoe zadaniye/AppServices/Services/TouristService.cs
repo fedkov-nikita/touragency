@@ -14,6 +14,7 @@ using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.Extensions;
 
+
 namespace Testovoe_zadaniye.AppServices.Services
 {
     public class TouristService : ITouristService

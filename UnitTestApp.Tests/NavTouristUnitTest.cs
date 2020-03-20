@@ -24,15 +24,15 @@ namespace UnitTestApp.Tests
 
 
         [Fact]
-        public void TouristListTest()
-        {
+        //public void TouristListTest()
+        //{
             
 
 
-            //Arrange 
-            var mock = new Mock<ITouristService>();
-            mock.Setup(repo => repo.FullTouristList(age, homeTown, searchString, pageNumber, pageSize)).Returns(TouristTest());
-        }
+        //    //Arrange 
+        //    var mock = new Mock<ITouristService>();
+        //    mock.Setup(repo => repo.FullTouristList(age, homeTown, searchString, pageNumber, pageSize)).Returns(TouristTest());
+        //}
 
         
         //public async Task<Pagin<Tourist>> TouristTest()

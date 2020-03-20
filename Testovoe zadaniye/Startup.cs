@@ -34,6 +34,7 @@ namespace Testovoe_zadaniye
         {
             services.AddTransient<ITouristService, TouristService>();
             services.AddTransient<IFileManager, FileManager>();
+            services.AddTransient<IGuideService, GuideService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -44,7 +45,7 @@ namespace Testovoe_zadaniye
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/GuideLog/GuideLog");
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Guide/GuideAuthentication");
                 });
 
             services.AddRazorPages();

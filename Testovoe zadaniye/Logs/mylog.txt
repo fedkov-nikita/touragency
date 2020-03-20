@@ -4212,3 +4212,61 @@
  3/19/2020 10:11:46 PM Class TouristController - method: AllTouristsList - action: Display tourists list
  3/19/2020 10:11:49 PM Class TouristController - method: AllTouristsList - action: Display tourists list
  3/19/2020 10:11:51 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/20/2020 10:32:04 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:32:09 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:32:09 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:32:10 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:36:37 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:36:42 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:36:42 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:36:42 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:38:41 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:38:45 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:38:45 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:39:01 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:40:23 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:40:27 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:40:27 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:40:33 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:40:34 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:40:41 AM Class GuideController - method: EditGuide - action: Edit of chosen Guide
+ 3/20/2020 10:40:47 AM Class GuideController - method: EditGuide - action: Edit of chosen Guide
+ 3/20/2020 10:40:54 AM Class GuideController - method: EditGuide - action: Edit of chosen Guide
+ 3/20/2020 10:40:57 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:41:04 AM Class GuideController - method: EditGuide - action: Edit of chosen Guide
+ 3/20/2020 10:41:08 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:41:16 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:41:20 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:41:20 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:41:22 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:42:11 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:42:16 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:42:16 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:42:27 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:43:20 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:43:21 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:43:50 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:43:53 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:44:01 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 10:57:07 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 10:57:13 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 10:57:13 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 10:57:18 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 11:00:33 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:00:38 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 11:00:38 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 11:00:43 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 11:00:43 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 11:06:09 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:06:21 AM Class GuideLogController - method: GuideLog - action: Successful Sign Up
+ 3/20/2020 11:06:21 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 11:06:22 AM Class NavigationController - method: ToGuides - action: Display guides list
+ 3/20/2020 11:23:57 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:26:32 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:27:05 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:29:33 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:29:39 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/20/2020 11:29:39 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option
+ 3/20/2020 11:30:39 AM Class HomeController - method: Index - action: Initial entering
+ 3/20/2020 11:30:42 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/20/2020 11:30:42 AM Class NavigationController - method: GuideSelection - action: Select of proper guide option

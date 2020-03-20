@@ -32,53 +32,7 @@ namespace Testovoe_zadaniye.Controllers
             logger = loggerCreator.FactoryMethod();
 
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> GuideLog(GuideLogin guideLogin)
-        {
-            if (ModelState.IsValid)
-            {
-                Guide guide = await db.Guides.FirstOrDefaultAsync(c => c.Login == guideLogin.Name && c.Password == guideLogin.Password);
-                if (guide != null)
-                {
-                    string message = "Successful Sign Up";
-                    string className = this.GetType().Name;
-
-                    logger.LoggMessage(className, message);
-                    await Authenticate(guideLogin.Name); // аутентификация
-
-                    return RedirectToAction("GuideSelection", "Navigation");
-                }
-                ModelState.AddModelError("", "Wrong login or password");
-
-            }
-            return View(guideLogin);
-        }
-
-        [HttpGet]
-        public ActionResult GuideLog()
-        {
-            return View();
-        }
-
-        private async Task Authenticate(string userName)
-        {
-            // создаем один claim
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
-            };
-            // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
-
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("GuideLog", "GuideLog");
-        }
+        
 
     }
 }
