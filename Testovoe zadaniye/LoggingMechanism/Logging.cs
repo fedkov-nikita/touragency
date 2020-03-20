@@ -16,7 +16,6 @@ namespace Testovoe_zadaniye.LoggingMechanism
     class ConsoleLogger : Logger
     {
 
-
         private static ConsoleLogger instance;
 
         private ConsoleLogger()

@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Hosting;
 using Testovoe_zadaniye.LoggingMechanism;
-using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
-using Microsoft.EntityFrameworkCore;
 using Testovoe_zadaniye.AppServices.Interfaces;
 
 

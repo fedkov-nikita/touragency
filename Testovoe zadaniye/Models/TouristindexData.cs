@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Testovoe_zadaniye.DataBase;
-using Testovoe_zadaniye.Models;
+﻿using System.Collections.Generic;
+
 
 namespace Testovoe_zadaniye.Models
 {

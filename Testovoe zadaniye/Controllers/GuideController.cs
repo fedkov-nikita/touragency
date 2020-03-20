@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
-using Testovoe_zadaniye.FileUploading;
-using Testovoe_zadaniye.Controllers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Testovoe_zadaniye.AppServices.Interfaces;
-using Testovoe_zadaniye.Paginator;
+
 
 namespace Testovoe_zadaniye.Controllers
 {
