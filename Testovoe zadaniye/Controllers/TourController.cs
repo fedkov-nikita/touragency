@@ -56,36 +56,18 @@ namespace Testovoe_zadaniye.Controllers
         }
 
         [Authorize]
-        public ActionResult ToTourEdit(int id = 0)
+        public ActionResult EditTour(int id = 0)
         {
-            Tour tour = new Tour();
-            if (id != 0)
-            {
-                tour = db.Tours.Where(x => x.TourId == id).FirstOrDefault();
-            }
-            EditTourForm model = new EditTourForm();
-            model.Date = tour.Data;
-            model.Name = tour.Name;
-            model.TourId = tour.TourId;
-
-
-            return View(model);
+            var result = _tourService.CreateEditTourForm(id);
+            return View(result);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ToTourEdit(EditTourForm model)
+        public ActionResult EditTour(EditTourForm model)
         {
-            Tour tour = new Tour();
-            tour.Data = model.Date;
-            tour.Name = model.Name;
-            tour.TourId = model.TourId;
+            _tourService.SaveEditedTour(model);
 
-            if (model.TourId != 0)
-            {
-                db.Entry(tour).State = EntityState.Modified;
-                db.SaveChanges();
-            }
             string message = "Edit of chosen Tour";
             logger.LoggMessage(this.GetType().Name, message);
 
@@ -94,18 +76,16 @@ namespace Testovoe_zadaniye.Controllers
 
         public IActionResult ToTours(int? id)
         {
-
-            var viewModel = new TouristindexData();
-
-            var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
-
-            //return View(db.TouristTour.Where(
-            //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
-
             string message = "Display tours";
             string className = this.GetType().Name;
 
             logger.LoggMessage(className, message);
+
+            //SQL useful realisation
+            //var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
+            //return View(tours);
+
+            var tours = _tourService.ToursOfChosenTourist(id);
 
             return View(tours);
         }
@@ -118,29 +98,31 @@ namespace Testovoe_zadaniye.Controllers
         {
             if (id != null)
             {
-                var targetTour = db.Tours.First(x => x.TourId == id.Value); //Вынимаем тур по id из базы.
-                db.Entry(targetTour).State = EntityState.Deleted; // удаляем тур
-                await db.SaveChangesAsync();
-                return RedirectToAction("GuideToToursAcces");
+                string message = "Deleting of Tour";
+                string className = this.GetType().Name;
+                logger.LoggMessage(className, message);
+
+                await _tourService.DeleteChosenTour(id);
+                return RedirectToAction("AllToursForGuide");
             }
 
-            string message = "Deleting of Tour";
-            string className = this.GetType().Name;
-
-            logger.LoggMessage(className, message);
+            string message1 = "Unsucessful tour delete";
+            string className1 = this.GetType().Name;
+            logger.LoggMessage(className1, message1);
 
             return NotFound();
         }
 
-        public IActionResult TourList()
+        public IActionResult AllToursList()
         {
 
             string message = "Display tours List";
             string className = this.GetType().Name;
-
             logger.LoggMessage(className, message);
 
-            return View(db.Tours.ToList());
+            var result = _tourService.ShowAllTours();
+
+            return View(result);
         }
     }
 }
