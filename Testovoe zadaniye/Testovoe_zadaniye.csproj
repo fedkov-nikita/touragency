@@ -22,8 +22,4 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\GuideLog\" />
-  </ItemGroup>
-
 </Project>

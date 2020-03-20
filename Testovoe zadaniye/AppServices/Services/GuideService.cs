@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using Testovoe_zadaniye.Paginator;
 
 namespace Testovoe_zadaniye.AppServices.Services
 {
@@ -72,6 +73,38 @@ namespace Testovoe_zadaniye.AppServices.Services
         {
             Guide guide = await db.Guides.FirstOrDefaultAsync(c => c.Login == guideLogin.Name && c.Password == guideLogin.Password);
             return guide;
+        }
+        public async Task<List<Guide>> AllGuidesList()
+        {
+            return await db.Guides.ToListAsync();
+        }
+        public async Task<Guide> GuideInfoById(int? id)
+        {
+            Guide guide = await db.Guides.FirstOrDefaultAsync(i => i.GuideId == id.Value);
+            
+            return guide;
+        }
+        public async Task DeleteCurrentGuide(int? id)
+        {
+            if (id != null)
+            {
+                var targetGuide = db.Guides.First(x => x.GuideId == id.Value); //Вынимаем тур по id из базы.
+                db.Entry(targetGuide).State = EntityState.Deleted; // удаляем тур
+                await db.SaveChangesAsync();
+            }
+        }
+
+        public async Task<Pagin<Tour>> AllToursListForGuide(int pageNumber, int pageSize)
+        {
+            int ExcludeRecords = (pageNumber * pageSize) - pageSize;
+            var result = new Pagin<Tour>
+            {
+                Data = await db.Tours.OrderBy(c => c.Name).Skip(ExcludeRecords).Take(pageSize).AsNoTracking().ToListAsync(),
+                TotalItems = db.Tours.Count(),
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return result;
         }
     }
 }

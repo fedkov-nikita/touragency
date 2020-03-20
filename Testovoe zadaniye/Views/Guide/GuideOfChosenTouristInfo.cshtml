@@ -1,10 +1,8 @@
-﻿@model IEnumerable<Testovoe_zadaniye.Models.Guide>
+﻿@model Testovoe_zadaniye.Models.Guide
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var guide in Model)
-{
     <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
     <div class="row justify-content-md-center">
         <div class="col-md-4">
@@ -17,7 +15,7 @@
 
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title"> @guide.Name </h1>
+                        <h1 class="card-title pricing-card-title"> @Model.Name </h1>
                     </div>
 
                 </div>
@@ -25,4 +23,4 @@
         </div>
     </div>
     <a class="btn btn-primary btn-lg" href="javascript: history.go(-1)" role="button">Previous Page</a>
-}
+

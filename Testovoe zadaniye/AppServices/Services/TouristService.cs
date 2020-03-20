@@ -102,7 +102,7 @@ namespace Testovoe_zadaniye.AppServices.Services
 
 
 
-        public async Task<List<Tourist>> TouristListById(int? id)
+        public async Task<List<Tourist>> TouristListByGuideId(int? id)
         {
             var tourists = await db.Tourists.Where(c => c.GuideId == id).ToListAsync();
 

@@ -100,7 +100,7 @@ namespace Testovoe_zadaniye.Controllers
 
             logger.LoggMessage(className, message);
 
-            return View(await _touristServ.TouristListById(id));
+            return View(await _touristServ.TouristListByGuideId(id));
         }
 
         public async Task<IActionResult> AllTouristsList(int? age, string homeTown, string searchString, int pageNumber = 1, int pageSize = 7)

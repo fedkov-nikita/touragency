@@ -15,55 +15,46 @@ using System.Runtime.CompilerServices;
 using Testovoe_zadaniye.LoggingMechanism;
 using Testovoe_zadaniye.FileUploading;
 using Microsoft.AspNetCore.Authorization;
+using Testovoe_zadaniye.AppServices.Interfaces;
 
 namespace Testovoe_zadaniye.Controllers
 {
-    public class AddTourController : Controller
+    public class TourController : Controller
     {
         TouragencyContext db;
         IWebHostEnvironment _appEnvironment;
         Logger logger;
+        ITourService _tourService;
 
-        public AddTourController(TouragencyContext context, IWebHostEnvironment appEnvironment)
+        public TourController(TouragencyContext context, IWebHostEnvironment appEnvironment, ITourService tourService)
         {
             db = context;
             LoggerCreator loggerCreator = new TxtLoggerCreator();
             logger = loggerCreator.FactoryMethod();
             _appEnvironment = appEnvironment;
+            _tourService = tourService;
 
         }
 
         [Authorize]
-        public IActionResult ToTourAdd()
+        public IActionResult AddTour()
         {
-            AddTour model = new AddTour();
-
-            return View(model);
+            var result = _tourService;
+            return View(result);
         }
+
         [Authorize]
         [HttpPost]
-        public IActionResult ToTourAdd(AddTour addTour)
+        public async Task<IActionResult> AddTour(AddTour addTour)
         {
-
-            Tour tour = new Tour();
-            tour.Name = addTour.Name;
-            tour.Data = addTour.Date;
-            if (tour.Name != null && tour.Data != null)
-            {
-            db.Tours.Add(tour);
-            db.SaveChanges();
-            }
-            else
-            {
-                throw new Exception("Some field of tour is null");
-            }
-
+            await _tourService.SaveNewTour(addTour);
 
             string message = "Add of new Tour";
             logger.LoggMessage(this.GetType().Name, message);
 
             return RedirectToAction("GuideToToursAcces", "Navigation");
         }
+
         [Authorize]
         public ActionResult ToTourEdit(int id = 0)
         {
@@ -99,6 +90,57 @@ namespace Testovoe_zadaniye.Controllers
             logger.LoggMessage(this.GetType().Name, message);
 
             return Ok();
+        }
+
+        public IActionResult ToTours(int? id)
+        {
+
+            var viewModel = new TouristindexData();
+
+            var tours = db.Tours.FromSqlRaw("sp_ShowToursFromTT @TouristId={0}", id).ToList();
+
+            //return View(db.TouristTour.Where(
+            //            i => i.TouristId == id.Value).Select(i => i.Tour).ToList());
+
+            string message = "Display tours";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return View(tours);
+        }
+
+        [HttpGet]
+        [ActionName("DeleteTour")]
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteTour(int? id)
+        {
+            if (id != null)
+            {
+                var targetTour = db.Tours.First(x => x.TourId == id.Value); //Вынимаем тур по id из базы.
+                db.Entry(targetTour).State = EntityState.Deleted; // удаляем тур
+                await db.SaveChangesAsync();
+                return RedirectToAction("GuideToToursAcces");
+            }
+
+            string message = "Deleting of Tour";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return NotFound();
+        }
+
+        public IActionResult TourList()
+        {
+
+            string message = "Display tours List";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            return View(db.Tours.ToList());
         }
     }
 }

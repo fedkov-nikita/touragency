@@ -24,19 +24,19 @@
             <ul class="pagination">
                 @if (Model.HasPreviousPage)
                 {
-                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber - 1)">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="/Guide/alltoursforguide?pageNumber=@(Model.PageNumber - 1)">Previous</a></li>
                 }
 
                 @for (var i = 1; i <= Model.TotalPages; i++)
                 {
 
-                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@i">@i</a></li>
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Guide/alltoursforguide?pageNumber=@i">@i</a></li>
 
                 }
 
                 @if (Model.HasNextPage)
                 {
-                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber+1)">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="/Guide/alltoursforguide?pageNumber=@(Model.PageNumber+1)">Next</a></li>
                 }
             </ul>
         </nav>
@@ -63,19 +63,19 @@
             <ul class="pagination">
                 @if (Model.HasPreviousPage)
                 {
-                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumer=@(Model.PageNumber - 1)">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="/Guide/alltoursforguide?pageNumer=@(Model.PageNumber - 1)">Previous</a></li>
                 }
 
                 @for (var i = 1; i <= Model.TotalPages; i++)
                 {
 
-                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@i">@i</a></li>
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")"><a class="page-link" href="/Guide/alltoursforguide?pageNumber=@i">@i</a></li>
 
                 }
 
                 @if (Model.HasNextPage)
                 {
-                    <li class="page-item"><a class="page-link" href="/Navigation/guidetotoursacces?pageNumber=@(Model.PageNumber+1)">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="/Guide/alltoursforguide?pageNumber=@(Model.PageNumber+1)">Next</a></li>
                 }
             </ul>
         </nav>

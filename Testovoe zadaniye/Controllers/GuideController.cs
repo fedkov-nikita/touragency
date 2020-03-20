@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Testovoe_zadaniye.AppServices.Interfaces;
+using Testovoe_zadaniye.Paginator;
 
 namespace Testovoe_zadaniye.Controllers
 {
@@ -56,9 +57,7 @@ namespace Testovoe_zadaniye.Controllers
 
                 if (result == null)
                 {
-                    await Authenticate(addGuide.Name); // аутентификация
-
-                    return RedirectToAction("GuideSelection", "Navigation");
+                    return RedirectToAction("GuideNavigation", "Guide");
                 }
                 else
                     ModelState.AddModelError("Login", "Login is already exist");
@@ -90,7 +89,7 @@ namespace Testovoe_zadaniye.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _guideService.ProccesingGuideAuthorizationForm(guideLogin);
+                var result = await _guideService.ProccesingGuideAuthorizationForm(guideLogin);
 
                 if (result != null)
                 {
@@ -100,7 +99,7 @@ namespace Testovoe_zadaniye.Controllers
                     logger.LoggMessage(className, message);
                     await Authenticate(guideLogin.Name); // аутентификация
 
-                    return RedirectToAction("GuideSelection", "Navigation");
+                    return RedirectToAction("GuideNavigation", "Guide");
                 }
 
                 string message2 = "Unsuccessful Sign Up";
@@ -124,6 +123,82 @@ namespace Testovoe_zadaniye.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("GuideLog", "GuideLog");
+        }
+
+        [Authorize]
+        public ActionResult GuideNavigation()
+        {
+
+            string message = "Select of proper guide option";
+            string className = this.GetType().Name;
+            logger.LoggMessage(className, message);
+
+            return View();
+        }
+
+        public async Task<IActionResult> GuideOfChosenTouristInfo(int? id)
+        {
+
+            string message = "Display tourist's guide";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            var result = await _guideService.GuideInfoById(id);
+
+            return View(result);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> AllGuidesList()
+        {
+
+            string message = "Display guides list";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            var result = await _guideService.AllGuidesList();
+
+            return View(result);
+        }
+
+        [HttpGet]
+        [ActionName("DeleteGuide")]
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteGuide(int? id)
+        {
+            if (id != null)
+            {
+                await _guideService.DeleteCurrentGuide(id);
+
+                string message = "Deleting of Guide";
+                string className = this.GetType().Name;
+                logger.LoggMessage(className, message);
+
+                return RedirectToAction("AllGuidesList");
+            }
+
+            string message1 = "Deleting of Guide";
+            string className1 = this.GetType().Name;
+            logger.LoggMessage(className1, message1);
+
+            return NotFound();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AllToursForGuide(int pageNumber = 1, int pageSize = 2)
+        {
+            
+            string message = "Display tours List for guide";
+            string className = this.GetType().Name;
+
+            logger.LoggMessage(className, message);
+
+            var result = await _guideService.AllToursListForGuide(pageNumber, pageSize);
+
+            return View(result);
         }
 
         private async Task Authenticate(string userName)
