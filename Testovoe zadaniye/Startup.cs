@@ -37,6 +37,7 @@ namespace Testovoe_zadaniye
             services.AddTransient<ITouristService, TouristService>();
             services.AddTransient<IFileManager, FileManager>();
             services.AddTransient<IGuideService, GuideService>();
+            services.AddTransient<IReserveSave, ReserveSave>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

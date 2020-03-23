@@ -34,7 +34,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddGuide(AddGuide addGuide)
+        public async Task<IActionResult> AddGuide(NewGuideForm addGuide)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Testovoe_zadaniye.Controllers
         }
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> EditGuide(EditGuideForm model)
+        public async Task<ActionResult> EditGuide(GuideEditForm model)
         {
             await _guideService.SaveCurrentEditedGuideForm(model);
 
@@ -74,7 +74,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> GuideAuthentication(GuideLogin guideLogin)
+        public async Task<ActionResult> GuideAuthentication(GuidesAuthenticationForm guideLogin)
         {
             if (ModelState.IsValid)
             {

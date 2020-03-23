@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Testovoe_zadaniye.Models
 {
-    public class AddTour
+    public class NewTourForm
     {
         [Required]
         [StringLength(60, MinimumLength = 2)]

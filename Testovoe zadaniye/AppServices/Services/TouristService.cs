@@ -108,9 +108,9 @@ namespace Testovoe_zadaniye.AppServices.Services
             return tourists;
         }
 
-        public async Task<Addform> CreateNewTouristForm()
+        public async Task<NewTouristForm> CreateNewTouristForm()
         {
-            Addform model = new Addform();
+            NewTouristForm model = new NewTouristForm();
             model.Guides = await db.Guides.ToListAsync();
             model.Tours = await db.Tours.ToListAsync();
             model.selectListg = new SelectList(model.Guides, "GuideId", "Name");
@@ -120,7 +120,7 @@ namespace Testovoe_zadaniye.AppServices.Services
         }
 
        
-        public async Task ProcessNewTouristModel(Addform model)
+        public async Task ProcessNewTouristModel(NewTouristForm model)
         {
 
 
@@ -133,7 +133,7 @@ namespace Testovoe_zadaniye.AppServices.Services
             model.SelectedTourIds = tours;
         }
 
-        public async Task ProcessEnteredTouristModel(Addform model)
+        public async Task ProcessEnteredTouristModel(NewTouristForm model)
         {
             model.Tours = await db.Tours.ToListAsync();
 
@@ -150,7 +150,7 @@ namespace Testovoe_zadaniye.AppServices.Services
 
         }
 
-        public async Task<Tourist> SaveTouristModel(Addform model)
+        public async Task<Tourist> SaveTouristModel(NewTouristForm model)
         {
             foreach (var t in model.Tours)
             {
@@ -195,14 +195,14 @@ namespace Testovoe_zadaniye.AppServices.Services
 
         }
 
-        public async Task<EditForm> ShowCurrentTouristEditForm(int? id)
+        public async Task<TouristEditForm> ShowCurrentTouristEditForm(int? id)
         {
             Tourist tourist = new Tourist();
             if (id != 0)
             {
                 tourist = await db.Tourists.Where(x => x.Touristid == id).FirstOrDefaultAsync();
             }
-            EditForm model = new EditForm();
+            TouristEditForm model = new TouristEditForm();
             model.Hometown = tourist.Hometown;
             model.Fullname = tourist.Fullname;
             model.Age = tourist.Age;
@@ -222,7 +222,7 @@ namespace Testovoe_zadaniye.AppServices.Services
             return model;
         }
 
-        public async Task SaveEditedTourist(EditForm model)
+        public async Task SaveEditedTourist(TouristEditForm model)
         {
             Tourist tourist = new Tourist();
             tourist.Fullname = model.Fullname;

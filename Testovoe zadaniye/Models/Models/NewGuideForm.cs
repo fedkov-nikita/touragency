@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Testovoe_zadaniye.Models
 {
-    public class AddGuide
+    public class NewGuideForm
     {
         [Required]
         [StringLength(30, MinimumLength = 5)]

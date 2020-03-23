@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Testovoe_zadaniye.Models
 {
-    public class EditTourForm
+    public class TourEditForm
     {
         public int TourId { get; set; }
 

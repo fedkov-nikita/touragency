@@ -4625,3 +4625,62 @@
  3/20/2020 8:27:19 PM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
  3/20/2020 8:27:23 PM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
  3/20/2020 8:27:23 PM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:21:47 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:21:50 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:22:55 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:23:01 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:31:17 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:31:22 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:31:22 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:34:26 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:34:28 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:34:50 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:34:52 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:34:55 AM Class TourController - method: AllToursList - action: Display tours List
+ 3/23/2020 9:35:00 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:35:03 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:35:07 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:35:11 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:35:30 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:35:33 AM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/23/2020 9:35:35 AM Class TourController - method: AllToursList - action: Display tours List
+ 3/23/2020 9:35:41 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:35:41 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:35:43 AM Class GuideController - method: AllGuidesList - action: Display guides list
+ 3/23/2020 9:35:45 AM Class TouristController - method: TouristsOfCurrentGuideForm - action: Display guide`s tourists
+ 3/23/2020 9:35:49 AM Class TourController - method: ToursOfTourist - action: Display tours
+ 3/23/2020 9:35:52 AM Class TourController - method: ToursOfTourist - action: Display tours
+ 3/23/2020 9:35:55 AM Class TourController - method: ToursOfTourist - action: Display tours
+ 3/23/2020 9:35:57 AM Class TourController - method: ToursOfTourist - action: Display tours
+ 3/23/2020 9:36:00 AM Class GuideController - method: AllGuidesList - action: Display guides list
+ 3/23/2020 9:36:01 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:36:03 AM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 9:36:12 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:37:08 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:39:17 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:39:25 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:39:25 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:39:31 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:39:31 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:39:54 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:40:53 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:42:05 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:42:16 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:42:16 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 9:42:16 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 9:45:44 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:45:47 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:45:54 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:45:57 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:46:00 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:49:34 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:49:45 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:49:55 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 9:49:58 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 10:20:50 AM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 10:20:56 AM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 10:20:56 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 10:21:06 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 10:21:09 AM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 10:21:11 AM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 10:21:14 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm

@@ -27,7 +27,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddTour(AddTour addTour)
+        public async Task<IActionResult> AddTour(NewTourForm addTour)
         {
             await _tourService.SaveNewTour(addTour);
 
@@ -47,7 +47,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult EditTour(EditTourForm model)
+        public ActionResult EditTour(TourEditForm model)
         {
             _tourService.SaveEditedTour(model);
 

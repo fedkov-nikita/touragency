@@ -16,13 +16,13 @@ namespace Testovoe_zadaniye.AppServices.Services
         {
             db = context;
         }
-        public AddTour CreateNewTourForm()
+        public NewTourForm CreateNewTourForm()
         {
-            AddTour addTour = new AddTour();
+            NewTourForm addTour = new NewTourForm();
 
             return addTour;
         }
-        public async Task SaveNewTour(AddTour addTour)
+        public async Task SaveNewTour(NewTourForm addTour)
         {
             Tour tour = new Tour();
             tour.Name = addTour.Name;
@@ -37,21 +37,21 @@ namespace Testovoe_zadaniye.AppServices.Services
                 throw new Exception("Some field of tour is null");
             }
         }
-        public EditTourForm CreateEditTourForm(int id) 
+        public TourEditForm CreateEditTourForm(int id) 
         {
             Tour tour = new Tour();
             if (id != 0)
             {
                 tour = db.Tours.Where(x => x.TourId == id).FirstOrDefault();
             }
-            EditTourForm model = new EditTourForm();
+            TourEditForm model = new TourEditForm();
             model.Date = tour.Data;
             model.Name = tour.Name;
             model.TourId = tour.TourId;
 
             return model;
         }
-        public async Task SaveEditedTour(EditTourForm model)
+        public async Task SaveEditedTour(TourEditForm model)
         {
             Tour tour = new Tour();
             tour.Data = model.Date;

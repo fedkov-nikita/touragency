@@ -21,13 +21,13 @@ namespace Testovoe_zadaniye.AppServices.Services
         {
             db = context;
         }
-        public AddGuide CreateNewGuideForm()
+        public NewGuideForm CreateNewGuideForm()
         {
-            AddGuide addGuide = new AddGuide();
+            NewGuideForm addGuide = new NewGuideForm();
 
             return addGuide;
         }
-        public async Task<Guide> SaveNewGuideModel(AddGuide addGuide)
+        public async Task<Guide> SaveNewGuideModel(NewGuideForm addGuide)
         {
             Guide guide = await db.Guides.FirstOrDefaultAsync(u => u.Login == addGuide.Login);
             if (guide == null)
@@ -40,14 +40,14 @@ namespace Testovoe_zadaniye.AppServices.Services
             return guide;
 
         }
-        public async Task<EditGuideForm> CreateCurrentGuideEditForm(int? id)
+        public async Task<GuideEditForm> CreateCurrentGuideEditForm(int? id)
         {
             Guide guide = new Guide();
             if (id != 0)
             {
                 guide = await db.Guides.Where(x => x.GuideId == id).FirstOrDefaultAsync();
             }
-            EditGuideForm model = new EditGuideForm();
+            GuideEditForm model = new GuideEditForm();
             model.Name = guide.Name;
             model.Login = guide.Login;
             model.Password = guide.Password;
@@ -55,7 +55,7 @@ namespace Testovoe_zadaniye.AppServices.Services
 
             return model;
         }
-        public async Task SaveCurrentEditedGuideForm(EditGuideForm model)
+        public async Task SaveCurrentEditedGuideForm(GuideEditForm model)
         {
             Guide guide = new Guide();
             guide.Name = model.Name;
@@ -69,7 +69,7 @@ namespace Testovoe_zadaniye.AppServices.Services
                 await db.SaveChangesAsync();
             }
         }
-        public async Task<Guide> ProccesingGuideAuthorizationForm(GuideLogin guideLogin)
+        public async Task<Guide> ProccesingGuideAuthorizationForm(GuidesAuthenticationForm guideLogin)
         {
             Guide guide = await db.Guides.FirstOrDefaultAsync(c => c.Login == guideLogin.Name && c.Password == guideLogin.Password);
             return guide;

@@ -1,4 +1,4 @@
-﻿@model Testovoe_zadaniye.Models.GuideLogin
+﻿@model Testovoe_zadaniye.Models.GuidesAuthenticationForm
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,13 +7,14 @@
     <title>Authorization</title>
     <div>
         <h3>Sign in</h3>
-            <form class="form-signin" method="post" action="~/Guide/GuideAuthentication">
-                <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
-                <p>Please sign in</p>
-                <label for="Name" class="sr-only">Login</label>
-                <input type="text" name= "Name" class="form-control" placeholder="Login" required="" autofocus="">
-                <label for="Password" class="sr-only">Password</label>
-                <input type="password" name="Password" class="form-control" placeholder="Password" required="">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+        <form class="form-signin" method="post" action="~/Guide/GuideAuthentication">
+            <img class="mb-4" src="~/images/logo.png" alt="" width="100" height="100">
+            <p>Please sign in</p>
+            <label for="Name" class="sr-only">Login</label>
+            <input type="text" name="Name" class="form-control" placeholder="Login" required="" autofocus="">
+            <label for="Password" class="sr-only">Password</label>
+            <input type="password" name="Password" class="form-control" placeholder="Password" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <a class="btn btn-secondary my-2" href="~/Home/Index" role="button">Home page</a>
     </div>

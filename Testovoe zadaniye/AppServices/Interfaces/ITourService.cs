@@ -8,10 +8,10 @@ namespace Testovoe_zadaniye.AppServices.Interfaces
 {
     public interface ITourService
     {
-        public AddTour CreateNewTourForm();
-        public Task SaveNewTour(AddTour addTour);
-        public EditTourForm CreateEditTourForm(int id);
-        public Task SaveEditedTour(EditTourForm model);
+        public NewTourForm CreateNewTourForm();
+        public Task SaveNewTour(NewTourForm addTour);
+        public TourEditForm CreateEditTourForm(int id);
+        public Task SaveEditedTour(TourEditForm model);
         public Task<List<Tour>> ToursOfChosenTourist(int? id);
         public Task DeleteChosenTour(int? id);
         public Task<List<Tour>> ShowAllTours();

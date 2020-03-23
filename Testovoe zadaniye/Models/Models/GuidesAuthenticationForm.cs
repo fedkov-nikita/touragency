@@ -7,7 +7,7 @@ using Testovoe_zadaniye.Models;
 
 namespace Testovoe_zadaniye.Models
 {
-    public class GuideLogin
+    public class GuidesAuthenticationForm
     {
         [Required(ErrorMessage = "Enter your login!")]
         public string Name { get; set; }

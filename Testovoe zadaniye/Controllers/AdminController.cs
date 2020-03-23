@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Testovoe_zadaniye.AppServices.Interfaces;
 using Testovoe_zadaniye.FileUploading;
 
 namespace Testovoe_zadaniye.Controllers
 {
     public class AdminController : Controller
     {
-        ReserveSave resSave;
-        public AdminController()
+        readonly IReserveSave _resSave;
+        public AdminController(IReserveSave resSave)
         {
-            resSave = new ReserveSave();
+            _resSave= resSave;
         }
         public IActionResult Reserver()
         {
-            resSave.ReserveMethod();
+            _resSave.ReserveMethod();
             return Ok();
         }
     }

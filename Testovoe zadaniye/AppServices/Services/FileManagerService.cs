@@ -11,7 +11,7 @@ namespace Testovoe_zadaniye.AppServices.Services
 {
     public class FileManager : IFileManager
     {
-        IWebHostEnvironment _appEnvironment;
+        readonly IWebHostEnvironment _appEnvironment;
         public FileManager(IWebHostEnvironment appEnvironment)
         {
             _appEnvironment = appEnvironment;

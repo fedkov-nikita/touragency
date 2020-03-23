@@ -2,7 +2,7 @@
 
 namespace Testovoe_zadaniye.Models
 {
-    public class EditGuideForm
+    public class GuideEditForm
     {
         [Required]
         [StringLength(30, MinimumLength = 5)]

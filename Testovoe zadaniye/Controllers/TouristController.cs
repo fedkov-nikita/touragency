@@ -33,7 +33,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> AddTouristFormStep1(Addform model)
+        public async Task<ActionResult> AddTouristFormStep1(NewTouristForm model)
         {
             await _touristServ.ProcessNewTouristModel(model);
 
@@ -48,7 +48,7 @@ namespace Testovoe_zadaniye.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> AddTouristFormStep2(Addform model)
+        public async Task<ActionResult> AddTouristFormStep2(NewTouristForm model)
         {
             await _touristServ.ProcessNewTouristModel(model);
 
@@ -61,7 +61,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> SaveNewTourist(Addform model)
+        public async Task<ActionResult> SaveNewTourist(NewTouristForm model)
         {
 
             var result =  await _touristServ.SaveTouristModel(model);
@@ -131,7 +131,7 @@ namespace Testovoe_zadaniye.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> EditTouristAsync(EditForm model)
+        public async Task<ActionResult> EditTouristAsync(TouristEditForm model)
         {
             await _touristServ.SaveEditedTourist(model);
 
