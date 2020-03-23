@@ -4,6 +4,7 @@ using Testovoe_zadaniye.Models;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
 using Testovoe_zadaniye.AppServices.Interfaces;
+using Testovoe_zadaniye.Models.OperationModels;
 
 
 

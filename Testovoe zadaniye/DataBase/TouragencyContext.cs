@@ -1,4 +1,5 @@
-﻿using Testovoe_zadaniye.Models;
+﻿using Testovoe_zadaniye.Models.OperationModels;
+using Testovoe_zadaniye.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Testovoe_zadaniye.DataBase

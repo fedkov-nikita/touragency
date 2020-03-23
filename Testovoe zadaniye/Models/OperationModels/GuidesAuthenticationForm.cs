@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Testovoe_zadaniye.Models;
 
-namespace Testovoe_zadaniye.Models
+namespace Testovoe_zadaniye.Models.OperationModels
 {
     public class GuidesAuthenticationForm
     {

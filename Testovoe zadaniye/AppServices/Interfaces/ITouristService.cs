@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Testovoe_zadaniye.Models;
+using Testovoe_zadaniye.Models.Entities;
+using Testovoe_zadaniye.Models.OperationModels;
 using Testovoe_zadaniye.Paginator;
 
 namespace Testovoe_zadaniye.AppServices.Interfaces

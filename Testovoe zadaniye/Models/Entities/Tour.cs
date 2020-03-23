@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Testovoe_zadaniye.Models
+namespace Testovoe_zadaniye.Models.Entities
 {
     public class Tour
     {

@@ -4684,3 +4684,16 @@
  3/23/2020 10:21:09 AM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
  3/23/2020 10:21:11 AM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
  3/23/2020 10:21:14 AM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 12:36:53 PM Class HomeController - method: Index - action: Initial entering
+ 3/23/2020 12:36:59 PM Class GuideController - method: GuideAuthentication - action: Successful Sign Up
+ 3/23/2020 12:36:59 PM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 12:37:01 PM Class GuideController - method: AllGuidesList - action: Display guides list
+ 3/23/2020 12:37:02 PM Class TouristController - method: TouristsOfCurrentGuideForm - action: Display guide`s tourists
+ 3/23/2020 12:37:06 PM Class GuideController - method: AllGuidesList - action: Display guides list
+ 3/23/2020 12:37:07 PM Class GuideController - method: GuideNavigation - action: ShowGuideNavigationForm
+ 3/23/2020 12:37:08 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 12:37:11 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 12:37:14 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 12:37:15 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 12:37:17 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/23/2020 12:37:17 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide

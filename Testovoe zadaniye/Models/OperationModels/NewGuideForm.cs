@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Testovoe_zadaniye.Models
+namespace Testovoe_zadaniye.Models.OperationModels
 {
     public class NewGuideForm
     {

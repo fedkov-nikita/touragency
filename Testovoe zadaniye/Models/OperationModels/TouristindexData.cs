@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Testovoe_zadaniye.Models.Entities;
 
-
-namespace Testovoe_zadaniye.Models
+namespace Testovoe_zadaniye.Models.OperationModels
 {
     public class TouristindexData
     {

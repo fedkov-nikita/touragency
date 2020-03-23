@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Testovoe_zadaniye.Models;
 using Testovoe_zadaniye.AppServices.Interfaces;
 using Testovoe_zadaniye.DataBase;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 using Testovoe_zadaniye.Paginator;
+using Testovoe_zadaniye.Models.OperationModels;
+using Testovoe_zadaniye.Models.Entities;
 
 namespace Testovoe_zadaniye.AppServices.Services
 {

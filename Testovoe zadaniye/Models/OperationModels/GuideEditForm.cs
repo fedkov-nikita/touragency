@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Testovoe_zadaniye.Models
+namespace Testovoe_zadaniye.Models.OperationModels
 {
     public class GuideEditForm
     {
