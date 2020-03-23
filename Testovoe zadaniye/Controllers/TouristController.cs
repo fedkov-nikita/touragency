@@ -81,9 +81,9 @@ namespace Testovoe_zadaniye.Controllers
             //var tourists = db.Tourists.FromSqlRaw("sp_ShowGuidesByTourist @GuideId={0}", id).ToList();
             //return View(tourists);
 
-            string message = "Display guide`s tourists";
-            var logger = _loggerCreator.FactoryMethod();
-            logger.LoggMessage(this.GetType().Name, message);
+            //string message = "Display guide`s tourists";
+            //var logger = _loggerCreator.FactoryMethod();
+            //logger.LoggMessage(this.GetType().Name, message);
 
             return View(await _touristServ.TouristListByGuideId(id));
         }

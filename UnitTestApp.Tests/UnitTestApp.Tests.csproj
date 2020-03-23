@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Testovoe zadaniye\Testovoe_zadaniye.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestImages\" />
+  </ItemGroup>
+
 </Project>
