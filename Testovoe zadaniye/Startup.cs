@@ -32,6 +32,8 @@ namespace Testovoe_zadaniye
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors();
             services.AddTransient<ILoggerCreator, TextConsoleCreator>();
             services.AddTransient<ITourService, TourService>();
             services.AddTransient<ITouristService, TouristService>();
@@ -59,7 +61,7 @@ namespace Testovoe_zadaniye
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-
+            app.UseCors(builder => builder.AllowAnyOrigin());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

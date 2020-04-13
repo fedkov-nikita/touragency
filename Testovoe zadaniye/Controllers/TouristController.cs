@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Testovoe_zadaniye.Models;
 using Microsoft.AspNetCore.Authorization;
 using ITouristService = Testovoe_zadaniye.AppServices.Interfaces.ITouristService;
 using Testovoe_zadaniye.AppServices.Interfaces;

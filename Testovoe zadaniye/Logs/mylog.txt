@@ -4697,3 +4697,35 @@
  3/23/2020 12:37:15 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
  3/23/2020 12:37:17 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
  3/23/2020 12:37:17 PM Class GuideController - method: AllToursForGuide - action: Display tours List for guide
+ 3/26/2020 4:39:21 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 4:57:36 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:02:31 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:02:33 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/26/2020 5:02:38 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/26/2020 5:44:35 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:44:38 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:44:42 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:44:45 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:44:48 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:44:54 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:51:09 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:51:13 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:51:15 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:51:18 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:55:11 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:55:17 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:55:49 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:56:57 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:57:00 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:57:05 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 5:57:18 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 11:16:59 PM Class HomeController - method: Index - action: Initial entering
+ 3/26/2020 11:17:01 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/26/2020 11:25:26 PM Class HomeController - method: Index - action: Initial entering
+ 3/27/2020 9:50:47 AM Class HomeController - method: Index - action: Initial entering
+ 3/27/2020 1:30:23 PM Class HomeController - method: Index - action: Initial entering
+ 3/27/2020 3:03:58 PM Class HomeController - method: Index - action: Initial entering
+ 3/27/2020 3:24:36 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/27/2020 3:36:37 PM Class HomeController - method: Index - action: Initial entering
+ 3/27/2020 3:58:22 PM Class TouristController - method: AllTouristsList - action: Display tourists list
+ 3/27/2020 3:58:30 PM Class TouristController - method: AllTouristsList - action: Display tourists list

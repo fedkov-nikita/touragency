@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Testovoe_zadaniye.AppServices.Interfaces;
 using Testovoe_zadaniye.Controllers;
-using Testovoe_zadaniye.DataBase;
 using Testovoe_zadaniye.Models.Entities;
-using Testovoe_zadaniye.Paginator;
 using Xunit;
 
 namespace UnitTestApp.Tests
